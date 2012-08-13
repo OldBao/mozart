@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE uridef [
+  <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns">
+  <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema">
+  <!ENTITY owl "http://www.w3.org/2002/07/owl">
+  <!ENTITY xsd "http://www.w3.org/2001/XMLSchema">
+  <!ENTITY service "http://www.daml.org/services/owl-s/1.2/Service.owl">
+  <!ENTITY profile "http://www.daml.org/services/owl-s/1.2/Profile.owl">
+  <!ENTITY process "http://www.daml.org/services/owl-s/1.2/Process.owl">
+  <!ENTITY grounding "http://www.daml.org/services/owl-s/1.2/Grounding.owl">
+  <!ENTITY javaGrounding "http://bai-hu.ethz.ch/owlet/ont/OWLSExtensions.owl">
+  <!ENTITY fla "http://www.flacp.fujitsulabs.com/tce/ontologies/2004/03/object.owl">
+  <!ENTITY concepts "http://www.mindswap.org/2004/owl-s/concepts.owl">
+  <!ENTITY expr "http://www.daml.org/services/owl-s/1.2/generic/Expression.owl">
+  <!ENTITY swrl "http://www.w3.org/2003/11/swrl">  
+  <!ENTITY wsdl "http://www.mindswap.org:8084/axis/GoogleService.jws?wsdl">
+  <!ENTITY DEFAULT "http://www.mindswap.org/2004/owl-s/1.2/GoogleMap.owl">
+]>
+<rdf:RDF 
+	xmlns:rdf="&rdf;#" 
+	xmlns:rdfs="&rdfs;#" 
+	xmlns:owl="&owl;#" 
+	xmlns:xsd="&xsd;#" 
+  	xmlns:service="&service;#" 
+	xmlns:profile="&profile;#" 
+	xmlns:process="&process;#" 
+	xmlns:grounding="&grounding;#"  
+  	xmlns:expr="&expr;#" 
+	xmlns:swrl="&swrl;#"
+	xmlns:javaGrounding="&javaGrounding;#"
+	xmlns="&DEFAULT;#"
+ 	xml:base="&DEFAULT;"
+>
+  
+  <owl:Ontology rdf:about="">
+    	<owl:imports rdf:resource="&service;"/>
+    	<owl:imports rdf:resource="&profile;"/>
+    	<owl:imports rdf:resource="&process;"/>
+    	<owl:imports rdf:resource="&grounding;"/>
+    	<owl:imports rdf:resource="&fla;"/>
+    	<owl:imports rdf:resource="&concepts;"/>
+  </owl:Ontology>
+  
+  <!-- Service description -->
+  <service:Service rdf:ID="GoogleMapService">
+    <service:presents rdf:resource="#GoogleMapProfile"/>
+    <service:describedBy rdf:resource="#GoogleMapProcess"/>
+    <service:supports rdf:resource="#GoogleMapGrounding"/>
+  </service:Service>
+  
+  <!-- Profile description -->
+  <profile:Profile rdf:ID="GoogleMapProfile">
+    <service:isPresentedBy rdf:resource="#GoogleMapService"/>
+    <profile:serviceName xml:lang="en">Google Map</profile:serviceName>
+    <profile:textDescription xml:lang="en">Return the URL that displays a map of the given address</profile:textDescription>
+    <profile:hasInput rdf:resource="#InputAddress"/>
+    <profile:hasOutput rdf:resource="#OutputURL"/>
+  </profile:Profile>
+  
+  <!-- Process description -->
+  <process:AtomicProcess rdf:ID="GoogleMapProcess">
+    <service:describes rdf:resource="#GoogleMapService"/>
+    <process:hasInput rdf:resource="#InputAddress"/>
+    <process:hasOutput rdf:resource="#OutputURL"/>
+    
+    <process:hasLocal rdf:resource="#StreetAddress"/>
+    <process:hasLocal rdf:resource="#City"/>
+    <process:hasLocal rdf:resource="#State"/>
+    <process:hasLocal rdf:resource="#ZipCode"/>
+    
+    <process:hasPrecondition rdf:resource="#Cond1"/>
+    <process:hasPrecondition rdf:resource="#Cond2"/>
+  </process:AtomicProcess>
+  
+  <process:Input rdf:ID="InputAddress">
+    <process:parameterType rdf:datatype="&xsd;#anyURI">&fla;#Address</process:parameterType>
+    <rdfs:label>Address</rdfs:label>
+  </process:Input>
+  
+  <process:Output rdf:ID="OutputURL">
+    <process:parameterType rdf:datatype="&xsd;#anyURI">&xsd;#anyURI</process:parameterType>
+    <rdfs:label>Map</rdfs:label>
+  </process:Output>
+  
+  	<expr:SWRL-Condition rdf:ID="Cond1">
+		<expr:expressionLanguage rdf:resource="&expr;#SWRL"/>
+		<expr:expressionObject>
+          <swrl:AtomList>
+            <rdf:first>
+              <swrl:DatavaluedPropertyAtom>
+                <swrl:propertyPredicate rdf:resource="&fla;#zipCode"/>
+                <swrl:argument1 rdf:resource="#InputAddress"/>
+                <swrl:argument2 rdf:resource="#ZipCode"/>
+              </swrl:DatavaluedPropertyAtom>
+            </rdf:first>
+            <rdf:rest rdf:resource="&rdf;#nil"/>
+          </swrl:AtomList>
+		</expr:expressionObject>
+	</expr:SWRL-Condition>
+	
+  	<expr:SWRL-Condition rdf:ID="Cond2">
+		<expr:expressionLanguage rdf:resource="&expr;#SWRL"/>
+		<expr:expressionObject>
+          <swrl:AtomList>
+            <rdf:first>
+              <swrl:DatavaluedPropertyAtom>
+                <swrl:propertyPredicate rdf:resource="&fla;#streetAddress"/>
+                <swrl:argument1 rdf:resource="#InputAddress"/>
+                <swrl:argument2 rdf:resource="#StreetAddress"/>
+              </swrl:DatavaluedPropertyAtom>
+            </rdf:first>
+            <rdf:rest>
+               <swrl:AtomList>
+                  <rdf:first>
+                    <swrl:DatavaluedPropertyAtom>
+                      <swrl:propertyPredicate rdf:resource="&fla;#city"/>
+                      <swrl:argument1 rdf:resource="#InputAddress"/>
+                      <swrl:argument2 rdf:resource="#City"/>
+                    </swrl:DatavaluedPropertyAtom>
+                  </rdf:first>
+                  <rdf:rest>
+                    <swrl:AtomList>
+                      <rdf:first>
+                        <swrl:DatavaluedPropertyAtom>
+                          <swrl:propertyPredicate rdf:resource="&fla;#state"/>
+                          <swrl:argument1 rdf:resource="#InputAddress"/>
+                          <swrl:argument2 rdf:resource="#State"/>
+                        </swrl:DatavaluedPropertyAtom>
+                      </rdf:first>
+                      <rdf:rest rdf:resource="&rdf;#nil"/>
+                    </swrl:AtomList>                  
+                  </rdf:rest>
+                </swrl:AtomList>
+            </rdf:rest>            
+          </swrl:AtomList>
+		</expr:expressionObject>
+	</expr:SWRL-Condition>
+
+<!-- Grounding description -->
+<grounding:WsdlGrounding rdf:ID="GoogleMapGrounding">
+	<service:supportedBy rdf:resource="#GoogleMapService"/>
+	<grounding:hasAtomicProcessGrounding rdf:resource="#GoogleMapProcessGrounding"/>
+</grounding:WsdlGrounding>
+
+<grounding:WsdlAtomicProcessGrounding rdf:ID="GoogleMapProcessGrounding">
+	<grounding:owlsProcess rdf:resource="#GoogleMapProcess"/>
+	<grounding:wsdlDocument rdf:datatype="&xsd;#anyURI">http://www.mindswap.org:8084/axis/GoogleService.jws?wsdl</grounding:wsdlDocument>
+	<grounding:wsdlOperation>
+		<grounding:WsdlOperationRef>
+			<grounding:portType rdf:datatype="&xsd;#anyURI">&wsdl;GoogleService</grounding:portType>
+			<grounding:operation rdf:datatype="&xsd;#anyURI">&wsdl;getMap</grounding:operation>
+		</grounding:WsdlOperationRef>
+	</grounding:wsdlOperation>
+
+	<grounding:wsdlInputMessage rdf:datatype="&xsd;#anyURI">&wsdl;getPhotoRequest</grounding:wsdlInputMessage>
+    <grounding:wsdlInput>
+      <grounding:WsdlInputMessageMap>
+        <grounding:owlsParameter rdf:resource="#InputAddress"/>
+        <grounding:wsdlMessagePart rdf:datatype="&xsd;#anyURI">&wsdl;address</grounding:wsdlMessagePart>
+        <grounding:xsltTransformationString>
+        <![CDATA[
+          <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
+              xmlns:fla="http://www.flacp.fujitsulabs.com/tce/ontologies/2004/03/object.owl#">
+          <xsl:template match="/">
+            <xsl:param name="StreetAddress"/>
+            <xsl:param name="City"/>
+            <xsl:param name="State"/>
+            <xsl:param name="ZipCode"/>
+    
+            <xsl:value-of select="$StreetAddress"/> <xsl:value-of select="$City"/>, <xsl:value-of select="$State"/> <xsl:value-of select="$ZipCode"/>
+          </xsl:template>
+          </xsl:stylesheet>
+        ]]>
+        </grounding:xsltTransformationString>
+      </grounding:WsdlInputMessageMap>
+    </grounding:wsdlInput>
+
+	<grounding:wsdlOutputMessage rdf:datatype="&xsd;#anyURI">&wsdl;getPhotoResponse</grounding:wsdlOutputMessage>
+	<grounding:wsdlOutput>
+		<grounding:WsdlOutputMessageMap>
+			<grounding:owlsParameter rdf:resource="#OutputURL"/>
+			<grounding:wsdlMessagePart rdf:datatype="&xsd;#anyURI">&wsdl;getMapReturn</grounding:wsdlMessagePart>
+		</grounding:WsdlOutputMessageMap>
+	</grounding:wsdlOutput>
+</grounding:WsdlAtomicProcessGrounding>
+</rdf:RDF>

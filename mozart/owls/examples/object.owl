@@ -1,0 +1,884 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF
+  xmlns:xsd= "http://www.w3.org/2001/XMLSchema#"
+  xmlns:rdf= "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+  xmlns:owl= "http://www.w3.org/2002/07/owl#"
+  xmlns:geoF="http://www.mindswap.org/2003/owl/geo/geoFeatures.owl#"
+  xmlns =  "http://www.flacp.fujitsulabs.com/tce/ontologies/2004/03/object.owl#"
+  xml:base=  "http://www.flacp.fujitsulabs.com/tce/ontologies/2004/03/object.owl"
+>
+
+<owl:Ontology rdf:about="">
+  <rdfs:label>Task Computing Environment (TCE) Object Ontology</rdfs:label> 
+</owl:Ontology>
+
+<!-- Address Classes and Properties -->
+
+<owl:DatatypeProperty rdf:ID="time">
+  <rdfs:label xml:lang="en">Time</rdfs:label>
+  <rdfs:label xml:lang="ja">時間</rdfs:label>
+  <rdfs:label xml:lang="zh">时间</rdfs:label>
+  <rdfs:label xml:lang="es">Tiempo</rdfs:label>
+  <rdfs:label xml:lang="ko">시간</rdfs:label>
+  <rdfs:label xml:lang="zh-tw">時間</rdfs:label>
+  <rdfs:label xml:lang="tr">Zaman</rdfs:label>
+  <rdfs:label xml:lang="hi">टाइम</rdfs:label>
+  <rdfs:label xml:lang="el">Χρόνος</rdfs:label> 
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:ID="startTime">
+  <rdfs:label xml:lang="en">Start Time</rdfs:label>
+  <rdfs:label xml:lang="ja">開始時間</rdfs:label>
+  <rdfs:label xml:lang="zh">开始时间</rdfs:label>
+  <rdfs:label xml:lang="es">Hora de Comienzo</rdfs:label>
+  <rdfs:label xml:lang="ko">시작 시간</rdfs:label>
+  <rdfs:label xml:lang="zh-tw">起始時</rdfs:label>
+  <rdfs:label xml:lang="tr">Başlama zamanı</rdfs:label>
+  <rdfs:label xml:lang="hi">स्टार्ट टाइम</rdfs:label>
+  <rdfs:label xml:lang="el">Ώρα Εκκίνησης</rdfs:label>
+  <rdfs:subPropertyOf rdf:resource="#time"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:ID="endTime">
+  <rdfs:label xml:lang="en">End Time</rdfs:label>
+  <rdfs:label xml:lang="ja">終了時間</rdfs:label>
+  <rdfs:label xml:lang="zh">结束时间</rdfs:label>
+  <rdfs:label xml:lang="es">Hora de finalización</rdfs:label>
+  <rdfs:label xml:lang="ko">결말 시간</rdfs:label>
+  <rdfs:label xml:lang="zh-tw">截止時</rdfs:label>
+  <rdfs:label xml:lang="tr">Bitme zamanı</rdfs:label>
+  <rdfs:label xml:lang="hi">एंड टाइम</rdfs:label>
+  <rdfs:label xml:lang="el">Ώρα Τερματισμού</rdfs:label>
+  <rdfs:subPropertyOf rdf:resource="#time"/>
+</owl:DatatypeProperty>  
+
+<owl:DatatypeProperty rdf:ID="subject">
+  <rdfs:label xml:lang="en">Subject</rdfs:label>
+  <rdfs:label xml:lang="ja">件名</rdfs:label>
+  <rdfs:label xml:lang="zh">题目</rdfs:label>
+  <rdfs:label xml:lang="es">Asunto</rdfs:label>
+  <rdfs:label xml:lang="ko">주제</rdfs:label>
+  <rdfs:label xml:lang="zh-tw">主題</rdfs:label>
+  <rdfs:label xml:lang="tr">Konu</rdfs:label>
+  <rdfs:label xml:lang="hi">सब्जेक्ट</rdfs:label>
+  <rdfs:label xml:lang="el">Θέμα</rdfs:label>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:ID="location">
+  <rdfs:label xml:lang="en">Location</rdfs:label>
+  <rdfs:label xml:lang="ja">場所</rdfs:label>
+  <rdfs:label xml:lang="zh">场所</rdfs:label>
+  <rdfs:label xml:lang="es">Emplazamiento</rdfs:label>
+  <rdfs:label xml:lang="ko">장소</rdfs:label>
+  <rdfs:label xml:lang="zh-tw">地點</rdfs:label>
+  <rdfs:label xml:lang="tr">Yer</rdfs:label>
+  <rdfs:label xml:lang="hi">लोकेशन</rdfs:label>
+  <rdfs:label xml:lang="el">Τοποθεσία</rdfs:label>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:ID="description">
+  <rdfs:label xml:lang="en">Description</rdfs:label>
+  <rdfs:label xml:lang="ja">詳細</rdfs:label>
+  <rdfs:label xml:lang="zh">细节</rdfs:label>
+  <rdfs:label xml:lang="es">Descripción</rdfs:label>
+  <rdfs:label xml:lang="ko">설명서</rdfs:label>
+  <rdfs:label xml:lang="zh-tw">說明</rdfs:label>
+  <rdfs:label xml:lang="tr">Tanımlama</rdfs:label>
+  <rdfs:label xml:lang="hi">दिस्क्रिप्शन</rdfs:label>
+  <rdfs:label xml:lang="el">Περιγραφή</rdfs:label>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:Class rdf:ID="Schedule">
+  <rdfs:label xml:lang="en">Schedule</rdfs:label>
+  <rdfs:label xml:lang="ja">予定</rdfs:label>
+  <rdfs:label xml:lang="zh">日历</rdfs:label>
+  <rdfs:label xml:lang="es">Calendario</rdfs:label>
+  <rdfs:label xml:lang="ko">예정표</rdfs:label>
+  <rdfs:label xml:lang="zh-tw">行程</rdfs:label>
+  <rdfs:label xml:lang="tr">Zaman Çizelgesi</rdfs:label>
+  <rdfs:label xml:lang="hi">शेदूल</rdfs:label>
+  <rdfs:label xml:lang="el">Πρόγραμμα</rdfs:label>
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing" />
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#startTime"/>
+      <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#endTime"/>
+      <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#subject"/>
+      <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#location"/>
+      <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#description"/>
+      <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+ </owl:Class>
+
+<!-- Address Classes and Properties -->
+
+<owl:DatatypeProperty rdf:ID="streetAddress">
+  <rdfs:label xml:lang="en">Street Address</rdfs:label>
+  <rdfs:label xml:lang="ja">番地</rdfs:label>
+  <rdfs:label xml:lang="zh">街道地址</rdfs:label>
+  <rdfs:label xml:lang="es">Dirección (Calle)</rdfs:label>
+  <rdfs:label xml:lang="ko">길 주소</rdfs:label>
+  <rdfs:label xml:lang="zh-tw">街道名</rdfs:label>
+  <rdfs:label xml:lang="tr">Sokak Adresi</rdfs:label>
+  <rdfs:label xml:lang="hi">स्त्रीट एड्रेस</rdfs:label>
+  <rdfs:label xml:lang="el">Στοιχεία Διεύθυνσης</rdfs:label>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:ID="city">
+  <rdfs:label xml:lang="en">City</rdfs:label>
+  <rdfs:label xml:lang="ja">市町村</rdfs:label>
+  <rdfs:label xml:lang="zh">城市</rdfs:label>
+  <rdfs:label xml:lang="es">Ciudad</rdfs:label>
+  <rdfs:label xml:lang="ko">시</rdfs:label>
+  <rdfs:label xml:lang="zh-tw">城市</rdfs:label>
+  <rdfs:label xml:lang="tr">Şehir</rdfs:label>
+  <rdfs:label xml:lang="hi">सिटि</rdfs:label>
+  <rdfs:label xml:lang="el">Πόλη</rdfs:label>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:ID="state">
+  <rdfs:label xml:lang="en">State</rdfs:label>
+  <rdfs:label xml:lang="ja">都道府県</rdfs:label>
+  <rdfs:label xml:lang="zh">省（市）</rdfs:label>
+  <rdfs:label xml:lang="es">Estado</rdfs:label>
+  <rdfs:label xml:lang="ko">주</rdfs:label>
+  <rdfs:label xml:lang="zh-tw">州</rdfs:label>
+  <rdfs:label xml:lang="tr">Eyalet</rdfs:label>
+  <rdfs:label xml:lang="hi">स्टेट</rdfs:label>
+  <rdfs:label xml:lang="el">Πολιτεία</rdfs:label>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:ID="zipCode">
+  <rdfs:label xml:lang="en">Zip Code</rdfs:label>
+  <rdfs:label xml:lang="ja">郵便番号</rdfs:label>
+  <rdfs:label xml:lang="zh">邮政编码</rdfs:label>
+  <rdfs:label xml:lang="es">Código Postal</rdfs:label>
+  <rdfs:label xml:lang="ko">우편번호</rdfs:label>
+  <rdfs:label xml:lang="zh-tw">郵遞區號</rdfs:label>
+  <rdfs:label xml:lang="tr">Posta Kodu</rdfs:label>
+  <rdfs:label xml:lang="hi">कोड</rdfs:label>
+  <rdfs:label xml:lang="el">Ταχυδρομικός Κώδικας</rdfs:label>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:ID="country">
+  <rdfs:label xml:lang="en">Country</rdfs:label>
+  <rdfs:label xml:lang="ja">国</rdfs:label>
+  <rdfs:label xml:lang="zh">国</rdfs:label>
+  <rdfs:label xml:lang="es">País</rdfs:label>
+  <rdfs:label xml:lang="ko">나라</rdfs:label>
+  <rdfs:label xml:lang="zh-tw">國家</rdfs:label>
+  <rdfs:label xml:lang="tr">Ülke</rdfs:label>
+  <rdfs:label xml:lang="hi">कंट्रि</rdfs:label>
+  <rdfs:label xml:lang="el">Χώρα</rdfs:label>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:Class rdf:ID="Address">
+  <rdfs:label xml:lang="en">Address</rdfs:label>
+  <rdfs:label xml:lang="ja">住所</rdfs:label>
+  <rdfs:label xml:lang="zh">地址</rdfs:label>
+  <rdfs:label xml:lang="es">Dirección</rdfs:label>
+  <rdfs:label xml:lang="ko">주소</rdfs:label>
+  <rdfs:label xml:lang="zh-tw">地址</rdfs:label>
+  <rdfs:label xml:lang="tr">Adres</rdfs:label>
+  <rdfs:label xml:lang="hi">एड्रेस</rdfs:label>
+  <rdfs:label xml:lang="el">Στοιχεία Διεύθυνσης</rdfs:label>
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing" />
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#streetAddress"/>
+      <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#city"/>
+      <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#state"/>
+      <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#zipCode"/>
+      <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#country"/>
+      <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+</owl:Class>
+
+<!-- Contact Classes and Properties -->
+
+<owl:DatatypeProperty rdf:ID="name">
+  <rdfs:label xml:lang="en">Name</rdfs:label>
+  <rdfs:label xml:lang="ja">名前</rdfs:label>
+  <rdfs:label xml:lang="zh">姓名</rdfs:label>
+  <rdfs:label xml:lang="es">Nombre Completo</rdfs:label>
+  <rdfs:label xml:lang="ko">이름</rdfs:label>
+  <rdfs:label xml:lang="zh-tw">姓名</rdfs:label>
+  <rdfs:label xml:lang="tr">Ad</rdfs:label>
+  <rdfs:label xml:lang="hi">नेम</rdfs:label>
+  <rdfs:label xml:lang="el">Όνομα</rdfs:label>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:ID="firstName">
+  <rdfs:label xml:lang="en">First Name</rdfs:label>
+  <rdfs:label xml:lang="ja">名</rdfs:label>
+  <rdfs:label xml:lang="zh">名</rdfs:label>
+  <rdfs:label xml:lang="es">Nombre</rdfs:label>
+  <rdfs:label xml:lang="ko">첬째 이름</rdfs:label>
+  <rdfs:label xml:lang="zh-tw">名字</rdfs:label>
+  <rdfs:label xml:lang="tr">İlk</rdfs:label>
+  <rdfs:label xml:lang="hi">फर्स्ट नेम</rdfs:label>
+  <rdfs:label xml:lang="el">Όνομα</rdfs:label>
+  <rdfs:subPropertyOf rdf:resource="#name"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:ID="middleName">
+  <rdfs:label xml:lang="en">Middle Name</rdfs:label>
+  <rdfs:label xml:lang="ja">ミドルネーム</rdfs:label>
+  <rdfs:label xml:lang="zh">中名</rdfs:label>
+  <rdfs:label xml:lang="es">Primer Apellido</rdfs:label>
+  <rdfs:label xml:lang="ko">가운데 이름</rdfs:label>
+  <rdfs:label xml:lang="zh-tw">中間名</rdfs:label>
+  <rdfs:label xml:lang="tr">İkinci ad</rdfs:label>
+  <rdfs:label xml:lang="hi">मिदल नेम</rdfs:label>
+  <rdfs:label xml:lang="el">Πατρώνυμο</rdfs:label>
+  <rdfs:subPropertyOf rdf:resource="#name"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:ID="lastName">
+  <rdfs:label xml:lang="en">Last Name</rdfs:label>
+  <rdfs:label xml:lang="ja">姓</rdfs:label>
+  <rdfs:label xml:lang="zh">姓</rdfs:label>
+  <rdfs:label xml:lang="es">Segundo Apellido</rdfs:label>
+  <rdfs:label xml:lang="ko">성</rdfs:label>
+  <rdfs:label xml:lang="zh-tw">姓氏</rdfs:label>
+  <rdfs:label xml:lang="tr">Soyad</rdfs:label>
+  <rdfs:label xml:lang="hi">लास्ट नेम</rdfs:label>
+  <rdfs:label xml:lang="el">Επίθετο</rdfs:label>
+  <rdfs:subPropertyOf rdf:resource="#name"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:ID="nickName">
+  <rdfs:label xml:lang="en">Nick Name</rdfs:label>
+  <rdfs:label xml:lang="ja">ニックネーム</rdfs:label>
+  <rdfs:label xml:lang="zh">昵称</rdfs:label>
+  <rdfs:label xml:lang="es">Apodo</rdfs:label>
+  <rdfs:label xml:lang="ko">별칭</rdfs:label>
+  <rdfs:label xml:lang="zh-tw">暱稱</rdfs:label>
+  <rdfs:label xml:lang="tr">Takma Ad</rdfs:label>
+  <rdfs:label xml:lang="hi">निक नेम</rdfs:label>
+  <rdfs:label xml:lang="el">Ψευδώνυμο</rdfs:label>
+  <rdfs:subPropertyOf rdf:resource="#name"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:ID="title">
+  <rdfs:label xml:lang="en">Title</rdfs:label>
+  <rdfs:label xml:lang="ja">肩書き</rdfs:label>
+  <rdfs:label xml:lang="zh">头衔</rdfs:label>
+  <rdfs:label xml:lang="es">Título</rdfs:label>
+  <rdfs:label xml:lang="ko">직함</rdfs:label>
+  <rdfs:label xml:lang="zh-tw">稱號</rdfs:label>
+  <rdfs:label xml:lang="tr">Başlık</rdfs:label>
+  <rdfs:label xml:lang="hi">टाइट्ल</rdfs:label>
+  <rdfs:label xml:lang="el">Τίτλος</rdfs:label>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:ID="jobTitle">
+  <rdfs:label xml:lang="en">Job Title</rdfs:label>
+  <rdfs:label xml:lang="ja">役職</rdfs:label>
+  <rdfs:label xml:lang="zh">工作头衔</rdfs:label>
+  <rdfs:label xml:lang="es">Puesto de Trabajo</rdfs:label>
+  <rdfs:label xml:lang="ko">직업 직함</rdfs:label>
+  <rdfs:label xml:lang="zh-tw">職稱</rdfs:label>
+  <rdfs:label xml:lang="tr">İş Tanımı</rdfs:label>
+  <rdfs:label xml:lang="hi">जॉब टाइट्ल</rdfs:label>
+  <rdfs:label xml:lang="el">Τίτλος Θέσης εργασίας</rdfs:label>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:ObjectProperty rdf:ID="hasHomeAddress">
+  <rdfs:label xml:lang="en">Home Address</rdfs:label>
+  <rdfs:label xml:lang="ja">自宅住所</rdfs:label>
+  <rdfs:label xml:lang="zh">家庭住址</rdfs:label>
+  <rdfs:label xml:lang="es">Domicilio</rdfs:label>
+  <rdfs:label xml:lang="ko">집 주소</rdfs:label>
+  <rdfs:label xml:lang="zh-tw">住址</rdfs:label>
+  <rdfs:label xml:lang="tr">Ev Adresi</rdfs:label>
+  <rdfs:label xml:lang="hi">होम एड्रेस</rdfs:label>
+  <rdfs:label xml:lang="el">Διεύθυνση οικίας</rdfs:label>
+  <rdfs:range rdf:resource="#Address"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:ID="hasBusinessAddress">
+  <rdfs:label xml:lang="en">Business Address</rdfs:label>
+  <rdfs:label xml:lang="ja">会社住所</rdfs:label>
+  <rdfs:label xml:lang="zh">工作地址</rdfs:label>
+  <rdfs:label xml:lang="es">Dirección de trabajo</rdfs:label>
+  <rdfs:label xml:lang="ko">상업 주소</rdfs:label>
+  <rdfs:label xml:lang="zh-tw">公司地址</rdfs:label>
+  <rdfs:label xml:lang="tr">İş Adresi</rdfs:label>
+  <rdfs:label xml:lang="hi">बुसिनेस एड्रेस</rdfs:label>
+  <rdfs:label xml:lang="el">Διεύθυνση γραφείου</rdfs:label>
+  <rdfs:range rdf:resource="#Address"/>
+</owl:ObjectProperty>
+
+<owl:DatatypeProperty rdf:ID="company">
+  <rdfs:label xml:lang="en">Company</rdfs:label>
+  <rdfs:label xml:lang="ja">会社</rdfs:label>
+  <rdfs:label xml:lang="zh">公司</rdfs:label>
+  <rdfs:label xml:lang="es">Empresa</rdfs:label>
+  <rdfs:label xml:lang="ko">회사</rdfs:label>
+  <rdfs:label xml:lang="zh-tw">公司</rdfs:label>
+  <rdfs:label xml:lang="tr">Şirket</rdfs:label>
+  <rdfs:label xml:lang="hi">कम्पनि</rdfs:label>
+  <rdfs:label xml:lang="el">Εταιρία</rdfs:label>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:ID="department">
+  <rdfs:label xml:lang="en">Department</rdfs:label>
+  <rdfs:label xml:lang="ja">部署</rdfs:label>
+  <rdfs:label xml:lang="zh">部门</rdfs:label>
+  <rdfs:label xml:lang="es">Departamento</rdfs:label>
+  <rdfs:label xml:lang="ko">분야</rdfs:label>
+  <rdfs:label xml:lang="zh-tw">部門</rdfs:label>
+  <rdfs:label xml:lang="tr">Bölüm</rdfs:label>
+  <rdfs:label xml:lang="hi">दिपार्टमेंट</rdfs:label>
+  <rdfs:label xml:lang="el">Τμήμα</rdfs:label>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:ID="office">
+  <rdfs:label xml:lang="en">Office</rdfs:label>
+  <rdfs:label xml:lang="ja">事業所</rdfs:label>
+  <rdfs:label xml:lang="zh">办公室</rdfs:label>
+  <rdfs:label xml:lang="es">Despacho</rdfs:label>
+  <rdfs:label xml:lang="ko">사무소</rdfs:label>
+  <rdfs:label xml:lang="zh-tw">辦公室</rdfs:label>
+  <rdfs:label xml:lang="tr">Ofis</rdfs:label>
+  <rdfs:label xml:lang="hi">ऑफिस</rdfs:label>
+  <rdfs:label xml:lang="el">Γραφείο</rdfs:label>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:ObjectProperty rdf:ID="hasEmail">
+  <rdfs:label xml:lang="en">Email</rdfs:label>
+  <rdfs:label xml:lang="ja">電子メール</rdfs:label>
+  <rdfs:label xml:lang="zh">电子邮件</rdfs:label>
+  <rdfs:label xml:lang="es">Correo Electrónico</rdfs:label>
+  <rdfs:label xml:lang="ko">이메일</rdfs:label>
+  <rdfs:label xml:lang="zh-tw">電子郵件</rdfs:label>
+  <rdfs:label xml:lang="tr">E-posta</rdfs:label>
+  <rdfs:label xml:lang="hi">ईमेल</rdfs:label>
+  <rdfs:label xml:lang="el">Διεύθυνση ηλεκτρονικού ταχυδρομείου</rdfs:label>
+  <rdfs:range rdf:resource="#Email"/>
+</owl:ObjectProperty>
+
+<owl:DatatypeProperty rdf:ID="homePage">
+  <rdfs:label xml:lang="en">Home Page</rdfs:label>
+  <rdfs:label xml:lang="ja">ホームページ</rdfs:label>
+  <rdfs:label xml:lang="zh">主页</rdfs:label>
+  <rdfs:label xml:lang="es">Página Personal</rdfs:label>
+  <rdfs:label xml:lang="ko">홈 페이지</rdfs:label>
+  <rdfs:label xml:lang="zh-tw">個人網頁</rdfs:label>
+  <rdfs:label xml:lang="tr">Web Sayfası</rdfs:label>
+  <rdfs:label xml:lang="hi">होम पेज</rdfs:label>
+  <rdfs:label xml:lang="el">Ιστοσελίδα</rdfs:label>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:ID="dateOfBirth">
+  <rdfs:label xml:lang="en">Date of Birth</rdfs:label>
+  <rdfs:label xml:lang="ja">誕生日</rdfs:label>
+  <rdfs:label xml:lang="zh">生日</rdfs:label>
+  <rdfs:label xml:lang="es">Fecha de Nacimiento</rdfs:label>
+  <rdfs:label xml:lang="ko">생년월일</rdfs:label>
+  <rdfs:label xml:lang="zh-tw">生日</rdfs:label>
+  <rdfs:label xml:lang="tr">Doğum Tarihi</rdfs:label>
+  <rdfs:label xml:lang="hi">देट ओफ बर्त</rdfs:label>
+  <rdfs:label xml:lang="el">Ημερομηνία γέννησης</rdfs:label>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:ID="number">
+  <rdfs:label xml:lang="en">Number</rdfs:label>
+  <rdfs:label xml:lang="ja">番号</rdfs:label>
+  <rdfs:label xml:lang="zh">号码</rdfs:label>
+  <rdfs:label xml:lang="es">número</rdfs:label>
+  <rdfs:label xml:lang="ko">번호</rdfs:label>
+  <rdfs:label xml:lang="zh-tw">號碼</rdfs:label>
+  <rdfs:label xml:lang="tr">sayı</rdfs:label>
+  <rdfs:label xml:lang="hi">नम्बर</rdfs:label>
+  <rdfs:label xml:lang="el">Αριθμός</rdfs:label>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:Class rdf:ID="PhoneNumber">
+  <rdfs:label xml:lang="en">Phone Number</rdfs:label>
+  <rdfs:label xml:lang="ja">電話番号</rdfs:label>
+  <rdfs:label xml:lang="zh">电话号码</rdfs:label>
+  <rdfs:label xml:lang="es">Número de teléfono</rdfs:label>
+  <rdfs:label xml:lang="zh-tw">電話號碼</rdfs:label>
+  <rdfs:label xml:lang="hi">फोन नम्बर</rdfs:label>
+  <rdfs:label xml:lang="tr">Telefon Numarası</rdfs:label>
+  <rdfs:label xml:lang="el">Αριθμός τηλεφώνου</rdfs:label>
+  <rdfs:label xml:lang="ko">전화 번호</rdfs:label>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#number"/>
+      <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+</owl:Class>
+
+<owl:Class rdf:ID="FaxNumber">
+  <rdfs:label xml:lang="en">Fax Number</rdfs:label>
+  <rdfs:label xml:lang="ja">Fax 番号</rdfs:label>
+  <rdfs:label xml:lang="zh">传真号码</rdfs:label>
+  <rdfs:label xml:lang="es">Número de Fax</rdfs:label>
+  <rdfs:label xml:lang="ko">팩스 번호</rdfs:label>
+  <rdfs:label xml:lang="zh-tw">傳真號碼</rdfs:label>
+  <rdfs:label xml:lang="tr">Faks Numarası</rdfs:label>
+  <rdfs:label xml:lang="hi">फाक्स नम्बर</rdfs:label>
+  <rdfs:label xml:lang="el">Αριθμός φαξ</rdfs:label>
+  <rdfs:subClassOf rdf:resource="#PhoneNumber"/>
+</owl:Class>
+
+<owl:Class rdf:about="http://www.mindswap.org/2003/owl/geo/geoFeatures.owl#SpatialThing" />
+
+<owl:Class rdf:ID="CellPhoneNumber">
+  <rdfs:label xml:lang="en">Cell Phone Number</rdfs:label>
+  <rdfs:label xml:lang="ja">携帯電話番号</rdfs:label>
+  <rdfs:label xml:lang="zh">手机号码</rdfs:label>
+  <rdfs:label xml:lang="es">Número de Móvil</rdfs:label>
+  <rdfs:label xml:lang="ko">휴대용 전화 번호</rdfs:label>
+  <rdfs:label xml:lang="zh-tw">手機號碼</rdfs:label>
+  <rdfs:label xml:lang="tr">Cep Telefonu Numarası</rdfs:label>
+  <rdfs:label xml:lang="hi">सेल फोन नम्बर</rdfs:label>
+  <rdfs:label xml:lang="el">Αριθμός κινητού τηλεφώνου</rdfs:label>
+  <rdfs:subClassOf rdf:resource="#PhoneNumber"/>
+</owl:Class>
+
+<owl:ObjectProperty rdf:ID="hasHomePhoneNumber">
+  <rdfs:label xml:lang="en">Home Phone Number</rdfs:label>
+  <rdfs:label xml:lang="ja">自宅電話番号</rdfs:label>
+  <rdfs:label xml:lang="zh">家庭电话号码</rdfs:label>
+  <rdfs:label xml:lang="es">Teléfono Domicilio</rdfs:label>
+  <rdfs:label xml:lang="ko">집 전화 번호</rdfs:label>
+  <rdfs:label xml:lang="zh-tw">家用電話號碼</rdfs:label>
+  <rdfs:label xml:lang="tr">Ev Telefonu</rdfs:label>
+  <rdfs:label xml:lang="hi">होम फोन नम्बर</rdfs:label>
+  <rdfs:label xml:lang="el">Αριθμός τηλεφώνου οικίας</rdfs:label>
+  <rdfs:range rdf:resource="#PhoneNumber"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:ID="hasBusinessPhoneNumber">
+  <rdfs:label xml:lang="en">Business Phone Number</rdfs:label>
+  <rdfs:label xml:lang="ja">会社電話番号</rdfs:label>
+  <rdfs:label xml:lang="zh">公司电话号码</rdfs:label>
+  <rdfs:label xml:lang="es">Teléfono de trabajo</rdfs:label>
+  <rdfs:label xml:lang="ko">상업 전화 번호</rdfs:label>
+  <rdfs:label xml:lang="zh-tw">公司電話號碼</rdfs:label>
+  <rdfs:label xml:lang="tr">İş Telefonu</rdfs:label>
+  <rdfs:label xml:lang="hi">बूसिनेस फोन नम्बर</rdfs:label>
+  <rdfs:label xml:lang="el">Αριθμός τηλεφώνου γραφείου</rdfs:label>
+  <rdfs:range rdf:resource="#PhoneNumber"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:ID="hasFaxNumber">
+  <rdfs:label xml:lang="en">Fax Number</rdfs:label>
+  <rdfs:label xml:lang="ja">Fax 番号</rdfs:label>
+  <rdfs:label xml:lang="zh">传真号码</rdfs:label>
+  <rdfs:label xml:lang="es">Número de Fax</rdfs:label>
+  <rdfs:label xml:lang="ko">팩스 번호</rdfs:label>
+  <rdfs:label xml:lang="zh-tw">傳真號碼</rdfs:label>
+  <rdfs:label xml:lang="tr">Faks Numarası</rdfs:label>
+  <rdfs:label xml:lang="hi">फाक्स नम्बर</rdfs:label>
+  <rdfs:label xml:lang="el">Αριθμός φαξ</rdfs:label>
+  <rdfs:range rdf:resource="#FaxNumber"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:ID="hasCellPhoneNumber">
+  <rdfs:label xml:lang="en">Cell Phone Number</rdfs:label>
+  <rdfs:label xml:lang="ja">携帯電話番号</rdfs:label>
+  <rdfs:label xml:lang="zh">手机号码</rdfs:label>
+  <rdfs:label xml:lang="es">Número de Móvil</rdfs:label>
+  <rdfs:label xml:lang="ko">휴대용 전화 번호</rdfs:label>
+  <rdfs:label xml:lang="zh-tw">手機號碼</rdfs:label>
+  <rdfs:label xml:lang="tr">Cep Telefonu Numarası</rdfs:label>
+  <rdfs:label xml:lang="hi">सेल फोन नम्बर</rdfs:label>
+  <rdfs:label xml:lang="el">Αριθμός κινητού τηλεφώνου</rdfs:label>
+  <rdfs:range rdf:resource="#CellPhoneNumber"/>
+</owl:ObjectProperty>
+
+<owl:Class rdf:ID="Contact">
+  <rdfs:label xml:lang="en">Contact</rdfs:label>
+  <rdfs:label xml:lang="ja">連絡先</rdfs:label>
+  <rdfs:label xml:lang="zh">联系人</rdfs:label>
+  <rdfs:label xml:lang="es">Contacto</rdfs:label>
+  <rdfs:label xml:lang="ko">연락처</rdfs:label>
+  <rdfs:label xml:lang="zh-tw">聯絡資訊</rdfs:label>
+  <rdfs:label xml:lang="tr">Kişi</rdfs:label>
+  <rdfs:label xml:lang="hi">कोंटाक्ट</rdfs:label>
+  <rdfs:label xml:lang="el">Επαφή</rdfs:label>
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing" />
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#firstName"/>
+      <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#middleName"/>
+      <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#lastName"/>
+      <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#nickName"/>
+      <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#title"/>
+      <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#jobTitle"/>
+      <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#hasHomeAddress"/>
+      <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#hasBusinessAddress"/>
+      <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#company"/>
+      <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#department"/>
+      <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#office"/>
+      <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#hasEmail"/>
+      <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#homePage"/>
+      <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#dateOfBirth"/>
+      <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#hasHomePhoneNumber"/>
+      <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#hasBusinessPhoneNumber"/>
+      <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#hasFaxNumber"/>
+      <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#hasCellPhoneNumber"/>
+      <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+</owl:Class>
+
+<!-- File Classes and Properties -->
+
+<owl:Class rdf:ID="AudioFile">
+  <rdfs:label xml:lang="en">Audio File</rdfs:label>
+  <rdfs:label xml:lang="ja">オーディオファイル</rdfs:label>
+  <rdfs:label xml:lang="zh">音频文件</rdfs:label>
+  <rdfs:label xml:lang="es">Archivo audio</rdfs:label>
+  <rdfs:label xml:lang="ko">음악 파일</rdfs:label>
+  <rdfs:label xml:lang="zh-tw">音樂檔案</rdfs:label>
+  <rdfs:label xml:lang="tr">Ses dosyası</rdfs:label>
+  <rdfs:label xml:lang="hi">ओडिओ फाइल</rdfs:label>
+  <rdfs:label xml:lang="el">Αρχείο ήχου</rdfs:label>
+  <rdfs:subClassOf rdf:resource="#MediaFile"/>
+</owl:Class>
+
+<owl:Class rdf:ID="VideoFile">
+  <rdfs:label xml:lang="en">Video File</rdfs:label>
+  <rdfs:label xml:lang="ja">ビデオファイル</rdfs:label>
+  <rdfs:label xml:lang="zh">视频文件</rdfs:label>
+  <rdfs:label xml:lang="es">Archivo vídeo</rdfs:label>
+  <rdfs:label xml:lang="ko">비디오 파일</rdfs:label>
+  <rdfs:label xml:lang="zh-tw">影音檔案</rdfs:label>
+  <rdfs:label xml:lang="tr">Görüntü Dosyası</rdfs:label>
+  <rdfs:label xml:lang="hi">विडिओ फाइल</rdfs:label>
+  <rdfs:label xml:lang="el">Αρχείο βίντεο</rdfs:label>
+  <rdfs:subClassOf rdf:resource="#MediaFile"/>
+</owl:Class>
+
+<owl:Class rdf:ID="ImageFile">
+  <rdfs:label xml:lang="en">Image File</rdfs:label>
+  <rdfs:label xml:lang="ja">イメージファイル</rdfs:label>
+  <rdfs:label xml:lang="zh">图片文件</rdfs:label>
+  <rdfs:label xml:lang="es">Archivo Imagen</rdfs:label>
+  <rdfs:label xml:lang="ko">영상 파일</rdfs:label>
+  <rdfs:label xml:lang="zh-tw">照(圖)片檔案</rdfs:label>
+  <rdfs:label xml:lang="tr">Resim dosyası</rdfs:label>
+  <rdfs:label xml:lang="hi">इमेज फाइल</rdfs:label>
+  <rdfs:label xml:lang="el">Αρχείο εικόνας</rdfs:label>
+  <rdfs:subClassOf rdf:resource="#MediaFile"/>
+</owl:Class>
+
+<owl:DatatypeProperty rdf:ID="link">
+  <rdfs:label xml:lang="en">Link</rdfs:label>
+  <rdfs:label xml:lang="ja">リンク</rdfs:label>
+  <rdfs:label xml:lang="zh">链接</rdfs:label>
+  <rdfs:label xml:lang="es">Enlace</rdfs:label>
+  <rdfs:label xml:lang="ko">연계</rdfs:label>
+  <rdfs:label xml:lang="zh-tw">連結</rdfs:label>
+  <rdfs:label xml:lang="tr">Bağlantı</rdfs:label>
+  <rdfs:label xml:lang="hi">लिंक</rdfs:label>
+  <rdfs:label xml:lang="el">Σύνδεσμος</rdfs:label>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
+</owl:DatatypeProperty>
+
+<owl:Class rdf:ID="MediaFile">
+  <rdfs:label xml:lang="en">Media File</rdfs:label>
+  <rdfs:label xml:lang="ja">メディアファイル</rdfs:label>
+  <rdfs:label xml:lang="zh">媒体文件</rdfs:label>
+  <rdfs:label xml:lang="es">Archivo multimedia</rdfs:label>
+  <rdfs:label xml:lang="ko">미디아 파일</rdfs:label>
+  <rdfs:label xml:lang="zh-tw">多媒體檔案</rdfs:label>
+  <rdfs:label xml:lang="tr">Medya Dosyası</rdfs:label>
+  <rdfs:label xml:lang="hi">मिडिआ फाइल</rdfs:label>
+  <rdfs:label xml:lang="el">Αρχείο Πολυμέσων</rdfs:label>
+  <rdfs:subClassOf rdf:resource="#File"/>
+</owl:Class>
+
+<owl:Class rdf:ID="WebPage">
+  <rdfs:label xml:lang="en">Web Page</rdfs:label>
+  <rdfs:label xml:lang="ja">Web ページ</rdfs:label>
+  <rdfs:label xml:lang="zh">网页</rdfs:label>
+  <rdfs:label xml:lang="es">Página Web</rdfs:label>
+  <rdfs:label xml:lang="ko">웹 페이지</rdfs:label>
+  <rdfs:label xml:lang="zh-tw">網頁</rdfs:label>
+  <rdfs:label xml:lang="tr">Web Sayfası</rdfs:label>
+  <rdfs:label xml:lang="hi">वेब पेज</rdfs:label>
+  <rdfs:label xml:lang="el">Ιστοσελίδα</rdfs:label>
+  <rdfs:subClassOf rdf:resource="#File"/>
+</owl:Class>
+
+<owl:Class rdf:ID="File">
+  <rdfs:label xml:lang="en">File</rdfs:label>
+  <rdfs:label xml:lang="ja">ファイル</rdfs:label>
+  <rdfs:label xml:lang="zh">文件</rdfs:label>
+  <rdfs:label xml:lang="es">Archivo</rdfs:label>
+  <rdfs:label xml:lang="ko">서류</rdfs:label>
+  <rdfs:label xml:lang="zh-tw">檔案</rdfs:label>
+  <rdfs:label xml:lang="tr">Dosya</rdfs:label>
+  <rdfs:label xml:lang="hi">फाइल</rdfs:label>
+  <rdfs:label xml:lang="el">Αρχείο</rdfs:label>
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing" />
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#link"/>
+      <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+</owl:Class>
+
+<!-- FLACP Internal Location -->
+
+<owl:DatatypeProperty rdf:ID="officeNumber">
+  <rdfs:label xml:lang="en">Office Number</rdfs:label>
+  <rdfs:label xml:lang="ja">部屋番号</rdfs:label>
+  <rdfs:label xml:lang="zh">办公室号</rdfs:label>
+  <rdfs:label xml:lang="es">Número de despacho</rdfs:label>
+  <rdfs:label xml:lang="ko">사무실 번호</rdfs:label>
+  <rdfs:label xml:lang="zh-tw">辦公室號碼</rdfs:label>
+  <rdfs:label xml:lang="tr">Ofis Numarası</rdfs:label>
+  <rdfs:label xml:lang="hi">ऑफिस नम्बर</rdfs:label>
+  <rdfs:label xml:lang="el">Αριθμός τηλεφώνου γραφείου</rdfs:label>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:Class rdf:ID="FLALocation">
+  <rdfs:label xml:lang="en">FLA Location</rdfs:label>
+  <rdfs:label xml:lang="ja">FLA 中の場所</rdfs:label>
+  <rdfs:label xml:lang="zh">FLA位置</rdfs:label>
+  <rdfs:label xml:lang="es">Emplazamiento FLA</rdfs:label>
+  <rdfs:label xml:lang="ko">FLA 장소</rdfs:label>
+  <rdfs:label xml:lang="zh-tw">美國富士通實驗室位置</rdfs:label>
+  <rdfs:label xml:lang="tr">FLA Yeri</rdfs:label>
+  <rdfs:label xml:lang="hi">एफ एल ए लोकेशन</rdfs:label>
+  <rdfs:label xml:lang="el">Τοποθεσία FLA</rdfs:label>
+  <rdfs:subClassOf rdf:resource="http://www.mindswap.org/2003/owl/geo/geoFeatures.owl#SpatialThing"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#officeNumber"/>
+      <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+</owl:Class>
+
+<!-- Email Classes and Properties -->
+
+<owl:DatatypeProperty rdf:ID="emailAddress">
+  <rdfs:label xml:lang="en">Email Address</rdfs:label> 
+  <rdfs:label xml:lang="tr">E-posta Adresi</rdfs:label> 
+  <rdfs:label xml:lang="ja">電子メールアドレス</rdfs:label>
+  <rdfs:label xml:lang="ko">이메일 주소</rdfs:label>
+  <rdfs:label xml:lang="zh">电子邮件地址</rdfs:label>
+  <rdfs:label xml:lang="es">Direccin de correo electr nico</rdfs:label>
+  <rdfs:label xml:lang="hi">ईमेल एड्रेस</rdfs:label>
+  <rdfs:label xml:lang="zh-tw">電子郵件信箱</rdfs:label>
+  <rdfs:label xml:lang="el">Διεύθυνση ηλεκτρονικού ταχυδρομείου</rdfs:label>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:Class rdf:ID="Email">
+  <rdfs:label xml:lang="en">Email</rdfs:label>
+  <rdfs:label xml:lang="ja">電子メール</rdfs:label>
+  <rdfs:label xml:lang="zh">电子邮件</rdfs:label>
+  <rdfs:label xml:lang="es">Correo Electrónico</rdfs:label>
+  <rdfs:label xml:lang="ko">이메일</rdfs:label>
+  <rdfs:label xml:lang="zh-tw">電子郵件</rdfs:label>
+  <rdfs:label xml:lang="tr">E-posta</rdfs:label>
+  <rdfs:label xml:lang="hi">एमेल</rdfs:label>
+  <rdfs:label xml:lang="el">Διεύθυνση ηλεκτρονικού ταχυδρομείου</rdfs:label>
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing" />
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#emailAddress"/>
+      <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+</owl:Class>
+
+<owl:Class rdf:ID="ViewableFile">
+  <rdfs:label xml:lang="en">Viewable File</rdfs:label>
+  <rdfs:comment xml:lang="en">Viewable File is either a text file (e.g. WebPage) or an image file</rdfs:comment>
+  <owl:intersectionOf rdf:parseType="Collection">
+    <rdf:Description rdf:about="#File"/>
+    <owl:Class>
+      <owl:complementOf>
+        <owl:Class>
+          <owl:intersectionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="#MediaFile"/>
+            <owl:Class>
+               <owl:complementOf rdf:resource="#ImageFile"/>
+            </owl:Class>
+          </owl:intersectionOf>
+        </owl:Class>
+      </owl:complementOf>
+     </owl:Class>
+  </owl:intersectionOf>
+</owl:Class>
+
+<owl:Class rdf:about="#AudioFile">
+  <owl:disjointWith rdf:resource="#ImageFile"/>
+  <owl:disjointWith rdf:resource="#VideoFile"/>
+</owl:Class>
+
+<owl:Class rdf:about="#VideoFile">
+  <owl:disjointWith rdf:resource="#ImageFile"/>
+  <owl:disjointWith rdf:resource="#AudioFile"/>
+</owl:Class>
+
+<owl:Class rdf:about="#ImageFile">
+  <owl:disjointWith rdf:resource="#AudioFile"/>
+  <owl:disjointWith rdf:resource="#VideoFile"/>
+</owl:Class>
+
+<owl:Class rdf:about="#WebPage">
+  <owl:disjointWith rdf:resource="#MediaFile"/>
+</owl:Class>
+
+</rdf:RDF>
