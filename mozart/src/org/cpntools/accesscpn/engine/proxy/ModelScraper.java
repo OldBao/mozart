@@ -130,7 +130,7 @@ public class ModelScraper extends PacketInspector {
 	@SuppressWarnings("unused")
 	protected void handleSyntaxPacket(final Packet packet) throws Exception {
 		packet.reset();
-		packet.getInteger();
+		int cpn_version = packet.getInteger();
 		final int subcommand = packet.getInteger();
 		if (subcommand == 2) {
 			packet.getBoolean(); // isIncludedInSim
@@ -138,7 +138,7 @@ public class ModelScraper extends PacketInspector {
 			petriNet.getPage().add(page);
 			page.setId(packet.getString());
 			setName(page, packet.getString());
-			packet.getInteger(); // prime multiplicity
+			int prime_mul = packet.getInteger(); // prime multiplicity
 
 			if (pages.containsKey(page.getId())) { throw new Exception(
 			        "Right now the scraper cannot handle incremental updates. Please don't change the model."); }
@@ -233,18 +233,20 @@ public class ModelScraper extends PacketInspector {
 
 				t.setPage(page);
 
-				packet.getString(); // channel
+				String channel = packet.getString(); // channel
 
-				final Priority priority = ModelFactory.INSTANCE.createPriority();
-				priority.setText(packet.getString());
-				t.setPriority(priority);
+		//		final Priority priority = ModelFactory.INSTANCE.createPriority();
+		//		priority.setText(packet.getString());
+		//		t.setPriority(priority);
 
 				packet.getBoolean(); // controllable
 
 				for (int j = packet.getInteger(); j > 0; j--) { // # input arcs (PtoT)
 					final Arc arc = ModelFactory.INSTANCE.createArc();
-					arc.setId(packet.getString());
-					arc.setSource(places.get(packet.getString()));
+					String arcId = packet.getString();
+					String placeRefId = packet.getString();
+					arc.setId(arcId);
+					arc.setSource(places.get(placeRefId));
 					arc.setTarget(t);
 					final HLAnnotation expr = ModelFactory.INSTANCE.createHLAnnotation();
 					expr.setText(packet.getString());

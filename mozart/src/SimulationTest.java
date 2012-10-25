@@ -39,6 +39,7 @@ public class SimulationTest {
 		while (ps.getPetriNet() == null)
 			Thread.sleep(500);
 		final PetriNet petriNet = ps.getPetriNet();
+		
 
 		System.out.println(ModelPrinter.printModel(petriNet));
 		System.out.println(InstancePrinter.printModel(petriNet));
@@ -47,7 +48,7 @@ public class SimulationTest {
 
 		System.out.println("===================================");
 		simulator.execute(10);
-		System.out.println("Skipped " + simulator.getStep() + " steps");
+		//System.out.println("Skipped " + simulator.getStep() + " steps");
 		for (int i = 0; i < 100; i++) {
 			final Binding binding = simulator.executeAndGet();
 			if (binding != null)

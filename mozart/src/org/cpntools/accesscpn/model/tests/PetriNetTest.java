@@ -133,7 +133,6 @@ public class PetriNetTest extends HasIdTest {
 		for(Page p : list) {
 			System.out.println("Page: " + p.getName().getText());
 			
-			
 			for (Place place : p.place()) {
 				System.out.println("Place: " + place.getName().getText());
 				System.out.println("   - type:     " + place.getSort().getText());

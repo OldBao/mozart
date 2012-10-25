@@ -45,6 +45,8 @@ import org.mindswap.owls.service.Service;
 import org.mindswap.owls.vocabulary.OWLS_Extensions;
 import org.mindswap.utils.ProcessDataFlow;
 
+import edu.buaa.mozart.notes.Notation;
+
 /**
  * Abstract representation of OWL-S processes. A process can be either a
  * {@link AtomicProcess atomic}, {@link CompositeProcess composite}, or a
@@ -63,6 +65,8 @@ public interface Process extends OWLIndividual, MultiConditional
 	public int COMPOSITE = 2;
 	public int SIMPLE = 4;
 
+	public void setMozartNotation(Notation notation);
+	public Notation getNotation();
 	/**
 	 * Set the service this process belongs to.
 	 *

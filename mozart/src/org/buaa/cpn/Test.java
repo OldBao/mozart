@@ -12,8 +12,8 @@ import org.buaa.cpn.StatespaceTool;
 
 public class Test {
 	public static void main(final String[] args) throws Exception {
-		final String fileName = "/home/jian/kunjian/oa_net.cpn";// args[0];
-		final String outFilename = "/home/jian/kunjian/cpnoutput.txt";
+		final String fileName = "/home/zhanggx/testExport.cpn";// args[0];
+		final String outFilename = "/home/zhanggx/cpnoutput.txt";
 		final File outFile = new File(outFilename);
 		final PetriNet petriNet = DOMParser.parse(new URL("file://" + fileName));
 		final HighLevelSimulator s = HighLevelSimulator.getHighLevelSimulator();

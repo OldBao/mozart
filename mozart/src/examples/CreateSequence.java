@@ -170,7 +170,7 @@ public class CreateSequence {
 				final Perform prevPerform = performs[i - 1];
 				final Input input = p.getInputs().get(0);
 				final Output output = prevPerform.getProcess().getOutputs().get(0);
-
+				
 				// the value of 'input' is the value of 'output' from 'prevPerform'
 				performs[i].addBinding(input, prevPerform, output);
 			}

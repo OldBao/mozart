@@ -1,4 +1,4 @@
-package com.buaa;
+package edu.buaa;
 
 import java.io.IOException;
 import java.net.URI;

@@ -51,6 +51,8 @@ import org.mindswap.owls.service.Service;
 import org.mindswap.owls.vocabulary.OWLS;
 import org.mindswap.utils.Utils;
 
+import edu.buaa.mozart.notes.Notation;
+
 /**
  * @author unascribed
  * @version $Rev: 2350 $; $Author: thorsten $; $Date: 2009-11-18 16:44:31 +0100 (Mi, 18 Nov 2009) $
@@ -58,7 +60,14 @@ import org.mindswap.utils.Utils;
 public abstract class ProcessImpl<P extends ProcessImpl<P>> extends WrappedIndividual implements Process
 {
 	protected P process; // used for caching purposes for execution
-
+	Notation mNotation;
+	
+	public Notation getNotation(){
+		return mNotation;
+	}
+	public void setMozartNotation(Notation notation){
+		mNotation = notation;
+	}
 	/**
 	 * @see WrappedIndividual#WrappedIndividual(OWLIndividual)
 	 */
@@ -374,6 +383,7 @@ public abstract class ProcessImpl<P extends ProcessImpl<P>> extends WrappedIndiv
 		process.doPrepare(context);
 		return process;
 	}
+	
 
 	protected String getName0()
 	{

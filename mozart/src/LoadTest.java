@@ -5,9 +5,13 @@ import javax.swing.JFileChooser;
 import org.cpntools.accesscpn.engine.highlevel.HighLevelSimulator;
 import org.cpntools.accesscpn.engine.highlevel.InstancePrinter;
 import org.cpntools.accesscpn.engine.highlevel.checker.Checker;
+import org.cpntools.accesscpn.engine.highlevel.instance.Binding;
+import org.cpntools.accesscpn.engine.highlevel.instance.Instance;
 import org.cpntools.accesscpn.model.ModelPrinter;
 import org.cpntools.accesscpn.model.PetriNet;
+import org.cpntools.accesscpn.model.Transition;
 import org.cpntools.accesscpn.model.importer.DOMParser;
+import org.eclipse.emf.common.notify.Notifier;
 
 public class LoadTest {
 
@@ -31,6 +35,10 @@ public class LoadTest {
 		System.out.println("=======================================================");
 		System.out.println(InstancePrinter.printMonitors(petriNet));
 		final HighLevelSimulator s = HighLevelSimulator.getHighLevelSimulator();
+		
+		s.execute();
+		Binding binding = s.executeAndGet();
+		binding.toString();
 		final Checker checker = new Checker(petriNet, null, s);
 		checker.checkEntireModel();
 		System.out.println("Done");
