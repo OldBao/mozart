@@ -65,7 +65,7 @@ public interface Process extends OWLIndividual, MultiConditional
 	public int COMPOSITE = 2;
 	public int SIMPLE = 4;
 
-	public void setMozartNotation(Notation notation);
+	public void setNotation(Notation notation);
 	public Notation getNotation();
 	/**
 	 * Set the service this process belongs to.

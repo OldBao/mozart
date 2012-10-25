@@ -65,7 +65,7 @@ public abstract class ProcessImpl<P extends ProcessImpl<P>> extends WrappedIndiv
 	public Notation getNotation(){
 		return mNotation;
 	}
-	public void setMozartNotation(Notation notation){
+	public void setNotation(Notation notation){
 		mNotation = notation;
 	}
 	/**
