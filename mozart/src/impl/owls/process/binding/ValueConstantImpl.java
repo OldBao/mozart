@@ -26,12 +26,14 @@
 package impl.owls.process.binding;
 
 import java.util.Map;
+import java.util.Set;
 
 import org.mindswap.owl.OWLDataValue;
 import org.mindswap.owl.OWLIndividual;
 import org.mindswap.owl.OWLType;
 import org.mindswap.owl.OWLValue;
 import org.mindswap.owls.process.Perform;
+import org.mindswap.owls.process.Process;
 import org.mindswap.owls.process.variable.Binding;
 import org.mindswap.owls.process.variable.ParameterValueVisitor;
 import org.mindswap.owls.process.variable.ProcessVar;
@@ -165,4 +167,21 @@ public class ValueConstantImpl implements ValueConstant
 		return ValueConstant.class.getSimpleName() + ": " + (dataValue != null? dataValue : individualValue);
 	}
 
+	@Override
+	public boolean hasPerform() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public Perform getPerform() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Perform getPerformsFromResults(Set<Perform> performs) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

@@ -25,7 +25,6 @@ import org.mindswap.query.ValueMap;
 import edu.buaa.composer.Composer;
 import edu.buaa.composer.impl.Mozart;
 import edu.buaa.mozart.notes.ComposeException;
-import edu.buaa.transformer.impl.MozartBuilderImpl;
 
 public class MozartSimple {
 	private OWLKnowledgeBase mKB;

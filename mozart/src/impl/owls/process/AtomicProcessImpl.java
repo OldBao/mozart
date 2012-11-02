@@ -43,6 +43,10 @@ import org.mindswap.owls.service.Service;
 import org.mindswap.owls.vocabulary.OWLS;
 import org.mindswap.utils.ProcessDataFlow;
 
+import edu.buaa.mozart.notes.AtomicClef;
+import edu.buaa.mozart.notes.ComposeException;
+import edu.buaa.mozart.notes.Notation;
+
 /**
  * @author unascribed
  * @version $Rev: 2350 $; $Author: thorsten $; $Date: 2009-11-18 16:44:31 +0100 (Mi, 18 Nov 2009) $
@@ -183,5 +187,13 @@ public class AtomicProcessImpl extends ProcessImpl<AtomicProcessImpl> implements
 		// never executed, which is a bit less work then.
 		@Override protected void doPrepare(final ExecutionContext context)	{ /* nothing to prepare */ }
 		@Override public AtomicProcessImpl prepare(final ExecutionContext context)	{ return this; }
+	}
+	@Override
+	public Notation getMozartNotation() throws ComposeException {
+        if (mNotation != null)
+        	return mNotation;
+        mNotation = new AtomicClef();
+        mNotation.setIndividual(this);
+        return mNotation;
 	}
 }

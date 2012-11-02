@@ -36,6 +36,8 @@ import org.mindswap.owls.process.AtomicProcess;
 import org.mindswap.owls.service.Service;
 import org.mindswap.owls.vocabulary.OWLS;
 
+import edu.buaa.mozart.notes.Notation;
+
 /**
  *
  * @author unascribed
@@ -130,5 +132,4 @@ public abstract class GroundingImpl<A extends AtomicGrounding<T>, T> extends Wra
 		}
 		return atGroundings;
 	}
-
 }

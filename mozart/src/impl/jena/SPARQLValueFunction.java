@@ -1,7 +1,7 @@
 /*
  * Created 24.07.2009
  *
- * (c) 2009 Thorsten Möller - University of Basel Switzerland
+ * (c) 2009 Thorsten Mï¿½ller - University of Basel Switzerland
  *
  * The MIT License
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -25,6 +25,7 @@
 package impl.jena;
 
 import java.util.Map;
+import java.util.Set;
 
 import org.mindswap.exceptions.DataFlowException;
 import org.mindswap.owl.OWLIndividualList;
@@ -32,6 +33,7 @@ import org.mindswap.owl.OWLValue;
 import org.mindswap.owls.expression.Expression;
 import org.mindswap.owls.expression.VariableBinding;
 import org.mindswap.owls.process.Perform;
+import org.mindswap.owls.process.Process;
 import org.mindswap.owls.process.variable.Binding;
 import org.mindswap.owls.process.variable.ParameterValueVisitor;
 import org.mindswap.owls.process.variable.ProcessVar;
@@ -64,7 +66,6 @@ public class SPARQLValueFunction implements ValueFunction<Expression.SPARQL>
 
 	private Expression.SPARQL expression;
 	private final Binding<?> enclosingBinding;
-
 	public SPARQLValueFunction(final Expression.SPARQL expression, final Binding<?> enclosingBinding)
 	{
 		this.expression = expression;
@@ -191,6 +192,24 @@ public class SPARQLValueFunction implements ValueFunction<Expression.SPARQL>
 			enclosingBinding);
 
 		return value;
+	}
+
+	@Override
+	public boolean hasPerform() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public Perform getPerform() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Perform getPerformsFromResults(Set<Perform> performs) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

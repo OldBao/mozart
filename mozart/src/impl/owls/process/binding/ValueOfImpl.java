@@ -28,12 +28,14 @@ package impl.owls.process.binding;
 import impl.owl.WrappedIndividual;
 
 import java.util.Map;
+import java.util.Set;
 
 import org.mindswap.exceptions.CastingException;
 import org.mindswap.exceptions.DataFlowException;
 import org.mindswap.owl.OWLIndividual;
 import org.mindswap.owl.OWLValue;
 import org.mindswap.owls.process.Perform;
+import org.mindswap.owls.process.Process;
 import org.mindswap.owls.process.variable.Binding;
 import org.mindswap.owls.process.variable.Loc;
 import org.mindswap.owls.process.variable.Local;
@@ -43,6 +45,9 @@ import org.mindswap.owls.process.variable.ProcessVar;
 import org.mindswap.owls.process.variable.ValueOf;
 import org.mindswap.owls.vocabulary.OWLS;
 import org.mindswap.query.ValueMap;
+
+import edu.buaa.mozart.notes.ComposeException;
+import edu.buaa.mozart.notes.Notation;
 
 /**
  *
@@ -169,6 +174,14 @@ public class ValueOfImpl extends WrappedIndividual implements ValueOf
 			getEnclosingBinding());
 	}
 
+	/* @see impl.owl.OWLObjectImpl#hashCode() */
+	@Override
+	public int hashCode()
+	{
+		assert false : "hashCode not designed"; // TODO implement if required
+		return 42; // any arbitrary constant will do
+	}
+
 	/* @see impl.owl.OWLObjectImpl#equals(java.lang.Object) */
 	@Override
 	public boolean equals(final Object object)
@@ -188,12 +201,28 @@ public class ValueOfImpl extends WrappedIndividual implements ValueOf
 		binding.setProperty(OWLS.Process.valueSource, this);
 	}
 
-	/* @see impl.owl.OWLObjectImpl#hashCode() */
 	@Override
-	public int hashCode()
-	{
-		assert false : "hashCode not designed"; // TODO implement if required
-		return 42; // any arbitrary constant will do
+	public boolean hasPerform() {
+		return true;
+	}
+
+	@Override
+	public Perform getPerformsFromResults(
+			Set<Perform> performs) {
+        Perform thisPerform = getPerform();
+        for (Perform perform : performs){
+        	if (perform.equals(thisPerform)){
+        		return perform;	
+        }
+        }
+        return null;
+//        Perform perform = getPerform();
+//        ValueMap<ProcessVar, OWLValue> result = results.get(perform);
+//        if (result == null) return null;
+//        
+//        ProcessVar var = getTheVar();
+      //  OWLValue   value = result.getValue(var);
+      // if ()
 	}
 
 }

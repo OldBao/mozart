@@ -2,7 +2,7 @@
  * Created on Dec 28, 2004
  *
  * (c) 2004 Evren Sirin
- * (c) 2009 Thorsten Möller - University of Basel Switzerland
+ * (c) 2009 Thorsten Mï¿½ller - University of Basel Switzerland
  *
  * The MIT License
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -45,6 +45,9 @@ import org.mindswap.owls.vocabulary.OWLS;
 import org.mindswap.query.Query;
 import org.mindswap.query.ValueMap;
 import org.mindswap.swrl.Atom;
+
+import edu.buaa.mozart.notes.ComposeException;
+import edu.buaa.mozart.notes.Notation;
 
 /**
  *
@@ -190,5 +193,6 @@ public class SWRLExpressionImpl extends ExpressionImpl<OWLList<Atom>> implements
 		exprWriter.setIndent(indent);
 		exprWriter.write(this);
 	}
+
 
 }

@@ -1,6 +1,6 @@
 // The MIT License
 //
-// Copyright (c) 2007 University of Zürich Switzerland
+// Copyright (c) 2007 University of Zï¿½rich Switzerland
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to
@@ -31,6 +31,8 @@ import org.mindswap.owls.grounding.JavaVariable;
 import org.mindswap.owls.process.variable.Parameter;
 import org.mindswap.owls.vocabulary.OWLS;
 import org.mindswap.owls.vocabulary.MoreGroundings.Java;
+
+import edu.buaa.mozart.notes.Notation;
 
 /**
  *
@@ -124,5 +126,4 @@ public class JavaVariableImpl extends WrappedIndividual implements JavaVariable
 		this.transformator = null;
 		setProperty(Java.transformatorClass, transformator);
 	}
-
 }

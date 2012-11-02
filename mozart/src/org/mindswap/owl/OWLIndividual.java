@@ -29,6 +29,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import edu.buaa.mozart.notes.ComposeException;
+import edu.buaa.mozart.notes.Notation;
+
 /**
  * The interface for OWL individuals.
  *
@@ -290,5 +293,7 @@ public interface OWLIndividual extends OWLEntity, OWLValue {
 	 * 	(according to the semantics of <tt>owl:differentFrom</tt>).
 	 */
 	public OWLIndividualList<?> getDifferentIndividuals();
-
+    
+    public Notation getMozartNotation() throws ComposeException;
+    
 }

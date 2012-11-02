@@ -1,7 +1,7 @@
 /*
  * Created 28.06.2009
  *
- * (c) 2009 Thorsten Möller - University of Basel Switzerland
+ * (c) 2009 Thorsten Mï¿½ller - University of Basel Switzerland
  *
  * The MIT License
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -34,6 +34,9 @@ import org.mindswap.owls.process.ControlConstructVisitor;
 import org.mindswap.owls.process.Process;
 import org.mindswap.owls.process.execution.ExecutionContext;
 import org.mindswap.owls.process.execution.ExecutionSupport;
+
+import edu.buaa.mozart.notes.ComposeException;
+import edu.buaa.mozart.notes.Notation;
 
 /**
  *
@@ -88,5 +91,8 @@ public class AsProcessImpl extends ControlConstructImpl<AsProcessImpl> implement
 	}
 
 	@Override protected final void doPrepare(final ExecutionContext context) { /* nothing to do */ }
-
+	@Override
+	public Notation getMozartNotation() throws ComposeException {
+        throw new ComposeException("Not support notation now");
+	}
 }

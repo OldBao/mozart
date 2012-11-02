@@ -42,6 +42,9 @@ import org.mindswap.owls.service.Service;
 import org.mindswap.owls.vocabulary.FLAServiceOnt;
 import org.mindswap.owls.vocabulary.OWLS;
 
+import edu.buaa.mozart.notes.ComposeException;
+import edu.buaa.mozart.notes.Notation;
+
 /**
  * An example demonstrating the extensibility features of the API.
  *
@@ -132,6 +135,12 @@ public class OWLSExtensions {
 
 		public String getEntityID() {
 			return getPropertyAsString(FLAServiceOnt.ownerEntityID);
+		}
+
+		@Override
+		public Notation getMozartNotation() throws ComposeException {
+			// TODO Auto-generated method stub
+			return null;
 		}
 	}
 

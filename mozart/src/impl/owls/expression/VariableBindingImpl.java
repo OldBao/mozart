@@ -1,7 +1,7 @@
 /*
  * Created 05.07.2009
  *
- * (c) 2009 Thorsten Möller - University of Basel Switzerland
+ * (c) 2009 Thorsten Mï¿½ller - University of Basel Switzerland
  *
  * The MIT License
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -31,6 +31,9 @@ import org.mindswap.owls.expression.VariableBinding;
 import org.mindswap.owls.expression.Expression.QuotedExpression;
 import org.mindswap.owls.process.variable.ProcessVar;
 import org.mindswap.owls.vocabulary.OWLS;
+
+import edu.buaa.mozart.notes.ComposeException;
+import edu.buaa.mozart.notes.Notation;
 
 /**
  *

@@ -57,6 +57,9 @@ import org.mindswap.utils.ProcessDataFlow;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import edu.buaa.mozart.notes.ComposeException;
+import edu.buaa.mozart.notes.Notation;
+
 /**
  * @author unascribed
  * @version $Rev: 2350 $; $Author: thorsten $; $Date: 2009-11-18 16:44:31 +0100 (Mi, 18 Nov 2009) $
@@ -422,4 +425,11 @@ public class CompositeProcessImpl extends ProcessImpl<CompositeProcessImpl> impl
 
 		@Override protected void doPrepare(final ExecutionContext context) { /* nothing to do */ }
 	}
+    @Override
+    public Notation getMozartNotation() throws ComposeException{
+        if (mNotation != null)
+        	return mNotation;
+    	mNotation = getComposedOf().getMozartNotation();
+        return mNotation;
+    }
 }

@@ -43,6 +43,8 @@ import org.mindswap.owls.process.variable.ResultVar;
 import org.mindswap.owls.process.variable.ValueOf;
 import org.mindswap.owls.vocabulary.OWLS;
 
+import edu.buaa.mozart.notes.Notation;
+
 /**
  *
  * @author unascribed
@@ -174,5 +176,9 @@ public class ResultImpl extends WrappedIndividual implements Result {
 		}
 		process.addResult(this);
 	}
+    @Override
+    public Notation getMozartNotation(){
+    	return null;
+    }
 }
 

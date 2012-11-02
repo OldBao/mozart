@@ -11,6 +11,8 @@ import org.mindswap.owl.OWLIndividual;
 import org.mindswap.owls.grounding.WSDLOperationRef;
 import org.mindswap.owls.vocabulary.OWLS;
 
+import edu.buaa.mozart.notes.Notation;
+
 /**
  *
  * @author unascribed

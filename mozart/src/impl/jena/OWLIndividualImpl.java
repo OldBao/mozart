@@ -53,6 +53,9 @@ import com.hp.hpl.jena.rdf.model.Statement;
 import com.hp.hpl.jena.rdf.model.StatementBoundaryBase;
 import com.hp.hpl.jena.vocabulary.OWL;
 
+import edu.buaa.mozart.notes.ComposeException;
+import edu.buaa.mozart.notes.Notation;
+
 /**
  *
  * @author unascribed
@@ -298,4 +301,8 @@ public class OWLIndividualImpl extends OWLEntityImpl<Resource> implements OWLInd
 		}
 	}
 
+	@Override
+	public Notation getMozartNotation() throws ComposeException {
+        throw new ComposeException("not support");
+	}
 }

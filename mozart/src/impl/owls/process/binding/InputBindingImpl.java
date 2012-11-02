@@ -1,7 +1,7 @@
 /*
  * Created on Oct 31, 2004
  *
- * (c) 2008 Thorsten Möller - University of Basel Switzerland
+ * (c) 2008 Thorsten Mï¿½ller - University of Basel Switzerland
  *
  * The MIT License
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -44,7 +44,8 @@ public class InputBindingImpl extends BindingImpl<Input> implements InputBinding
 	/* @see org.mindswap.owls.process.Binding#getParameter() */
 	public Input getProcessVar()
 	{
-		return getPropertyAs(OWLS.Process.toVar, Input.class);
+		//return getPropertyAs(OWLS.Process.toVar, Input.class);
+        return getPropertyAs(OWLS.Process.toVar, Input.class);
 	}
 
 	/* @see org.mindswap.owls.process.Binding#setParameter(org.mindswap.owls.process.Parameter) */
@@ -59,4 +60,5 @@ public class InputBindingImpl extends BindingImpl<Input> implements InputBinding
 	{
 		return "Input binding: " + super.toString();
 	}
+    
 }

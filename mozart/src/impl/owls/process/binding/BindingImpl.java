@@ -39,6 +39,9 @@ import org.mindswap.owls.vocabulary.OWLS;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import edu.buaa.mozart.notes.ComposeException;
+import edu.buaa.mozart.notes.Notation;
+
 /**
  * @author unascribed
  * @version $Rev: 2269 $; $Author: thorsten $; $Date: 2009-08-19 17:21:09 +0200 (Mi, 19 Aug 2009) $

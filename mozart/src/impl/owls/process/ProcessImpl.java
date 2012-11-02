@@ -60,14 +60,6 @@ import edu.buaa.mozart.notes.Notation;
 public abstract class ProcessImpl<P extends ProcessImpl<P>> extends WrappedIndividual implements Process
 {
 	protected P process; // used for caching purposes for execution
-	Notation mNotation;
-	
-	public Notation getNotation(){
-		return mNotation;
-	}
-	public void setNotation(Notation notation){
-		mNotation = notation;
-	}
 	/**
 	 * @see WrappedIndividual#WrappedIndividual(OWLIndividual)
 	 */
@@ -395,5 +387,6 @@ public abstract class ProcessImpl<P extends ProcessImpl<P>> extends WrappedIndiv
 	}
 
 	protected abstract void doPrepare(ExecutionContext context);
+    protected Notation mNotation;
 
 }

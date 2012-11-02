@@ -1,7 +1,7 @@
 /*
  * Created 27.06.2009
  *
- * (c) 2009 Thorsten Möller - University of Basel Switzerland
+ * (c) 2009 Thorsten Mï¿½ller - University of Basel Switzerland
  *
  * The MIT License
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -41,6 +41,9 @@ import org.mindswap.owls.process.variable.LocBinding;
 import org.mindswap.owls.process.variable.Parameter;
 import org.mindswap.owls.process.variable.ParameterValue;
 import org.mindswap.owls.vocabulary.OWLS;
+
+import edu.buaa.mozart.notes.ComposeException;
+import edu.buaa.mozart.notes.Notation;
 
 /**
  *
@@ -187,5 +190,9 @@ public class SetImpl extends DataFlowControlConstruct<SetImpl> implements Set
 		}
 
 		@Override protected final void doPrepare(final ExecutionContext context) { /* nothing to do */ }
+	}
+	@Override
+	public Notation getMozartNotation() throws ComposeException {
+        throw new ComposeException("Not support notation now");
 	}
 }

@@ -3,7 +3,7 @@
  *
  * The MIT License
  *
- * (c) 2008 Thorsten Möller - University of Basel Switzerland
+ * (c) 2008 Thorsten Mï¿½ller - University of Basel Switzerland
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to
@@ -34,6 +34,9 @@ import org.mindswap.owls.process.RepeatWhile;
 import org.mindswap.owls.process.execution.ExecutionContext;
 import org.mindswap.owls.process.execution.ExecutionSupport;
 import org.mindswap.owls.vocabulary.OWLS;
+
+import edu.buaa.mozart.notes.ComposeException;
+import edu.buaa.mozart.notes.Notation;
 
 /**
  * @author unascribed
@@ -158,5 +161,9 @@ public class RepeatWhileImpl extends IterateImpl<RepeatWhileImpl> implements Rep
 		}
 
 		@Override protected final void doPrepare(final ExecutionContext context) { /* nothing to do */ }
+	}
+	@Override
+	public Notation getMozartNotation() throws ComposeException {
+        throw new ComposeException("Not support notation now");
 	}
 }

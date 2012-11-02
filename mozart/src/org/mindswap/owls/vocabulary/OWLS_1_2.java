@@ -481,6 +481,7 @@ public abstract class OWLS_1_2 extends Vocabulary
 			inCondition  = ont.getObjectProperty(URIUtils.createURI(PROCESS_NS + "inCondition"));
 			hasEffect    = ont.getObjectProperty(URIUtils.createURI(PROCESS_NS + "hasEffect"));
 			toVar        = ont.getObjectProperty(URIUtils.createURI(PROCESS_NS + "toVar"));
+		//	toVar        = ont.getObjectProperty(URIUtils.createURI(PROCESS_NS + "toParam"));
 			withOutput   = ont.getObjectProperty(URIUtils.createURI(PROCESS_NS + "withOutput"));
 			valueSource  = ont.getObjectProperty(URIUtils.createURI(PROCESS_NS + "valueSource"));
 			fromProcess  = ont.getObjectProperty(URIUtils.createURI(PROCESS_NS + "fromProcess"));

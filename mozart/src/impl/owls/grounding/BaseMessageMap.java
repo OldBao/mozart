@@ -1,7 +1,7 @@
 /*
  * Created 26.10.2008
  *
- * (c) 2008 Thorsten Möller - University of Basel Switzerland
+ * (c) 2008 Thorsten Mï¿½ller - University of Basel Switzerland
  *
  * The MIT License
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -34,6 +34,8 @@ import org.mindswap.owl.OWLObjectProperty;
 import org.mindswap.owls.grounding.MessageMap;
 import org.mindswap.owls.process.variable.Parameter;
 import org.mindswap.utils.URIUtils;
+
+import edu.buaa.mozart.notes.Notation;
 
 /**
  *
@@ -84,7 +86,6 @@ public abstract class BaseMessageMap<T> extends WrappedIndividual implements Mes
 	{
 		return "[" + getOWLSParameter() + " -> " + getGroundingParameter() + "]";
 	}
-
 	protected abstract OWLDataProperty groundingParameterProperty();
 	protected abstract OWLObjectProperty owlsParameterProperty();
 

@@ -4,9 +4,6 @@
 	<classpathentry kind="src" path="simulator"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
 	<classpathentry kind="lib" path="src/resources"/>
-	<classpathentry kind="lib" path="/home/zhanggx/fuck/third/eclipse/plugins/org.eclipse.emf.common_2.8.0.v20120606-0717.jar"/>
-	<classpathentry kind="lib" path="/home/zhanggx/fuck/third/eclipse/plugins/org.eclipse.emf.ecore.xmi_2.8.0.v20120606-0717.jar"/>
-	<classpathentry kind="lib" path="/home/zhanggx/fuck/third/eclipse/plugins/org.eclipse.emf.ecore_2.8.0.v20120606-0717.jar"/>
 	<classpathentry kind="lib" path="/home/zhanggx/git/mozart/mozart/lib/activation-1.0.2.jar"/>
 	<classpathentry kind="lib" path="/home/zhanggx/git/mozart/mozart/lib/arq-2.8.1.jar"/>
 	<classpathentry kind="lib" path="/home/zhanggx/git/mozart/mozart/lib/aterm-java-1.6.jar"/>
@@ -48,5 +45,8 @@
 	<classpathentry kind="lib" path="/home/zhanggx/git/mozart/mozart/lib/wstx-asl-3.2.9.jar"/>
 	<classpathentry kind="lib" path="/home/zhanggx/git/mozart/mozart/lib/xercesImpl-2.7.1.jar"/>
 	<classpathentry kind="lib" path="/home/zhanggx/git/mozart/mozart/lib/xsdlib-20030225.jar"/>
+	<classpathentry kind="lib" path="/home/zhanggx/srcs/eclipse/plugins/org.eclipse.emf.ecore.xmi_2.8.0.v20120911-0500.jar"/>
+	<classpathentry kind="lib" path="/home/zhanggx/srcs/eclipse/plugins/org.eclipse.emf.ecore_2.8.1.v20120911-0500.jar"/>
+	<classpathentry kind="lib" path="/home/zhanggx/srcs/eclipse/plugins/org.eclipse.emf.common_2.8.0.v20120911-0500.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

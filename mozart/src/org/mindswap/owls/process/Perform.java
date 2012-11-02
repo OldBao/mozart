@@ -54,7 +54,8 @@ public interface Perform extends ControlConstruct
 
 	public InputBinding getBindingFor(Input input);
 
-	public Process getProcess();
+    public Process getProcess();
+	public Process getProcess(boolean isCache);
 
 	public void setProcess(Process process);
 

@@ -46,6 +46,9 @@ import org.mindswap.owls.process.variable.Parameter;
 import org.mindswap.owls.process.variable.ParameterValue;
 import org.mindswap.owls.vocabulary.OWLS;
 
+import edu.buaa.mozart.notes.ComposeException;
+import edu.buaa.mozart.notes.Notation;
+
 /**
  * @author unascribed
  * @version $Rev: 2319 $; $Author: thorsten $; $Date: 2009-09-23 17:30:19 +0200 (Mi, 23 Sep 2009) $
@@ -284,5 +287,9 @@ public class ProduceImpl extends DataFlowControlConstruct<ProduceImpl> implement
 		}
 
 		@Override protected final void doPrepare(final ExecutionContext context) { /* nothing to do */ }
+	}
+	@Override
+	public Notation getMozartNotation() throws ComposeException {
+        throw new ComposeException("Not support notation now");
 	}
 }

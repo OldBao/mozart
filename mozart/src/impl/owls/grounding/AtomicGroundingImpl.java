@@ -38,6 +38,8 @@ import org.mindswap.owls.process.variable.ProcessVar;
 import org.mindswap.owls.vocabulary.OWLS;
 import org.mindswap.query.ValueMap;
 
+import edu.buaa.mozart.notes.Notation;
+
 /**
  *
  * @author unascribed
@@ -88,5 +90,6 @@ public abstract class AtomicGroundingImpl<T> extends WrappedIndividual implement
 			" (must be either constant value or dynamically provided/created at execution time)!");
 		return value;
 	}
+
 
 }

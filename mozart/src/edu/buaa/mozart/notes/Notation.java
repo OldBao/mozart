@@ -1,18 +1,11 @@
 package edu.buaa.mozart.notes;
 
-import java.lang.reflect.InvocationTargetException;
-
-import org.cpntools.accesscpn.model.Name;
 import org.cpntools.accesscpn.model.Page;
-import org.cpntools.accesscpn.model.PetriNet;
 import org.cpntools.accesscpn.model.Transition;
-import org.cpntools.accesscpn.model.impl.ModelFactoryImpl;
-import org.mindswap.owls.process.AtomicProcess;
-import org.mindswap.owls.process.CompositeProcess;
-import org.mindswap.owls.process.ControlConstruct;
-import org.mindswap.owls.process.Process;
+import org.mindswap.owl.OWLIndividual;
 
-import edu.buaa.utils.IDFactory;
+import edu.buaa.composer.Composer;
+import edu.buaa.composer.NotationContext;
 import edu.buaa.utils.QuickFactory;
 
 /**
@@ -20,84 +13,56 @@ import edu.buaa.utils.QuickFactory;
  *	 @description
  */
 public abstract class Notation {
-	public static Notation getNotationFromProcess(Process process, Page page) 
-			throws ComposeException{
-		Notation notation = null;
-		if(process instanceof AtomicProcess){
-			notation = new AtomicClef(page);
-		}
-		else if (process instanceof CompositeProcess){
-			ControlConstruct struct = ((CompositeProcess)process).getComposedOf();
-			String notationClassName = struct.getClass().getName()+"Chord";
-			try{
-				Class<Notation> chordClass = 
-						(Class<Notation>) 
-						ClassLoader.getSystemClassLoader().loadClass(notationClassName);
-				notation = 
-						chordClass.getConstructor(new Class[]{Page.class}).newInstance(page);
-			}catch(ClassNotFoundException ex){
-				throw new ComposeException("Not support construct " + notationClassName);
-			} catch (IllegalArgumentException e) {
-				e.printStackTrace();
-			} catch (SecurityException e) {
-				e.printStackTrace();
-			} catch (InstantiationException e) {
-				e.printStackTrace();
-			} catch (IllegalAccessException e) {
-				e.printStackTrace();
-			} catch (InvocationTargetException e) {
-				e.printStackTrace();
-			} catch (NoSuchMethodException e) {
-				e.printStackTrace();
-			}
-		}
-		else {
-			throw new ComposeException("currently not support simple process");
-		}
-		return notation;
+
+	protected Notation(){
 	}
-	
 	protected Notation(Page cpnPage){
-		mCPNPage = cpnPage;
-		
-		//create start and action transistion
-		mStartTransition = QuickFactory.getTransition(cpnPage, "InputBinding");
-		mEndTransition   = QuickFactory.getTransition(cpnPage, "OutputBinding");
+		setCPNPage(cpnPage);
 	}
-	
-	abstract public void compose(Process process) throws ComposeException;
 	
 	protected Transition mStartTransition;
 	protected Transition mEndTransition;
 	protected Page           mCPNPage;
-	private String        	    mNotationName;
-
+	protected String        	 mNotationName;
+    protected OWLIndividual mIndividual;
+    
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Notation))
+        	return false;
+        if (obj.getClass() != this.getClass()) {
+        	return false;
+        }
+        Notation notation = (Notation)obj;
+        return this.mIndividual.equals(notation.getIndividual());
+    }
+    
+    @Override
+    public int hashCode(){
+        if (mIndividual != null)
+        	return mIndividual.hashCode();
+        else 
+        	return toString().hashCode();
+    }
+    
 	/**
 	 * @return the mStartTransition
+	 * @throws ComposeException 
 	 */
-	public Transition getStartTransition() {
+	public Transition getStartTransition() throws ComposeException {
+        if (mCPNPage == null)
+        	throw new ComposeException("Please set cpn page first"); 
+        if (null == mStartTransition)
+        	mStartTransition = QuickFactory.getTransition(mCPNPage, "InputBinding");
 		return mStartTransition;
 	}
 
-	/**
-	 * @param mStartTransition the mStartTransition to set
-	 */
-	public void setStartTransition(Transition mStartTransition) {
-		this.mStartTransition = mStartTransition;
-	}
-
-	/**
-	 * @return the mEndTransition
-	 */
-	public Transition getEndTransition() {
+	public Transition getEndTransition() throws ComposeException {
+        if (mCPNPage == null)
+        	throw new ComposeException("Please set cpn page first"); 
+        if (mEndTransition == null)
+        	mEndTransition = QuickFactory.getTransition(mCPNPage, "OutputBinding");
 		return mEndTransition;
-	}
-
-	/**
-	 * @param mEndTransition the mEndTransition to set
-	 */
-	public void setEndTransition(Transition mEndTransition) {
-		this.mEndTransition = mEndTransition;
 	}
 
 	/**
@@ -113,4 +78,40 @@ public abstract class Notation {
 	public void setNotationName(String mNotationName) {
 		this.mNotationName = mNotationName; 
 	}
+
+	/**
+	 * @return the mIndividual
+	 */
+	public OWLIndividual getIndividual() {
+		return mIndividual;
+	}
+
+	/**
+	 * @param mIndividual the mIndividual to set
+	 */
+	public void setIndividual(OWLIndividual mIndividual) {
+		this.mIndividual = mIndividual;
+	}
+	/**
+	 * @return the mCPNPage
+	 */
+	public Page getCPNPage() {
+		return mCPNPage;
+	}
+	/**
+	 * @param mCPNPage the mCPNPage to set
+	 */
+	public void setCPNPage(Page mCPNPage) {
+		this.mCPNPage = mCPNPage;
+	}
+    
+    protected boolean hasInput(){
+    	return true;
+    }
+    
+    protected boolean hasOutput(){
+    	return true;
+    }
+	abstract public void compose(Composer composer, NotationContext context)
+			throws ComposeException;
 }

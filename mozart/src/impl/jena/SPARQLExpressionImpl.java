@@ -1,7 +1,7 @@
 /*
  * Created 02.07.2009
  *
- * (c) 2009 Thorsten Möller - University of Basel Switzerland
+ * (c) 2009 Thorsten Mï¿½ller - University of Basel Switzerland
  *
  * The MIT License
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -60,6 +60,9 @@ import com.hp.hpl.jena.query.ResultSet;
 import com.hp.hpl.jena.query.Syntax;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.RDFNode;
+
+import edu.buaa.mozart.notes.ComposeException;
+import edu.buaa.mozart.notes.Notation;
 
 /**
  *
@@ -284,5 +287,7 @@ public class SPARQLExpressionImpl extends QuotedExpressionImpl<String> implement
 		else throw new UnsupportedOperationException("Unsupported SPARQL query type in condition " + this +
 			". Either SELECT or ASK query must be used to express conditions.");
 	}
+
+
 
 }

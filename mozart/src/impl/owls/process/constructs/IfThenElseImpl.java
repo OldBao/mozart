@@ -3,7 +3,7 @@
  *
  * The MIT License
  *
- * (c) 2008 - Thorsten Möller
+ * (c) 2008 - Thorsten Mï¿½ller
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to
@@ -37,6 +37,9 @@ import org.mindswap.owls.process.Process;
 import org.mindswap.owls.process.execution.ExecutionContext;
 import org.mindswap.owls.process.execution.ExecutionSupport;
 import org.mindswap.owls.vocabulary.OWLS;
+
+import edu.buaa.mozart.notes.ComposeException;
+import edu.buaa.mozart.notes.Notation;
 
 /**
  * @author unascribed
@@ -238,5 +241,9 @@ public class IfThenElseImpl extends ControlConstructImpl<IfThenElseImpl> impleme
 		}
 
 		@Override protected final void doPrepare(final ExecutionContext context) { /* nothing to do */ }
+	}
+	@Override
+	public Notation getMozartNotation() throws ComposeException {
+        throw new ComposeException("Not support notation now");
 	}
 }

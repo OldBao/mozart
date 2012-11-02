@@ -34,6 +34,10 @@ import org.mindswap.owls.process.Sequence;
 import org.mindswap.owls.process.execution.ExecutionContext;
 import org.mindswap.owls.process.execution.ExecutionSupport;
 
+import edu.buaa.mozart.notes.ComposeException;
+import edu.buaa.mozart.notes.Notation;
+import edu.buaa.mozart.notes.SequenceChord;
+
 /**
  * @author unascribed
  * @version $Rev: 2319 $; $Author: thorsten $; $Date: 2009-09-23 17:30:19 +0200 (Mi, 23 Sep 2009) $
@@ -124,4 +128,15 @@ public class SequenceImpl extends CollectionControlConstructImpl<SequenceImpl> i
 
 		@Override protected final void doPrepare(final ExecutionContext context) { /* nothing to do */ }
 	}
+	@Override
+	public Notation getMozartNotation() throws ComposeException {
+        if (mNotation != null)
+        	return mNotation;
+        SequenceChord sc = new SequenceChord();
+        sc.setIndividual(this);
+        mNotation = sc;
+        return sc;
+	}
+    
+    private Notation mNotation;
 }

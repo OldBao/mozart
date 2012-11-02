@@ -35,6 +35,9 @@ import org.mindswap.owls.process.ControlConstructVisitor;
 import org.mindswap.owls.process.execution.ExecutionContext;
 import org.mindswap.owls.process.execution.ExecutionSupport;
 
+import edu.buaa.mozart.notes.ComposeException;
+import edu.buaa.mozart.notes.Notation;
+
 /**
  * @author unascribed
  * @version $Rev: 2319 $; $Author: thorsten $; $Date: 2009-09-23 17:30:19 +0200 (Mi, 23 Sep 2009) $
@@ -118,7 +121,12 @@ public class ChoiceImpl extends CollectionControlConstructImpl<ChoiceImpl> imple
 			components = prepare(getConstructs(), context);
 			return this;
 		}
+        
 
 		@Override protected final void doPrepare(final ExecutionContext context) { /* nothing to do */ }
+	}
+	@Override
+	public Notation getMozartNotation() throws ComposeException {
+        throw new ComposeException("Not support notation now");
 	}
 }

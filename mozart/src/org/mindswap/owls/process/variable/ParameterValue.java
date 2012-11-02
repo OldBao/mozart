@@ -1,7 +1,7 @@
 /*
  * Created on Jul 7, 2004
  *
- * (c) 2008 Thorsten Möller - University of Basel Switzerland
+ * (c) 2008 Thorsten Mï¿½ller - University of Basel Switzerland
  *
  * The MIT License
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -25,11 +25,13 @@
 package org.mindswap.owls.process.variable;
 
 import java.util.Map;
+import java.util.Set;
 
 import org.mindswap.common.Visitable;
 import org.mindswap.exceptions.DataFlowException;
 import org.mindswap.owl.OWLValue;
 import org.mindswap.owls.process.Perform;
+import org.mindswap.owls.process.Process;
 import org.mindswap.query.ValueMap;
 
 /**
@@ -61,6 +63,8 @@ public interface ParameterValue extends Visitable<ParameterValueVisitor, Paramet
 	 */
 	public Binding<?> getEnclosingBinding();
 
+	public boolean hasPerform();
+	public Perform getPerform();
 	/**
 	 * This method can get used at execution time of some composite process. It
 	 * gets the actual value from the given perform results map, i.e., binds this
@@ -75,7 +79,8 @@ public interface ParameterValue extends Visitable<ParameterValueVisitor, Paramet
 	 */
 	public OWLValue getValueFromPerformResults(Map<Perform, ValueMap<ProcessVar, OWLValue>> performsResults)
 		throws DataFlowException;
-
+    
+    public Perform getPerformsFromResults(Set<Perform> performs);
 	/**
 	 * Sets the value represented by this parameter value specification to the
 	 * given binding (which should be the enclosing binding).

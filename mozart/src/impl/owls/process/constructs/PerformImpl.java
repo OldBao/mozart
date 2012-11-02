@@ -3,7 +3,7 @@
  *
  * The MIT License
  *
- * (c) 2008 - Thorsten Möller
+ * (c) 2008 - Thorsten Mï¿½ller
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to
@@ -43,6 +43,10 @@ import org.mindswap.owls.process.variable.Loc;
 import org.mindswap.owls.process.variable.Parameter;
 import org.mindswap.owls.process.variable.ParameterValue;
 import org.mindswap.owls.vocabulary.OWLS;
+
+import edu.buaa.mozart.notes.ComposeException;
+import edu.buaa.mozart.notes.Notation;
+import edu.buaa.mozart.notes.PerformChord;
 
 /**
  * @author unascribed
@@ -103,7 +107,7 @@ public class PerformImpl extends DataFlowControlConstruct<PerformImpl> implement
 		}
 
 		// get Bindings of sub process provided that it is composite
-		Process process = getProcess();
+		Process process = getProcess(true);
 		if (process instanceof CompositeProcess)
 			bindings.addAll(((CompositeProcess) getProcess()).getAllBindings());
 
@@ -122,12 +126,17 @@ public class PerformImpl extends DataFlowControlConstruct<PerformImpl> implement
 		return getBindingFor(getBindings(), input);
 	}
 
+    public Process getProcess(){
+    	return getProcess(true);
+    }
+    private Process mProcess;
 	/* @see org.mindswap.owls.process.Perform#getProcess() */
-	public Process getProcess()
+	public Process getProcess(boolean isCache)
 	{
-		final Process process = getPropertyAs(OWLS.Process.process, Process.class);
+        if(!isCache || mProcess == null)
+        	mProcess = getPropertyAs(OWLS.Process.process, Process.class);
 //		if (process != null) process.setPerform(this);
-		return process;
+		return mProcess;
 	}
 
 	/* @see org.mindswap.owls.process.Perform#removeProcess(org.mindswap.owls.process.Process) */
@@ -205,11 +214,6 @@ public class PerformImpl extends DataFlowControlConstruct<PerformImpl> implement
 			return inputBindings;
 		}
 
-		@Override public Process getProcess()
-		{
-			if (process == null) process = super.getProcess();
-			return process;
-		}
 
 		@Override public void removeBinding(final InputBinding binding)
 		{
@@ -237,5 +241,11 @@ public class PerformImpl extends DataFlowControlConstruct<PerformImpl> implement
 		}
 
 		@Override protected final void doPrepare(final ExecutionContext context) { /* nothing to do */ }
+	}
+	@Override
+	public Notation getMozartNotation() throws ComposeException {
+        PerformChord pc = new PerformChord();
+        pc.setIndividual(this);
+        return pc;
 	}
 }

@@ -47,6 +47,9 @@ import org.mindswap.owl.OWLOntology;
 import org.mindswap.owl.OWLProperty;
 import org.mindswap.owl.OWLValue;
 
+import edu.buaa.mozart.notes.ComposeException;
+import edu.buaa.mozart.notes.Notation;
+
 /**
  *
  * @author unascribed
@@ -533,5 +536,10 @@ public abstract class WrappedIndividual extends OWLObjectImpl implements OWLIndi
 	/* @see org.mindswap.owl.OWLEntity#getNamespace() */
 	public String getNamespace() {
 		return individual.getNamespace();
+	}
+    
+	@Override
+	public Notation getMozartNotation() throws ComposeException{
+		throw new ComposeException("not support mozart notation");
 	}
 }
