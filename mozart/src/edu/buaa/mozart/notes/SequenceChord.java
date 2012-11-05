@@ -6,7 +6,7 @@ import org.mindswap.owls.process.Sequence;
 import edu.buaa.composer.Composer;
 import edu.buaa.composer.NotationContext;
 
-public class SequenceChord extends Chord{
+public class SequenceChord extends StructChord{
 
     public SequenceChord(){
     	

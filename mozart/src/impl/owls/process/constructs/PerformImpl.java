@@ -244,8 +244,14 @@ public class PerformImpl extends DataFlowControlConstruct<PerformImpl> implement
 	}
 	@Override
 	public Notation getMozartNotation() throws ComposeException {
-        PerformChord pc = new PerformChord();
-        pc.setIndividual(this);
-        return pc;
+        PerformChord pc;
+        if (mNotation == null){
+        	pc = new PerformChord();
+        	pc.setIndividual(this);
+        	mNotation = pc;
+        }
+        return mNotation;
 	}
+    
+    private Notation mNotation;
 }

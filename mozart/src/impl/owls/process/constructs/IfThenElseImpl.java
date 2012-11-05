@@ -39,6 +39,7 @@ import org.mindswap.owls.process.execution.ExecutionSupport;
 import org.mindswap.owls.vocabulary.OWLS;
 
 import edu.buaa.mozart.notes.ComposeException;
+import edu.buaa.mozart.notes.IfThenElseChord;
 import edu.buaa.mozart.notes.Notation;
 
 /**
@@ -244,6 +245,13 @@ public class IfThenElseImpl extends ControlConstructImpl<IfThenElseImpl> impleme
 	}
 	@Override
 	public Notation getMozartNotation() throws ComposeException {
-        throw new ComposeException("Not support notation now");
+        if (mNotation != null)
+        	return mNotation;
+        IfThenElseChord  iteChord= new IfThenElseChord();
+        iteChord.setIndividual(this);
+        mNotation = iteChord;
+        return iteChord;
+
 	}
+	private Notation mNotation;
 }

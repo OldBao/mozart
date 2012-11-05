@@ -47,6 +47,8 @@ public class OutputImpl extends ParameterImpl implements Output
 	{
 		return getIncomingPropertyAs(OWLS.Process.hasOutput, Process.class);
 	}
+    
+   
 
 	/* @see org.mindswap.owls.process.variable.ProcessVar#setProcess(org.mindswap.owls.process.Process) */
 	public void setProcess(final Process process)

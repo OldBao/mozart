@@ -11,11 +11,11 @@ import org.cpntools.accesscpn.model.Page;
 import org.mindswap.owl.OWLIndividual;
 import org.mindswap.owls.process.CompositeProcess;
 
-public abstract class Chord extends Notation {
-    	public Chord(){
+public abstract class StructChord extends Notation {
+    	public StructChord(){
     		
     	}
-		public Chord(Page cpnPage) {
+		public StructChord(Page cpnPage) {
 			super(cpnPage);
 		}
         

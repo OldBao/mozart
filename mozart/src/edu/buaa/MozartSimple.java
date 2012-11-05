@@ -33,7 +33,7 @@ public class MozartSimple {
 		try {
 			mKB = OWLFactory.createKB();
 			mOnt = mKB.createOntology(null);
-			Service service = mKB.readService(URI.create("http://localhost:8089/Services/owls/getPrice.owl"));
+			Service service = mKB.readService(URI.create("http://localhost:8089/Services/owls/collectBook.owl"));
 			
 			ValueMap<Input, OWLValue> inputs = new ValueMap<Input, OWLValue>();
 			

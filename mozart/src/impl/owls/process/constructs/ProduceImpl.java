@@ -48,6 +48,8 @@ import org.mindswap.owls.vocabulary.OWLS;
 
 import edu.buaa.mozart.notes.ComposeException;
 import edu.buaa.mozart.notes.Notation;
+import edu.buaa.mozart.notes.ProduceChord;
+import edu.buaa.mozart.notes.SequenceChord;
 
 /**
  * @author unascribed
@@ -290,6 +292,13 @@ public class ProduceImpl extends DataFlowControlConstruct<ProduceImpl> implement
 	}
 	@Override
 	public Notation getMozartNotation() throws ComposeException {
-        throw new ComposeException("Not support notation now");
+        if (mNotation != null)
+        	return mNotation;
+        ProduceChord sc = new ProduceChord();
+        sc.setIndividual(this);
+        mNotation = sc;
+        return sc;
 	}
+    
+	private Notation mNotation;
 }

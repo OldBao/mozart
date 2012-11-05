@@ -16,6 +16,7 @@ public abstract class Notation {
 
 	protected Notation(){
 	}
+    
 	protected Notation(Page cpnPage){
 		setCPNPage(cpnPage);
 	}
@@ -45,10 +46,14 @@ public abstract class Notation {
         	return toString().hashCode();
     }
     
-	/**
-	 * @return the mStartTransition
-	 * @throws ComposeException 
-	 */
+    public void setStartTransition(Transition trans) {
+    	mStartTransition = trans;
+    }
+
+    public void setEndTransition(Transition trans) {
+    	mEndTransition = trans;
+    }
+    
 	public Transition getStartTransition() throws ComposeException {
         if (mCPNPage == null)
         	throw new ComposeException("Please set cpn page first"); 
