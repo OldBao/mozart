@@ -1,7 +1,6 @@
 package edu.buaa.mozart.notes;
 
 
-import org.cpntools.accesscpn.model.Page;
 import org.mindswap.owls.process.AtomicProcess;
 
 import edu.buaa.composer.Composer;
@@ -12,14 +11,11 @@ public class AtomicClef extends Clef{
     	
     }
 
-	public AtomicClef(Page cpnPage) {
-        super(cpnPage);
-	}
-
 	@Override
     public String toString(){
 		return "Atomic Clef  " +  ((AtomicProcess)mIndividual).getLocalName();
     }
+    
 	@Override
 	public void compose(Composer composer, NotationContext context)throws ComposeException {
         assert(mIndividual instanceof AtomicProcess);

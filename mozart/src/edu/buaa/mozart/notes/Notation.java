@@ -10,19 +10,20 @@ import edu.buaa.utils.QuickFactory;
 
 /**
  * @author zhanggx
- *	 @description
+ *	 @description Notation is the top class of compose unit
+ *
  */
 public abstract class Notation {
 
-	protected Notation(){
-	}
+    public Notation(String notationName) {
+    	mNotationName = notationName;
+    }
     
-	protected Notation(Page cpnPage){
-		setCPNPage(cpnPage);
+    protected static int mIndex = 0;
+	public Notation(){
+        mNotationName = "" + mIndex++;
 	}
 	
-	protected Transition mStartTransition;
-	protected Transition mEndTransition;
 	protected Page           mCPNPage;
 	protected String        	 mNotationName;
     protected OWLIndividual mIndividual;
@@ -46,68 +47,21 @@ public abstract class Notation {
         	return toString().hashCode();
     }
     
-    public void setStartTransition(Transition trans) {
-    	mStartTransition = trans;
-    }
-
-    public void setEndTransition(Transition trans) {
-    	mEndTransition = trans;
-    }
     
-	public Transition getStartTransition() throws ComposeException {
-        if (mCPNPage == null)
-        	throw new ComposeException("Please set cpn page first"); 
-        if (null == mStartTransition)
-        	mStartTransition = QuickFactory.getTransition(mCPNPage, "InputBinding");
-		return mStartTransition;
-	}
-
-	public Transition getEndTransition() throws ComposeException {
-        if (mCPNPage == null)
-        	throw new ComposeException("Please set cpn page first"); 
-        if (mEndTransition == null)
-        	mEndTransition = QuickFactory.getTransition(mCPNPage, "OutputBinding");
-		return mEndTransition;
-	}
-
-	/**
-	 * @return the mNotationName
-	 */
 	public String getNotationName() {
 		return mNotationName;
 	}
 
-	/**
-	 * @param mNotationName the mNotationName to set
-	 */
 	public void setNotationName(String mNotationName) {
 		this.mNotationName = mNotationName; 
 	}
-
-	/**
-	 * @return the mIndividual
-	 */
+    
 	public OWLIndividual getIndividual() {
 		return mIndividual;
 	}
 
-	/**
-	 * @param mIndividual the mIndividual to set
-	 */
 	public void setIndividual(OWLIndividual mIndividual) {
 		this.mIndividual = mIndividual;
-	}
-	/**
-	 * @return the mCPNPage
-	 */
-	public Page getCPNPage() {
-		return mCPNPage;
-	}
-	/**
-	 * @param mCPNPage the mCPNPage to set
-	 */
-	public void setCPNPage(Page mCPNPage) {
-		this.mCPNPage = mCPNPage;
 	}
     
     protected boolean hasInput(){

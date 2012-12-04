@@ -45,6 +45,7 @@ import com.hp.hpl.jena.datatypes.xsd.XSDDatatype;
  * @see <a href="http://www.w3.org/TR/xmlschema-2/">XML Schema Part 2: Datatypes Second Edition</a>
  * @version $Rev: 2269 $; $Author: thorsten $; $Date: 2009-08-19 17:21:09 +0200 (Mi, 19 Aug 2009) $
  */
+
 class XSDDataTypes
 {
 

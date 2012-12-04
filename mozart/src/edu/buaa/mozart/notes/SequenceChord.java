@@ -11,9 +11,6 @@ public class SequenceChord extends StructChord{
     public SequenceChord(){
     	
     }
-	public SequenceChord(Page cpnPage) {
-		super(cpnPage);
-	}
 
 	@Override
 	public void compose(final Composer composer, NotationContext context)	throws ComposeException {

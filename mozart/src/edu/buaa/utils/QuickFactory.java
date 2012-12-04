@@ -1,13 +1,23 @@
 package edu.buaa.utils;
 
 import org.cpntools.accesscpn.model.Arc;
+import org.cpntools.accesscpn.model.Condition;
+import org.cpntools.accesscpn.model.HLAnnotation;
+import org.cpntools.accesscpn.model.HLDeclaration;
+import org.cpntools.accesscpn.model.HasLabel;
 import org.cpntools.accesscpn.model.ModelFactory;
 import org.cpntools.accesscpn.model.Name;
 import org.cpntools.accesscpn.model.Node;
 import org.cpntools.accesscpn.model.Page;
 import org.cpntools.accesscpn.model.PetriNet;
 import org.cpntools.accesscpn.model.Place;
+import org.cpntools.accesscpn.model.Sort;
 import org.cpntools.accesscpn.model.Transition;
+import org.cpntools.accesscpn.model.cpntypes.CPNInt;
+import org.cpntools.accesscpn.model.cpntypes.CPNType;
+import org.cpntools.accesscpn.model.cpntypes.CpntypesFactory;
+import org.cpntools.accesscpn.model.declaration.DeclarationFactory;
+import org.cpntools.accesscpn.model.declaration.TypeDeclaration;
 import org.cpntools.accesscpn.model.impl.ModelFactoryImpl;
 
 public class QuickFactory {
@@ -21,6 +31,12 @@ public class QuickFactory {
 		return place;
 	}
 	
+    public static Condition getCondition(PetriNet net, String condition){
+    	Condition cond = ModelFactoryImpl.eINSTANCE.createCondition();
+    	cond.setText(condition);
+    	cond.setParent(net);
+    	return cond;
+    }
 	public static Transition getTransition(Page page, String name ) {
 		Transition trans = ModelFactoryImpl.eINSTANCE.createTransition();
 		trans.setId(IDFactory.getInstance().getRandomId());
@@ -31,12 +47,13 @@ public class QuickFactory {
 		return trans;
 	}
 	
-	public static Arc combine(Page page, Node source, Node target) {
+	public static Arc combine(Page page, Node source, Node target, HLAnnotation inArcAnno) {
 		Arc arc = ModelFactoryImpl.eINSTANCE.createArc();
 		arc.setId(IDFactory.getInstance().getRandomId());
 		arc.setSource(source);
 		arc.setTarget(target);
 		arc.setPage(page);
+        arc.setHlinscription(inArcAnno);
 		return arc;
 	}
 	
@@ -55,4 +72,21 @@ public class QuickFactory {
 		
 		return page;
 	}
+    
+    public static void addTypeDeclaration(PetriNet net, CPNType type) {
+		TypeDeclaration typeDecl = DeclarationFactory.INSTANCE.createTypeDeclaration();
+		typeDecl.setTypeName("INT");
+		typeDecl.setSort(type);	
+		HLDeclaration hlyDecl = ModelFactory.INSTANCE.createHLDeclaration();
+		hlyDecl.setStructure(typeDecl);
+		hlyDecl.setId(IDFactory.getInstance().getRandomId());
+		hlyDecl.setParent(net);
+    }
+    
+    public static Sort getSort(PetriNet net, String text) {
+		Sort sort = ModelFactory.INSTANCE.createSort();
+		sort.setText(text);
+		sort.setParent(net);
+        return sort;
+    }
 }

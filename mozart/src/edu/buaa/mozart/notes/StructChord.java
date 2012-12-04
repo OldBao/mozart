@@ -15,9 +15,6 @@ public abstract class StructChord extends Notation {
     	public StructChord(){
     		
     	}
-		public StructChord(Page cpnPage) {
-			super(cpnPage);
-		}
         
 		@Override
         public void setIndividual(OWLIndividual individual) {

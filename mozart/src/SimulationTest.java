@@ -47,7 +47,7 @@ public class SimulationTest {
 		final HighLevelSimulator simulator = ps.getSimulator();
 
 		System.out.println("===================================");
-		simulator.execute(10);
+		simulator.execute(1);
 		//System.out.println("Skipped " + simulator.getStep() + " steps");
 		for (int i = 0; i < 100; i++) {
 			final Binding binding = simulator.executeAndGet();
