@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/repos/cpntools/!svn/ver/236/AccessCPN/trunk/org.cpntools.accesscpn.cosimulation/src/org/cpntools/accesscpn/cosimulation/impl
+END
+CPNToolsCosimulation.java
+K 25
+svn:wc:ra_dav:version-url
+V 151
+/repos/cpntools/!svn/ver/236/AccessCPN/trunk/org.cpntools.accesscpn.cosimulation/src/org/cpntools/accesscpn/cosimulation/impl/CPNToolsCosimulation.java
+END
+DefaultDataStore.java
+K 25
+svn:wc:ra_dav:version-url
+V 147
+/repos/cpntools/!svn/ver/233/AccessCPN/trunk/org.cpntools.accesscpn.cosimulation/src/org/cpntools/accesscpn/cosimulation/impl/DefaultDataStore.java
+END
+AbstractChannel.java
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/repos/cpntools/!svn/ver/218/AccessCPN/trunk/org.cpntools.accesscpn.cosimulation/src/org/cpntools/accesscpn/cosimulation/impl/AbstractChannel.java
+END
+SinkOutputChannel.java
+K 25
+svn:wc:ra_dav:version-url
+V 148
+/repos/cpntools/!svn/ver/218/AccessCPN/trunk/org.cpntools.accesscpn.cosimulation/src/org/cpntools/accesscpn/cosimulation/impl/SinkOutputChannel.java
+END
+CPNToolsCosimulationManager.java
+K 25
+svn:wc:ra_dav:version-url
+V 158
+/repos/cpntools/!svn/ver/225/AccessCPN/trunk/org.cpntools.accesscpn.cosimulation/src/org/cpntools/accesscpn/cosimulation/impl/CPNToolsCosimulationManager.java
+END
+EmptyCosimulation.java
+K 25
+svn:wc:ra_dav:version-url
+V 148
+/repos/cpntools/!svn/ver/225/AccessCPN/trunk/org.cpntools.accesscpn.cosimulation/src/org/cpntools/accesscpn/cosimulation/impl/EmptyCosimulation.java
+END
+CPNToolsSimulation.java
+K 25
+svn:wc:ra_dav:version-url
+V 149
+/repos/cpntools/!svn/ver/234/AccessCPN/trunk/org.cpntools.accesscpn.cosimulation/src/org/cpntools/accesscpn/cosimulation/impl/CPNToolsSimulation.java
+END
+PipeChannel.java
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/repos/cpntools/!svn/ver/218/AccessCPN/trunk/org.cpntools.accesscpn.cosimulation/src/org/cpntools/accesscpn/cosimulation/impl/PipeChannel.java
+END

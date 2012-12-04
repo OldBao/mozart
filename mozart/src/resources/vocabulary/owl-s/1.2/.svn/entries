@@ -1,0 +1,119 @@
+10
+
+dir
+0
+svn://192.168.106.235/grad/programs/third/owl-sbin/owl-s3.0/src/src/main/resources/vocabulary/owl-s/1.2
+svn://192.168.106.235/grad
+add
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+aaf6029b-0d2c-4136-a10e-a7087b6afe5f
+
+GroundingDeprecatedElements.owl
+file
+
+
+
+add
+
+Grounding.owl
+file
+
+
+
+add
+
+ProcessDeprecatedElements.owl
+file
+
+
+
+add
+
+generic
+dir
+
+
+
+add
+
+ProfileAdditionalParameters.owl
+file
+
+
+
+add
+
+ActorDefault.owl
+file
+
+
+
+add
+
+Process.owl
+file
+
+
+
+add
+
+ProfileDeprecatedElements.owl
+file
+
+
+
+add
+
+ServiceCategory.owl
+file
+
+
+
+add
+
+extensions
+dir
+
+
+
+add
+
+Service.owl
+file
+
+
+
+add
+
+Profile.owl
+file
+
+
+
+add
+
+ServiceParameter.owl
+file
+
+
+
+add
+

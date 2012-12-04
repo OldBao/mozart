@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/repos/on/!svn/ver/2269/trunk/owls-api/src/main/resources/vocabulary/owl-s/1.1
+END
+Grounding.owl
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/repos/on/!svn/ver/2269/trunk/owls-api/src/main/resources/vocabulary/owl-s/1.1/Grounding.owl
+END
+ActorDefault.owl
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/repos/on/!svn/ver/2269/trunk/owls-api/src/main/resources/vocabulary/owl-s/1.1/ActorDefault.owl
+END
+ProfileAdditionalParameters.owl
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/repos/on/!svn/ver/2269/trunk/owls-api/src/main/resources/vocabulary/owl-s/1.1/ProfileAdditionalParameters.owl
+END
+Process.owl
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/repos/on/!svn/ver/2269/trunk/owls-api/src/main/resources/vocabulary/owl-s/1.1/Process.owl
+END
+ProfileDeprecatedElements.owl
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/repos/on/!svn/ver/2269/trunk/owls-api/src/main/resources/vocabulary/owl-s/1.1/ProfileDeprecatedElements.owl
+END
+Profile.owl
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/repos/on/!svn/ver/2269/trunk/owls-api/src/main/resources/vocabulary/owl-s/1.1/Profile.owl
+END
+Service.owl
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/repos/on/!svn/ver/2269/trunk/owls-api/src/main/resources/vocabulary/owl-s/1.1/Service.owl
+END
+Resource.owl
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/repos/on/!svn/ver/2269/trunk/owls-api/src/main/resources/vocabulary/owl-s/1.1/Resource.owl
+END

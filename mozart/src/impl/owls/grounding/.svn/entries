@@ -1,0 +1,154 @@
+10
+
+dir
+0
+svn://192.168.106.235/grad/programs/third/owl-sbin/owl-s3.0/src/src/main/java/impl/owls/grounding
+svn://192.168.106.235/grad
+add
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+aaf6029b-0d2c-4136-a10e-a7087b6afe5f
+
+JavaParameterImpl.java
+file
+
+
+
+add
+
+WSDLAtomicGroundingImpl.java
+file
+
+
+
+add
+
+UPnPMessageMapImpl.java
+file
+
+
+
+add
+
+WSDLGroundingImpl.java
+file
+
+
+
+add
+
+JavaVariableImpl.java
+file
+
+
+
+add
+
+WSDLOperationRefImpl.java
+file
+
+
+
+add
+
+AtomicGroundingImpl.java
+file
+
+
+
+add
+
+BaseMessageMap.java
+file
+
+
+
+add
+
+JavaAtomicGroundingImpl.java
+file
+
+
+
+add
+
+UPnPAtomicGroundingImpl.java
+file
+
+
+
+add
+
+MessageMapAtomicGroundingImpl.java
+file
+
+
+
+add
+
+GroundingImpl.java
+file
+
+
+
+add
+
+JavaGroundingImpl.java
+file
+
+
+
+add
+
+UPnPGroundingImpl.java
+file
+
+
+
+add
+
+WSDLGroundingProviderImpl.java
+file
+
+
+
+add
+
+JavaGroundingProviderImpl.java
+file
+
+
+
+add
+
+UPnPGroundingProviderImpl.java
+file
+
+
+
+add
+
+WSDLMessageMapImpl.java
+file
+
+
+
+add
+

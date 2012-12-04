@@ -1,0 +1,101 @@
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/repos/cpntools/!svn/ver/149/AccessCPN/trunk/org.cpntools.accesscpn.model.tests/src/org/cpntools/accesscpn/model/cpntypes/tests
+END
+CpntypesTests.java
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/repos/cpntools/!svn/ver/118/AccessCPN/trunk/org.cpntools.accesscpn.model.tests/src/org/cpntools/accesscpn/model/cpntypes/tests/CpntypesTests.java
+END
+CPNUnionTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 145
+/repos/cpntools/!svn/ver/149/AccessCPN/trunk/org.cpntools.accesscpn.model.tests/src/org/cpntools/accesscpn/model/cpntypes/tests/CPNUnionTest.java
+END
+CPNAliasTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 145
+/repos/cpntools/!svn/ver/149/AccessCPN/trunk/org.cpntools.accesscpn.model.tests/src/org/cpntools/accesscpn/model/cpntypes/tests/CPNAliasTest.java
+END
+CPNIntTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/repos/cpntools/!svn/ver/149/AccessCPN/trunk/org.cpntools.accesscpn.model.tests/src/org/cpntools/accesscpn/model/cpntypes/tests/CPNIntTest.java
+END
+CPNBoolTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/repos/cpntools/!svn/ver/149/AccessCPN/trunk/org.cpntools.accesscpn.model.tests/src/org/cpntools/accesscpn/model/cpntypes/tests/CPNBoolTest.java
+END
+NameTypePairTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 149
+/repos/cpntools/!svn/ver/149/AccessCPN/trunk/org.cpntools.accesscpn.model.tests/src/org/cpntools/accesscpn/model/cpntypes/tests/NameTypePairTest.java
+END
+CPNEnumTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/repos/cpntools/!svn/ver/149/AccessCPN/trunk/org.cpntools.accesscpn.model.tests/src/org/cpntools/accesscpn/model/cpntypes/tests/CPNEnumTest.java
+END
+CPNSubsetTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/repos/cpntools/!svn/ver/149/AccessCPN/trunk/org.cpntools.accesscpn.model.tests/src/org/cpntools/accesscpn/model/cpntypes/tests/CPNSubsetTest.java
+END
+CPNStringTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/repos/cpntools/!svn/ver/149/AccessCPN/trunk/org.cpntools.accesscpn.model.tests/src/org/cpntools/accesscpn/model/cpntypes/tests/CPNStringTest.java
+END
+CPNIndexTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 145
+/repos/cpntools/!svn/ver/149/AccessCPN/trunk/org.cpntools.accesscpn.model.tests/src/org/cpntools/accesscpn/model/cpntypes/tests/CPNIndexTest.java
+END
+CPNListTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/repos/cpntools/!svn/ver/149/AccessCPN/trunk/org.cpntools.accesscpn.model.tests/src/org/cpntools/accesscpn/model/cpntypes/tests/CPNListTest.java
+END
+CPNRecordTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/repos/cpntools/!svn/ver/149/AccessCPN/trunk/org.cpntools.accesscpn.model.tests/src/org/cpntools/accesscpn/model/cpntypes/tests/CPNRecordTest.java
+END
+CPNUnitTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/repos/cpntools/!svn/ver/149/AccessCPN/trunk/org.cpntools.accesscpn.model.tests/src/org/cpntools/accesscpn/model/cpntypes/tests/CPNUnitTest.java
+END
+CPNProductTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 147
+/repos/cpntools/!svn/ver/149/AccessCPN/trunk/org.cpntools.accesscpn.model.tests/src/org/cpntools/accesscpn/model/cpntypes/tests/CPNProductTest.java
+END
+CPNTypeTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/repos/cpntools/!svn/ver/116/AccessCPN/trunk/org.cpntools.accesscpn.model.tests/src/org/cpntools/accesscpn/model/cpntypes/tests/CPNTypeTest.java
+END
+CPNRealTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/repos/cpntools/!svn/ver/149/AccessCPN/trunk/org.cpntools.accesscpn.model.tests/src/org/cpntools/accesscpn/model/cpntypes/tests/CPNRealTest.java
+END

@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/repos/cpntools/!svn/ver/340/AccessCPN/trunk/org.cpntools.accesscpn.engine.proxy/src/org/cpntools/accesscpn/engine/proxy
+END
+ModelScraper.java
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/repos/cpntools/!svn/ver/340/AccessCPN/trunk/org.cpntools.accesscpn.engine.proxy/src/org/cpntools/accesscpn/engine/proxy/ModelScraper.java
+END
+ProxySimulator.java
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/repos/cpntools/!svn/ver/340/AccessCPN/trunk/org.cpntools.accesscpn.engine.proxy/src/org/cpntools/accesscpn/engine/proxy/ProxySimulator.java
+END
+ProxyDaemon.java
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/repos/cpntools/!svn/ver/29/AccessCPN/trunk/org.cpntools.accesscpn.engine.proxy/src/org/cpntools/accesscpn/engine/proxy/ProxyDaemon.java
+END
+BlockingQueue.java
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/repos/cpntools/!svn/ver/26/AccessCPN/trunk/org.cpntools.accesscpn.engine.proxy/src/org/cpntools/accesscpn/engine/proxy/BlockingQueue.java
+END

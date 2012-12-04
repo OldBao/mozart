@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/repos/cpntools/!svn/ver/149/AccessCPN/trunk/org.cpntools.accesscpn.model.tests/src/org/cpntools/accesscpn/model/declaration/tests
+END
+GlobalReferenceDeclarationTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 166
+/repos/cpntools/!svn/ver/149/AccessCPN/trunk/org.cpntools.accesscpn.model.tests/src/org/cpntools/accesscpn/model/declaration/tests/GlobalReferenceDeclarationTest.java
+END
+DeclarationStructureTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 160
+/repos/cpntools/!svn/ver/127/AccessCPN/trunk/org.cpntools.accesscpn.model.tests/src/org/cpntools/accesscpn/model/declaration/tests/DeclarationStructureTest.java
+END
+TypeDeclarationTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 155
+/repos/cpntools/!svn/ver/149/AccessCPN/trunk/org.cpntools.accesscpn.model.tests/src/org/cpntools/accesscpn/model/declaration/tests/TypeDeclarationTest.java
+END
+DeclarationTests.java
+K 25
+svn:wc:ra_dav:version-url
+V 152
+/repos/cpntools/!svn/ver/129/AccessCPN/trunk/org.cpntools.accesscpn.model.tests/src/org/cpntools/accesscpn/model/declaration/tests/DeclarationTests.java
+END
+VariableDeclarationTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 159
+/repos/cpntools/!svn/ver/149/AccessCPN/trunk/org.cpntools.accesscpn.model.tests/src/org/cpntools/accesscpn/model/declaration/tests/VariableDeclarationTest.java
+END
+MLDeclarationTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 153
+/repos/cpntools/!svn/ver/149/AccessCPN/trunk/org.cpntools.accesscpn.model.tests/src/org/cpntools/accesscpn/model/declaration/tests/MLDeclarationTest.java
+END
+UseDeclarationTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 154
+/repos/cpntools/!svn/ver/149/AccessCPN/trunk/org.cpntools.accesscpn.model.tests/src/org/cpntools/accesscpn/model/declaration/tests/UseDeclarationTest.java
+END

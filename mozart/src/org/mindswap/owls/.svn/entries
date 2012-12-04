@@ -1,0 +1,105 @@
+10
+
+dir
+0
+svn://192.168.106.235/grad/programs/third/owl-sbin/owl-s3.0/src/src/main/java/org/mindswap/owls
+svn://192.168.106.235/grad
+add
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+aaf6029b-0d2c-4136-a10e-a7087b6afe5f
+
+grounding
+dir
+
+
+
+add
+
+OWLSFactory.java
+file
+
+
+
+add
+
+process
+dir
+
+
+
+add
+
+expression
+dir
+
+
+
+add
+
+OWLSProvider.java
+file
+
+
+
+add
+
+profile
+dir
+
+
+
+add
+
+service
+dir
+
+
+
+add
+
+OWLSVersionTranslator.java
+file
+
+
+
+add
+
+validator
+dir
+
+
+
+add
+
+io
+dir
+
+
+
+add
+
+vocabulary
+dir
+
+
+
+add
+
