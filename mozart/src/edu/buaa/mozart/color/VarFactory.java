@@ -33,8 +33,21 @@ public class VarFactory {
             Color varColor = ColorFactory.getInstance().getBasicColor(processVar);
             if (varColor == null) {
             	throw new ComposeException("var " + processVar + " 's type " + processVar.getParamType() + " not supported now");
-            }
-    		Var newVar = new Var(processVar.getLocalName(), varColor);
+            } 
+            
+            int i  = 0;
+            String newVarName = "";
+            Var newVar;
+            do{
+            	if (i == 0) {
+            		newVarName = processVar.getLocalName();
+            	}else{
+            		newVarName = newVarName + i;
+            	}
+            	i++;
+            	newVar = new Var(newVarName, varColor);
+            }while (mVarMap.containsValue(newVar));
+            
             mVarMap.put(processVar, newVar);
             return newVar;
     	}

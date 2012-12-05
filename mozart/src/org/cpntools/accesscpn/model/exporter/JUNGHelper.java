@@ -34,6 +34,9 @@ public class JUNGHelper {
 		}
 
 		for (final Arc a : p.getArc()) {
+            if (a.getSource() == null || a.getTarget()==null) {
+            	System.out.println(a);
+            }
 			graph.addEdge(a.getId(), a.getSource(), a.getTarget());
 			if (a.getKind() == HLArcType.TEST) {
 				graph.addEdge("reverse" + a.getId(), a.getTarget(), a.getSource());

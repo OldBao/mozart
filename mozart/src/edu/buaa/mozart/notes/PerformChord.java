@@ -22,4 +22,14 @@ public class PerformChord extends DataChord{
         composer.composePerform(perform, this, context);
 	}
 
+	@Override
+	boolean hasInputTransition() {
+		return true;
+	}
+
+	@Override
+	boolean hasOutputTransition() {
+		return true;
+	}
+
 }

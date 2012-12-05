@@ -1,7 +1,7 @@
 //The MIT License
 //
 // Copyright 2004 Evren Sirin
-// Copyright 2009 Thorsten Möller - University of Basel Switzerland
+// Copyright 2009 Thorsten Mï¿½ller - University of Basel Switzerland
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to
@@ -150,7 +150,7 @@ public class OWLReaderImpl implements OWLReader
 		OWLOntology ont = kb.getOntology(stdURI);
 		if (ont != null)
 		{
-			logger.debug("Use already loaded ontology {} from given knowledge base.", stdURI);
+			logger.info("Use already loaded ontology {} from given knowledge base.", stdURI);
 		}
 		else
 		{

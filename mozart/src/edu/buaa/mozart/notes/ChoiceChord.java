@@ -14,4 +14,16 @@ public class ChoiceChord extends StructChord {
         composer.composeChoice(choice, this, context);
 	}
 
+	@Override
+	boolean hasInputTransition() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	boolean hasOutputTransition() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

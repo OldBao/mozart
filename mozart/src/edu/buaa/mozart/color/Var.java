@@ -6,7 +6,6 @@ import org.cpntools.accesscpn.model.PetriNet;
 import org.cpntools.accesscpn.model.declaration.DeclarationFactory;
 import org.cpntools.accesscpn.model.declaration.VariableDeclaration;
 
-import edu.buaa.composer.ComposerConfig;
 import edu.buaa.utils.IDFactory;
 
 public class Var {
@@ -17,6 +16,19 @@ public class Var {
 		mVarName = varName;
         mColor 		   = color;
 	}
+    
+    @Override
+    public int
+    hashCode(){
+    	return mVarName.hashCode();
+    }
+    
+    @Override
+	public
+    boolean equals(Object obj) {
+    	Var other = (Var) obj;
+    	return mVarName.equals(other.mVarName);
+    }
     
 	public String getVarName(){
 		return mVarName;

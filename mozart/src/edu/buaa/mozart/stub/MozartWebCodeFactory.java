@@ -19,7 +19,9 @@ public final class MozartWebCodeFactory {
     	gBuilder.append("input()\n");
     	gBuilder.append("output()\n");
     	gBuilder.append("action\n");
-    	gBuilder.append("openConnection("+ ComposerConfig.CONN_NAME + "," + ComposerConfig.WS_STUB_PORT+")\n");
+    	gBuilder.append("openConnection(\""+ ComposerConfig.CONN_NAME + "\","+
+    									"\"" + ComposerConfig.SERVER_ADDR + "\","	+ 
+    									ComposerConfig.WS_STUB_PORT+")\n");
         
         System.out.println("Init Code Segment\n" + gBuilder.toString());
         
@@ -61,8 +63,8 @@ public final class MozartWebCodeFactory {
             actionBuilder.append("val mozart_ws = \"" + process.getURI()+ "\"\n");
             actionBuilder.append("in\n");
             
-            actionBuilder.append("send(" + conn + ",mozart_ws,"+ ComposerConfig.STRING_ENCODING + ")\n");
-            actionBuilder.append("send(" + conn + "," + process.getInputs().size() + ","+ ComposerConfig.INTEGER_ENCODING + ")\n");
+            actionBuilder.append("send(" + conn + ",mozart_ws,"+ ComposerConfig.STRING_ENCODING + ");\n");
+            actionBuilder.append("send(" + conn + "," + process.getInputs().size() + ","+ ComposerConfig.INTEGER_ENCODING + ");\n");
             
             for (Input input : process.getInputs()){
 				Var var = VarFactory.getInstance().getVarFromProcessVar(input);
@@ -96,4 +98,19 @@ public final class MozartWebCodeFactory {
     }
     
 	private static MozartWebCodeFactory mInstance = new MozartWebCodeFactory();
+
+	public Code getExitCode(PetriNet net) {
+    	StringBuilder gBuilder = new StringBuilder();
+    	gBuilder.append("input()\n");
+    	gBuilder.append("output()\n");
+    	gBuilder.append("action\n");
+    	gBuilder.append("closeConnection(\""+ ComposerConfig.CONN_NAME+ "\")\n");
+        
+        System.out.println("Init Code Segment\n" + gBuilder.toString());
+        
+    	Code code = ModelFactoryImpl.eINSTANCE.createCode();
+        code.setText(gBuilder.toString());
+        code.setParent(net);
+        return code;
+	}
 }

@@ -1,0 +1,91 @@
+10
+
+dir
+0
+svn://192.168.106.235/grad/programs/third/owl-sbin/owl-s3.0/src/src/main/java/org/mindswap/owls/vocabulary
+svn://192.168.106.235/grad
+add
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+aaf6029b-0d2c-4136-a10e-a7087b6afe5f
+
+OWLS_1_0DL.java
+file
+
+
+
+add
+
+OWLS_1_0.java
+file
+
+
+
+add
+
+OWLS_Extensions.java
+file
+
+
+
+add
+
+OWLS.java
+file
+
+
+
+add
+
+FLAServiceOnt.java
+file
+
+
+
+add
+
+OWLS_1_1.java
+file
+
+
+
+add
+
+OWLS_1_2.java
+file
+
+
+
+add
+
+BuiltinNamespaces.java
+file
+
+
+
+add
+
+MoreGroundings.java
+file
+
+
+
+add
+

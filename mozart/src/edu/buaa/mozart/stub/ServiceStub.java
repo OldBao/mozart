@@ -1,6 +1,7 @@
 package edu.buaa.mozart.stub;
 
 import java.io.IOException;
+import java.net.SocketException;
 import java.net.URI;
 
 import org.mindswap.exceptions.ExecutionException;
@@ -23,7 +24,6 @@ public class ServiceStub {
 		// listen on port and accept connection
 		try {
 			conn.accept(port);
-
 			while (true) {
 				String wsName = EncodeDecode.decodeString(conn.receive());
 				Integer paramCnt = Integer.parseInt(EncodeDecode
@@ -34,6 +34,13 @@ public class ServiceStub {
 				}
 				String result = internal_call(wsName, params);
 				conn.send(EncodeDecode.encode(result));
+			}
+		} catch (SocketException e) {
+            System.out.println("CPN connection closed");
+            try {
+				conn.disconnect();
+			} catch (IOException e1) {
+				e1.printStackTrace();
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -70,7 +77,7 @@ public class ServiceStub {
 			e.printStackTrace();
 		} catch (ExecutionException e) {
 			e.printStackTrace();
-		}
+		} 			
 		return "";
 	}
 }

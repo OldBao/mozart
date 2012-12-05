@@ -1,0 +1,251 @@
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/repos/cpntools/!svn/ver/149/AccessCPN/trunk/org.cpntools.accesscpn.model.tests/src/org/cpntools/accesscpn/model/tests
+END
+LabelTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/repos/cpntools/!svn/ver/144/AccessCPN/trunk/org.cpntools.accesscpn.model.tests/src/org/cpntools/accesscpn/model/tests/LabelTest.java
+END
+RefPlaceTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/repos/cpntools/!svn/ver/149/AccessCPN/trunk/org.cpntools.accesscpn.model.tests/src/org/cpntools/accesscpn/model/tests/RefPlaceTest.java
+END
+PlaceTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/repos/cpntools/!svn/ver/149/AccessCPN/trunk/org.cpntools.accesscpn.model.tests/src/org/cpntools/accesscpn/model/tests/PlaceTest.java
+END
+HasToolInfoTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/repos/cpntools/!svn/ver/144/AccessCPN/trunk/org.cpntools.accesscpn.model.tests/src/org/cpntools/accesscpn/model/tests/HasToolInfoTest.java
+END
+DeclarationTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/repos/cpntools/!svn/ver/106/AccessCPN/trunk/org.cpntools.accesscpn.model.tests/src/org/cpntools/accesscpn/model/tests/DeclarationTest.java
+END
+HasIdTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/repos/cpntools/!svn/ver/144/AccessCPN/trunk/org.cpntools.accesscpn.model.tests/src/org/cpntools/accesscpn/model/tests/HasIdTest.java
+END
+HLArcAddinTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/repos/cpntools/!svn/ver/144/AccessCPN/trunk/org.cpntools.accesscpn.model.tests/src/org/cpntools/accesscpn/model/tests/HLArcAddinTest.java
+END
+ToolInfoTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/repos/cpntools/!svn/ver/149/AccessCPN/trunk/org.cpntools.accesscpn.model.tests/src/org/cpntools/accesscpn/model/tests/ToolInfoTest.java
+END
+PlaceNodeTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/repos/cpntools/!svn/ver/144/AccessCPN/trunk/org.cpntools.accesscpn.model.tests/src/org/cpntools/accesscpn/model/tests/PlaceNodeTest.java
+END
+TransitionTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/repos/cpntools/!svn/ver/149/AccessCPN/trunk/org.cpntools.accesscpn.model.tests/src/org/cpntools/accesscpn/model/tests/TransitionTest.java
+END
+HLAnnotationAddinTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 145
+/repos/cpntools/!svn/ver/144/AccessCPN/trunk/org.cpntools.accesscpn.model.tests/src/org/cpntools/accesscpn/model/tests/HLAnnotationAddinTest.java
+END
+TransitionNodeTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/repos/cpntools/!svn/ver/144/AccessCPN/trunk/org.cpntools.accesscpn.model.tests/src/org/cpntools/accesscpn/model/tests/TransitionNodeTest.java
+END
+AttributeTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/repos/cpntools/!svn/ver/100/AccessCPN/trunk/org.cpntools.accesscpn.model.tests/src/org/cpntools/accesscpn/model/tests/AttributeTest.java
+END
+ObjectTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/repos/cpntools/!svn/ver/149/AccessCPN/trunk/org.cpntools.accesscpn.model.tests/src/org/cpntools/accesscpn/model/tests/ObjectTest.java
+END
+ParameterAssignmentTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 147
+/repos/cpntools/!svn/ver/149/AccessCPN/trunk/org.cpntools.accesscpn.model.tests/src/org/cpntools/accesscpn/model/tests/ParameterAssignmentTest.java
+END
+HLDeclarationTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/repos/cpntools/!svn/ver/149/AccessCPN/trunk/org.cpntools.accesscpn.model.tests/src/org/cpntools/accesscpn/model/tests/HLDeclarationTest.java
+END
+AnnotationTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/repos/cpntools/!svn/ver/101/AccessCPN/trunk/org.cpntools.accesscpn.model.tests/src/org/cpntools/accesscpn/model/tests/AnnotationTest.java
+END
+CodeTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/repos/cpntools/!svn/ver/149/AccessCPN/trunk/org.cpntools.accesscpn.model.tests/src/org/cpntools/accesscpn/model/tests/CodeTest.java
+END
+HLArcType_1Test.java
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/repos/cpntools/!svn/ver/144/AccessCPN/trunk/org.cpntools.accesscpn.model.tests/src/org/cpntools/accesscpn/model/tests/HLArcType_1Test.java
+END
+PageTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/repos/cpntools/!svn/ver/149/AccessCPN/trunk/org.cpntools.accesscpn.model.tests/src/org/cpntools/accesscpn/model/tests/PageTest.java
+END
+ModelAllTests.java
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/repos/cpntools/!svn/ver/144/AccessCPN/trunk/org.cpntools.accesscpn.model.tests/src/org/cpntools/accesscpn/model/tests/ModelAllTests.java
+END
+HasNameTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/repos/cpntools/!svn/ver/144/AccessCPN/trunk/org.cpntools.accesscpn.model.tests/src/org/cpntools/accesscpn/model/tests/HasNameTest.java
+END
+CPNToolsTransitionAddinTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 151
+/repos/cpntools/!svn/ver/103/AccessCPN/trunk/org.cpntools.accesscpn.model.tests/src/org/cpntools/accesscpn/model/tests/CPNToolsTransitionAddinTest.java
+END
+HLMarkingTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/repos/cpntools/!svn/ver/149/AccessCPN/trunk/org.cpntools.accesscpn.model.tests/src/org/cpntools/accesscpn/model/tests/HLMarkingTest.java
+END
+NameTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/repos/cpntools/!svn/ver/149/AccessCPN/trunk/org.cpntools.accesscpn.model.tests/src/org/cpntools/accesscpn/model/tests/NameTest.java
+END
+FusionGroupTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/repos/cpntools/!svn/ver/149/AccessCPN/trunk/org.cpntools.accesscpn.model.tests/src/org/cpntools/accesscpn/model/tests/FusionGroupTest.java
+END
+PriorityTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/repos/cpntools/!svn/ver/149/AccessCPN/trunk/org.cpntools.accesscpn.model.tests/src/org/cpntools/accesscpn/model/tests/PriorityTest.java
+END
+ModelTests.java
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/repos/cpntools/!svn/ver/149/AccessCPN/trunk/org.cpntools.accesscpn.model.tests/src/org/cpntools/accesscpn/model/tests/ModelTests.java
+END
+RefTransTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/repos/cpntools/!svn/ver/149/AccessCPN/trunk/org.cpntools.accesscpn.model.tests/src/org/cpntools/accesscpn/model/tests/RefTransTest.java
+END
+SyntaxCheckTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/repos/cpntools/!svn/ver/149/AccessCPN/trunk/org.cpntools.accesscpn.model.tests/src/org/cpntools/accesscpn/model/tests/SyntaxCheckTest.java
+END
+NodeTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/repos/cpntools/!svn/ver/144/AccessCPN/trunk/org.cpntools.accesscpn.model.tests/src/org/cpntools/accesscpn/model/tests/NodeTest.java
+END
+ConditionTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/repos/cpntools/!svn/ver/149/AccessCPN/trunk/org.cpntools.accesscpn.model.tests/src/org/cpntools/accesscpn/model/tests/ConditionTest.java
+END
+SortTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/repos/cpntools/!svn/ver/149/AccessCPN/trunk/org.cpntools.accesscpn.model.tests/src/org/cpntools/accesscpn/model/tests/SortTest.java
+END
+PetriNetTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/repos/cpntools/!svn/ver/149/AccessCPN/trunk/org.cpntools.accesscpn.model.tests/src/org/cpntools/accesscpn/model/tests/PetriNetTest.java
+END
+HLAnnotationTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/repos/cpntools/!svn/ver/149/AccessCPN/trunk/org.cpntools.accesscpn.model.tests/src/org/cpntools/accesscpn/model/tests/HLAnnotationTest.java
+END
+TimeTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/repos/cpntools/!svn/ver/149/AccessCPN/trunk/org.cpntools.accesscpn.model.tests/src/org/cpntools/accesscpn/model/tests/TimeTest.java
+END
+InstanceTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/repos/cpntools/!svn/ver/149/AccessCPN/trunk/org.cpntools.accesscpn.model.tests/src/org/cpntools/accesscpn/model/tests/InstanceTest.java
+END
+ArcTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/repos/cpntools/!svn/ver/149/AccessCPN/trunk/org.cpntools.accesscpn.model.tests/src/org/cpntools/accesscpn/model/tests/ArcTest.java
+END
+HLPlaceAddinTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/repos/cpntools/!svn/ver/144/AccessCPN/trunk/org.cpntools.accesscpn.model.tests/src/org/cpntools/accesscpn/model/tests/HLPlaceAddinTest.java
+END
+HasLabelTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/repos/cpntools/!svn/ver/144/AccessCPN/trunk/org.cpntools.accesscpn.model.tests/src/org/cpntools/accesscpn/model/tests/HasLabelTest.java
+END
+HLTransitionAddinTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 145
+/repos/cpntools/!svn/ver/144/AccessCPN/trunk/org.cpntools.accesscpn.model.tests/src/org/cpntools/accesscpn/model/tests/HLTransitionAddinTest.java
+END

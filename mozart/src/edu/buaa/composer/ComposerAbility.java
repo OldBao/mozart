@@ -1,22 +1,22 @@
 package edu.buaa.composer;
 
-import org.mindswap.owl.OWLIndividualList;
 import org.mindswap.owls.process.AtomicProcess;
 import org.mindswap.owls.process.Choice;
 import org.mindswap.owls.process.CompositeProcess;
 import org.mindswap.owls.process.IfThenElse;
 import org.mindswap.owls.process.Perform;
+import org.mindswap.owls.process.Process;
 import org.mindswap.owls.process.Produce;
-import org.mindswap.owls.process.Result;
 import org.mindswap.owls.process.Sequence;
-import org.mindswap.owls.process.variable.Output;
 
 import edu.buaa.mozart.notes.AtomicClef;
 import edu.buaa.mozart.notes.ChoiceChord;
 import edu.buaa.mozart.notes.ComposeException;
 import edu.buaa.mozart.notes.CompositeClef;
+import edu.buaa.mozart.notes.Conclude;
 import edu.buaa.mozart.notes.IfThenElseChord;
 import edu.buaa.mozart.notes.PerformChord;
+import edu.buaa.mozart.notes.Prelude;
 import edu.buaa.mozart.notes.ProduceChord;
 import edu.buaa.mozart.notes.SequenceChord;
 
@@ -33,8 +33,8 @@ public interface ComposerAbility {
 	abstract public void composePerform(Perform perform, PerformChord chord,
 			NotationContext context);
 
-	abstract public void composeConclude(OWLIndividualList<Result> results,
-			OWLIndividualList<Output> outputs, NotationContext context)
+    abstract public void composePrelude(Process process, Prelude prelude, NotationContext context);
+	abstract public void composeConclude(Process process, Conclude conclude, NotationContext context)
 			throws ComposeException;
 
 	abstract public void composeProduce(Produce produce, ProduceChord chrod,

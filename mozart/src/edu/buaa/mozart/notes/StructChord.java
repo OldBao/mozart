@@ -7,11 +7,10 @@
  */
 package edu.buaa.mozart.notes;
 
-import org.cpntools.accesscpn.model.Page;
 import org.mindswap.owl.OWLIndividual;
 import org.mindswap.owls.process.CompositeProcess;
 
-public abstract class StructChord extends Notation {
+public abstract class StructChord extends Chord {
     	public StructChord(){
     		
     	}

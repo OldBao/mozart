@@ -80,6 +80,7 @@ public interface ParameterValue extends Visitable<ParameterValueVisitor, Paramet
 	public OWLValue getValueFromPerformResults(Map<Perform, ValueMap<ProcessVar, OWLValue>> performsResults)
 		throws DataFlowException;
     
+    //TODO change Perform to DataChord
     public Perform getPerformsFromResults(Set<Perform> performs);
 	/**
 	 * Sets the value represented by this parameter value specification to the

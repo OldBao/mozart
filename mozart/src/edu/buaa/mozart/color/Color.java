@@ -26,6 +26,13 @@ public class Color {
         mEncoding = encoding;
         mDecoding = decoding;
     }
+    
+    @Override
+    public boolean
+    equals(Object obj) {
+    	Color color = (Color) obj;
+    	return mTypeName.equals(color.mTypeName);
+    }
 
     public String getEncoding(){
     	return mEncoding;

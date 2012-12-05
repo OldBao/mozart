@@ -1,0 +1,231 @@
+10
+
+dir
+0
+svn://192.168.106.235/grad/programs/third/owl-sbin/owl-s3.0/src/src/main/java/org/mindswap/owl
+svn://192.168.106.235/grad
+add
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+aaf6029b-0d2c-4136-a10e-a7087b6afe5f
+
+OWLObjectConverter.java
+file
+
+
+
+add
+
+OWLModel.java
+file
+
+
+
+add
+
+OWLTransformator.java
+file
+
+
+
+add
+
+OWLReader.java
+file
+
+
+
+add
+
+vocabulary
+dir
+
+
+
+add
+
+OWLConfig.java
+file
+
+
+
+add
+
+OWLClass.java
+file
+
+
+
+add
+
+OWLDataValue.java
+file
+
+
+
+add
+
+OWLObject.java
+file
+
+
+
+add
+
+OWLFactory.java
+file
+
+
+
+add
+
+OWLObjectConverterProvider.java
+file
+
+
+
+add
+
+list
+dir
+
+
+
+add
+
+OWLOntology.java
+file
+
+
+
+add
+
+OWLKnowledgeBase.java
+file
+
+
+
+add
+
+OWLObjectProperty.java
+file
+
+
+
+add
+
+OWLDataType.java
+file
+
+
+
+add
+
+OWLEntity.java
+file
+
+
+
+add
+
+OWLWriter.java
+file
+
+
+
+add
+
+OWLValue.java
+file
+
+
+
+add
+
+OWLDataProperty.java
+file
+
+
+
+add
+
+OWLAnnotationProperty.java
+file
+
+
+
+add
+
+OWLType.java
+file
+
+
+
+add
+
+EntityFactory.java
+file
+
+
+
+add
+
+OWLIndividualList.java
+file
+
+
+
+add
+
+OWLProperty.java
+file
+
+
+
+add
+
+OWLErrorHandler.java
+file
+
+
+
+add
+
+OWLObjectConverterRegistry.java
+file
+
+
+
+add
+
+OWLIndividual.java
+file
+
+
+
+add
+
+OWLProvider.java
+file
+
+
+
+add
+

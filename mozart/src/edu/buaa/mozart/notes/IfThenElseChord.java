@@ -14,4 +14,14 @@ public class IfThenElseChord extends StructChord {
         composer.composeIfThenElse(ite, this, context);
 	}
 
+	@Override
+	boolean hasInputTransition() {
+		return true;
+	}
+
+	@Override
+	boolean hasOutputTransition() {
+		return true;
+	}
+
 }

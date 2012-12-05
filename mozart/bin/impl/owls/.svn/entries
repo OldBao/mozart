@@ -1,0 +1,98 @@
+10
+
+dir
+0
+svn://192.168.106.235/grad/programs/third/owl-sbin/owl-s3.0/src/src/main/java/impl/owls
+svn://192.168.106.235/grad
+add
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+aaf6029b-0d2c-4136-a10e-a7087b6afe5f
+
+GenericVersionTranslator.java
+file
+
+
+
+add
+
+grounding
+dir
+
+
+
+add
+
+OWLSTranslator_1_0.java
+file
+
+
+
+add
+
+OWLSTranslator_1_1.java
+file
+
+
+
+add
+
+process
+dir
+
+
+
+add
+
+expression
+dir
+
+
+
+add
+
+OWLSConverters.java
+file
+
+
+
+add
+
+profile
+dir
+
+
+
+add
+
+service
+dir
+
+
+
+add
+
+OWLSProviderImpl.java
+file
+
+
+
+add
+

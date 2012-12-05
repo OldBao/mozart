@@ -1,0 +1,101 @@
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/repos/cpntools/!svn/ver/236/AccessCPN/trunk/org.cpntools.accesscpn.cosimulation/src/org/cpntools/accesscpn/cosimulation
+END
+ChannelDescription.java
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/repos/cpntools/!svn/ver/172/AccessCPN/trunk/org.cpntools.accesscpn.cosimulation/src/org/cpntools/accesscpn/cosimulation/ChannelDescription.java
+END
+AbstractTransition.java
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/repos/cpntools/!svn/ver/161/AccessCPN/trunk/org.cpntools.accesscpn.cosimulation/src/org/cpntools/accesscpn/cosimulation/AbstractTransition.java
+END
+CPNToolsPlugin.java
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/repos/cpntools/!svn/ver/161/AccessCPN/trunk/org.cpntools.accesscpn.cosimulation/src/org/cpntools/accesscpn/cosimulation/CPNToolsPlugin.java
+END
+AbstractPlugin.java
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/repos/cpntools/!svn/ver/161/AccessCPN/trunk/org.cpntools.accesscpn.cosimulation/src/org/cpntools/accesscpn/cosimulation/AbstractPlugin.java
+END
+CPNSimulation.java
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/repos/cpntools/!svn/ver/186/AccessCPN/trunk/org.cpntools.accesscpn.cosimulation/src/org/cpntools/accesscpn/cosimulation/CPNSimulation.java
+END
+DataStore.java
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/repos/cpntools/!svn/ver/171/AccessCPN/trunk/org.cpntools.accesscpn.cosimulation/src/org/cpntools/accesscpn/cosimulation/DataStore.java
+END
+InputChannel.java
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/repos/cpntools/!svn/ver/154/AccessCPN/trunk/org.cpntools.accesscpn.cosimulation/src/org/cpntools/accesscpn/cosimulation/InputChannel.java
+END
+OutputChannel.java
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/repos/cpntools/!svn/ver/218/AccessCPN/trunk/org.cpntools.accesscpn.cosimulation/src/org/cpntools/accesscpn/cosimulation/OutputChannel.java
+END
+ObservableInputChannel.java
+K 25
+svn:wc:ra_dav:version-url
+V 148
+/repos/cpntools/!svn/ver/235/AccessCPN/trunk/org.cpntools.accesscpn.cosimulation/src/org/cpntools/accesscpn/cosimulation/ObservableInputChannel.java
+END
+CosimulationManager.java
+K 25
+svn:wc:ra_dav:version-url
+V 145
+/repos/cpntools/!svn/ver/225/AccessCPN/trunk/org.cpntools.accesscpn.cosimulation/src/org/cpntools/accesscpn/cosimulation/CosimulationManager.java
+END
+PlacePlugin.java
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/repos/cpntools/!svn/ver/154/AccessCPN/trunk/org.cpntools.accesscpn.cosimulation/src/org/cpntools/accesscpn/cosimulation/PlacePlugin.java
+END
+SubpagePlugin.java
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/repos/cpntools/!svn/ver/176/AccessCPN/trunk/org.cpntools.accesscpn.cosimulation/src/org/cpntools/accesscpn/cosimulation/SubpagePlugin.java
+END
+Cosimulation.java
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/repos/cpntools/!svn/ver/215/AccessCPN/trunk/org.cpntools.accesscpn.cosimulation/src/org/cpntools/accesscpn/cosimulation/Cosimulation.java
+END
+ExecutionContext.java
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/repos/cpntools/!svn/ver/226/AccessCPN/trunk/org.cpntools.accesscpn.cosimulation/src/org/cpntools/accesscpn/cosimulation/ExecutionContext.java
+END
+TransitionPlugin.java
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/repos/cpntools/!svn/ver/154/AccessCPN/trunk/org.cpntools.accesscpn.cosimulation/src/org/cpntools/accesscpn/cosimulation/TransitionPlugin.java
+END
+AbstractSubpage.java
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/repos/cpntools/!svn/ver/176/AccessCPN/trunk/org.cpntools.accesscpn.cosimulation/src/org/cpntools/accesscpn/cosimulation/AbstractSubpage.java
+END

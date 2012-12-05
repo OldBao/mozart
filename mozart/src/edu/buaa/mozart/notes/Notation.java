@@ -24,7 +24,6 @@ public abstract class Notation {
         mNotationName = "" + mIndex++;
 	}
 	
-	protected Page           mCPNPage;
 	protected String        	 mNotationName;
     protected OWLIndividual mIndividual;
     

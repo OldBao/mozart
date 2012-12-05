@@ -1,0 +1,210 @@
+10
+
+dir
+0
+svn://192.168.106.235/grad/programs/third/owl-sbin/owl-s3.0/src/src/main/java/org/mindswap/owls/process
+svn://192.168.106.235/grad
+add
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+aaf6029b-0d2c-4136-a10e-a7087b6afe5f
+
+ControlConstruct.java
+file
+
+
+
+add
+
+IfThenElse.java
+file
+
+
+
+add
+
+SimpleProcess.java
+file
+
+
+
+add
+
+Choice.java
+file
+
+
+
+add
+
+Split.java
+file
+
+
+
+add
+
+Set.java
+file
+
+
+
+add
+
+RepeatUntil.java
+file
+
+
+
+add
+
+Iterate.java
+file
+
+
+
+add
+
+Produce.java
+file
+
+
+
+add
+
+CollectionControlConstruct.java
+file
+
+
+
+add
+
+CompositeProcess.java
+file
+
+
+
+add
+
+AsProcess.java
+file
+
+
+
+add
+
+Conditional.java
+file
+
+
+
+add
+
+variable
+dir
+
+
+
+add
+
+ControlConstructVisitor.java
+file
+
+
+
+add
+
+ForEach.java
+file
+
+
+
+add
+
+Sequence.java
+file
+
+
+
+add
+
+RepeatWhile.java
+file
+
+
+
+add
+
+Perform.java
+file
+
+
+
+add
+
+SplitJoin.java
+file
+
+
+
+add
+
+AtomicProcess.java
+file
+
+
+
+add
+
+MultiConditional.java
+file
+
+
+
+add
+
+Process.java
+file
+
+
+
+add
+
+Result.java
+file
+
+
+
+add
+
+execution
+dir
+
+
+
+add
+
+AnyOrder.java
+file
+
+
+
+add
+

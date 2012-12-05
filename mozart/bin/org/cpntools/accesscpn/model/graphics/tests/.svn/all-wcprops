@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/repos/cpntools/!svn/ver/149/AccessCPN/trunk/org.cpntools.accesscpn.model.tests/src/org/cpntools/accesscpn/model/graphics/tests
+END
+ArcGraphicsTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 148
+/repos/cpntools/!svn/ver/149/AccessCPN/trunk/org.cpntools.accesscpn.model.tests/src/org/cpntools/accesscpn/model/graphics/tests/ArcGraphicsTest.java
+END
+FillTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/repos/cpntools/!svn/ver/149/AccessCPN/trunk/org.cpntools.accesscpn.model.tests/src/org/cpntools/accesscpn/model/graphics/tests/FillTest.java
+END
+FontTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/repos/cpntools/!svn/ver/149/AccessCPN/trunk/org.cpntools.accesscpn.model.tests/src/org/cpntools/accesscpn/model/graphics/tests/FontTest.java
+END
+NodeGraphicsTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 149
+/repos/cpntools/!svn/ver/149/AccessCPN/trunk/org.cpntools.accesscpn.model.tests/src/org/cpntools/accesscpn/model/graphics/tests/NodeGraphicsTest.java
+END
+CoordinateTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 147
+/repos/cpntools/!svn/ver/149/AccessCPN/trunk/org.cpntools.accesscpn.model.tests/src/org/cpntools/accesscpn/model/graphics/tests/CoordinateTest.java
+END
+LineTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/repos/cpntools/!svn/ver/149/AccessCPN/trunk/org.cpntools.accesscpn.model.tests/src/org/cpntools/accesscpn/model/graphics/tests/LineTest.java
+END
+AnnotationGraphicsTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 155
+/repos/cpntools/!svn/ver/149/AccessCPN/trunk/org.cpntools.accesscpn.model.tests/src/org/cpntools/accesscpn/model/graphics/tests/AnnotationGraphicsTest.java
+END
+HasGraphicsTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 147
+/repos/cpntools/!svn/ver/99/AccessCPN/trunk/org.cpntools.accesscpn.model.tests/src/org/cpntools/accesscpn/model/graphics/tests/HasGraphicsTest.java
+END
+GraphicsTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/repos/cpntools/!svn/ver/89/AccessCPN/trunk/org.cpntools.accesscpn.model.tests/src/org/cpntools/accesscpn/model/graphics/tests/GraphicsTest.java
+END
+GraphicsTests.java
+K 25
+svn:wc:ra_dav:version-url
+V 145
+/repos/cpntools/!svn/ver/90/AccessCPN/trunk/org.cpntools.accesscpn.model.tests/src/org/cpntools/accesscpn/model/graphics/tests/GraphicsTests.java
+END
