@@ -9,6 +9,8 @@ import java.util.Map.Entry;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import edu.buaa.mozart.notes.ComposeException;
+
 public class CodeSegment {
 	private static String OUTPUT = "output";
     private static String INPUT  = "input";
@@ -28,12 +30,20 @@ public class CodeSegment {
     	mAction.addConstant(key, value);
     }
     
-    public void addTransferMap(String output, String input) throws ParseException{
+    public void addTransferMap(String input, String output) throws ComposeException{
         if (!mInput.getTuple().exists(input))
-        	throw new ParseException("not exist input", 0);
+        	throw new ComposeException("not exist input: " + input + "\n" +
+        								"current input tuple is " + mInput.getTuple());
         if (!mOutput.getTuple().exists(output))
         	mOutput.getTuple().addVar(output);
         mAction.getTuple().addVar(input);
+    }
+    
+    public void addTransferAction(String output, String action) {
+    	if (!mOutput.getTuple().equals(output)){
+    		mOutput.getTuple().addVar(output);
+            mAction.getTuple().addVar(action);
+    	}
     }
     
     public void addAction(String action){
@@ -49,6 +59,10 @@ public class CodeSegment {
     		mInput.getTuple().addVar(input);
     	}
     }
+    public void addInput(Tuple inputs){
+    	mInput.getTuple().addTuple(inputs);
+    }
+    
     @Override
     public String toString(){
     	return mInput.toString() + ";\n" +

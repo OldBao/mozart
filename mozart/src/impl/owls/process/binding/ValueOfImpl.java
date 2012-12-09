@@ -34,6 +34,7 @@ import org.mindswap.exceptions.CastingException;
 import org.mindswap.exceptions.DataFlowException;
 import org.mindswap.owl.OWLIndividual;
 import org.mindswap.owl.OWLValue;
+import org.mindswap.owls.process.MozartDataConstruct;
 import org.mindswap.owls.process.Perform;
 import org.mindswap.owls.process.Process;
 import org.mindswap.owls.process.variable.Binding;
@@ -208,11 +209,11 @@ public class ValueOfImpl extends WrappedIndividual implements ValueOf
 
 	@Override
 	public Perform getPerformsFromResults(
-			Set<Perform> performs) {
+			Set<MozartDataConstruct> performs) {
         Perform thisPerform = getPerform();
-        for (Perform perform : performs){
+        for (MozartDataConstruct perform : performs){
         	if (perform.equals(thisPerform)){
-        		return perform;	
+        		return (Perform)perform;	
         }
         }
         return null;

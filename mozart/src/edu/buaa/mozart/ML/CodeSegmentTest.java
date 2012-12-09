@@ -2,6 +2,8 @@ package edu.buaa.mozart.ML;
 
 import java.text.ParseException;
 
+import edu.buaa.mozart.notes.ComposeException;
+
 import junit.framework.TestCase;
 
 
@@ -25,7 +27,8 @@ public class CodeSegmentTest extends TestCase {
             cs.addConstant("mozart_ws", "\"http://owls.buaa.edu.cn\"");
             cs.addAction("openConnection(\"localhost\", 9000)");
             return cs;
-		} catch (ParseException e) {
+		} catch (ComposeException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
         return null;

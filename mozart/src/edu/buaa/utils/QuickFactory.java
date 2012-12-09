@@ -1,6 +1,7 @@
 package edu.buaa.utils;
 
 import org.cpntools.accesscpn.model.Arc;
+import org.cpntools.accesscpn.model.Code;
 import org.cpntools.accesscpn.model.Condition;
 import org.cpntools.accesscpn.model.HLAnnotation;
 import org.cpntools.accesscpn.model.HLDeclaration;
@@ -16,6 +17,8 @@ import org.cpntools.accesscpn.model.cpntypes.CPNType;
 import org.cpntools.accesscpn.model.declaration.DeclarationFactory;
 import org.cpntools.accesscpn.model.declaration.TypeDeclaration;
 import org.cpntools.accesscpn.model.impl.ModelFactoryImpl;
+
+import edu.buaa.mozart.ML.CodeSegment;
 
 public class QuickFactory {
     private static int sPlaceIndex = 1;
@@ -89,5 +92,12 @@ public class QuickFactory {
 		sort.setText(text);
 		sort.setParent(net);
         return sort;
+    }
+    
+    public static void addCode(PetriNet net, Transition trans, CodeSegment cs){
+    	Code code = ModelFactoryImpl.eINSTANCE.createCode();
+    	code.setText(cs.toString());
+    	code.setParent(net);
+    	trans.setCode(code);
     }
 }

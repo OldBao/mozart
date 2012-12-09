@@ -11,11 +11,12 @@ import java.util.Set;
 
 import org.mindswap.owls.process.variable.ProcessVar;
 
-import edu.buaa.mozart.notes.Notation;
+import edu.buaa.mozart.notes.DataChord;
+import edu.buaa.mozart.notes.DataChord;
 
 public class DataChordDep {
     public interface Visitor {
-    	public void visit_dep(Notation srcNotation, Notation dstNotation, Map<ProcessVar, ProcessVar> vars);
+    	public void visit_dep(DataChord srcNotation, DataChord dstNotation, Map<ProcessVar, ProcessVar> vars);
     }
     public class GraphArc {
     	private Map<ProcessVar,ProcessVar> mVars;
@@ -55,17 +56,17 @@ public class DataChordDep {
      }
     
 	class GraphNode {
-		private Notation mNotation;
+		private DataChord mNotation;
 		private List<GraphArc> mNextArcs;
         private boolean mVisit;
-        public GraphNode (Notation notation){
+        public GraphNode (DataChord notation){
         	setNotation(notation);
         	mNextArcs = new ArrayList<GraphArc>();
         }
-		public Notation getNotation() {
+		public DataChord getNotation() {
 			return mNotation;
 		}
-		public void setNotation(Notation mNotation) {
+		public void setNotation(DataChord mNotation) {
 			this.mNotation = mNotation;
 		}
 		public List<GraphNode> getNextNodes() {
@@ -116,19 +117,19 @@ public class DataChordDep {
 		}
 	}
     
-    private Map<Notation, GraphNode> mGraphNodes;
+    private Map<DataChord, GraphNode> mGraphNodes;
     
     public DataChordDep(){
-    	mGraphNodes = new HashMap<Notation, GraphNode>();
+    	mGraphNodes = new HashMap<DataChord, GraphNode>();
     }
-    public void addNotation(Notation notation){
+    public void addNotation(DataChord notation){
         if (!mGraphNodes.containsKey(notation)){
         	GraphNode node = new GraphNode(notation);
         	mGraphNodes.put(notation, node);
         }
     }
     
-    public GraphArc addDependency(Notation sourceNotation, Notation dstNotation) {
+    public GraphArc addDependency(DataChord sourceNotation, DataChord dstNotation) {
     	GraphNode sourceNode = 	mGraphNodes.get(sourceNotation);
     	GraphNode dstNode 		 =  	mGraphNodes.get(dstNotation);
         
@@ -139,9 +140,9 @@ public class DataChordDep {
     	return null;
     }
     
-    public List<Notation> getDependencies(Notation notation){
+    public List<DataChord> getDependencies(DataChord notation){
         GraphNode node = mGraphNodes.get(notation);
-    	List<Notation> notations = new ArrayList<Notation>();
+    	List<DataChord> notations = new ArrayList<DataChord>();
         for(GraphNode nextnode : node.getNextNodes())
         	notations.add(nextnode.getNotation());
         return notations;
@@ -169,7 +170,7 @@ public class DataChordDep {
     	}
     }
     
-    public void Visit(Notation notation) {
+    public void Visit(DataChord notation) {
     	GraphNode node = mGraphNodes.get(notation);
         if (node != null) {
         	Visit(node);

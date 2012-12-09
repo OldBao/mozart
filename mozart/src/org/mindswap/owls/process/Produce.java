@@ -39,7 +39,7 @@ import org.mindswap.owls.process.variable.ParameterValue;
  * @author unascribed
  * @version $Rev: 2269 $; $Author: thorsten $; $Date: 2009-08-19 17:21:09 +0200 (Mi, 19 Aug 2009) $
  */
-public interface Produce extends ControlConstruct
+public interface Produce extends MozartDataConstruct
 {
 	public void addBinding(LinkBinding binding);
 

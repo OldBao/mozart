@@ -1,21 +1,24 @@
 package edu.buaa.mozart.color;
 
+
 import java.util.HashMap;
 import java.util.Map;
 
 import org.cpntools.accesscpn.model.PetriNet;
+import org.mindswap.owls.process.MozartDataConstruct;
 import org.mindswap.owls.process.variable.ProcessVar;
+import org.mindswap.owls.vocabulary.OWLS;
 
 import edu.buaa.mozart.notes.ComposeException;
 
 public class VarFactory {
-	private Map<ProcessVar, Var> mVarMap;
+	private Map<Pair<MozartDataConstruct,ProcessVar>, Var> mVarMap;
 	
     private Var mControlVar;
 	private static VarFactory mInstance = new VarFactory();
     
 	private VarFactory(){
-		mVarMap = new HashMap<ProcessVar, Var>();
+		mVarMap = new HashMap<Pair<MozartDataConstruct, ProcessVar>, Var>();
         mControlVar = new Var("control", ColorFactory.getInstance().getControlColor());
 	}
     
@@ -23,29 +26,21 @@ public class VarFactory {
     	return mInstance;
     }
     
-    public Var getVarFromProcessVar(ProcessVar processVar) throws ComposeException{
-    	if (mVarMap.containsKey(processVar)){
-    		return mVarMap.get(processVar);
+    public  <V extends ProcessVar> Var getVarFromProcessVar(MozartDataConstruct perform, ProcessVar processVar) throws ComposeException{
+        Pair<MozartDataConstruct, ProcessVar> newPair = new Pair<MozartDataConstruct, ProcessVar>();
+        newPair.setFirst(perform);
+        newPair.setSecond(processVar);
+    	if (mVarMap.containsKey(newPair)){
+    		return mVarMap.get(newPair);
     	} else {
             Color varColor = ColorFactory.getInstance().getBasicColor(processVar);
             if (varColor == null) {
             	throw new ComposeException("var " + processVar + " 's type " + processVar.getParamType() + " not supported now");
             } 
+            String newVarName = perform.getLocalName() + "_" +processVar.getLocalName();
             
-            int i  = 0;
-            String newVarName = "";
-            Var newVar;
-            do{
-            	if (i == 0) {
-            		newVarName = processVar.getLocalName();
-            	}else{
-            		newVarName = newVarName + i;
-            	}
-            	i++;
-            	newVar = new Var(newVarName, varColor);
-            }while (mVarMap.containsValue(newVar));
-            
-            mVarMap.put(processVar, newVar);
+            Var newVar = new Var(newVarName, varColor);
+            mVarMap.put(newPair, newVar);
             return newVar;
     	}
     }

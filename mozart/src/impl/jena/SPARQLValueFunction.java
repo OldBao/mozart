@@ -32,6 +32,7 @@ import org.mindswap.owl.OWLIndividualList;
 import org.mindswap.owl.OWLValue;
 import org.mindswap.owls.expression.Expression;
 import org.mindswap.owls.expression.VariableBinding;
+import org.mindswap.owls.process.MozartDataConstruct;
 import org.mindswap.owls.process.Perform;
 import org.mindswap.owls.process.Process;
 import org.mindswap.owls.process.variable.Binding;
@@ -207,7 +208,7 @@ public class SPARQLValueFunction implements ValueFunction<Expression.SPARQL>
 	}
 
 	@Override
-	public Perform getPerformsFromResults(Set<Perform> performs) {
+	public Perform getPerformsFromResults(Set<MozartDataConstruct> performs) {
 		// TODO Auto-generated method stub
 		return null;
 	}

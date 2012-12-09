@@ -32,6 +32,7 @@ import org.mindswap.owl.OWLDataValue;
 import org.mindswap.owl.OWLIndividual;
 import org.mindswap.owl.OWLType;
 import org.mindswap.owl.OWLValue;
+import org.mindswap.owls.process.MozartDataConstruct;
 import org.mindswap.owls.process.Perform;
 import org.mindswap.owls.process.Process;
 import org.mindswap.owls.process.variable.Binding;
@@ -179,8 +180,9 @@ public class ValueConstantImpl implements ValueConstant
 		return null;
 	}
 
+
 	@Override
-	public Perform getPerformsFromResults(Set<Perform> performs) {
+	public Perform getPerformsFromResults(Set<MozartDataConstruct> performs) {
 		// TODO Auto-generated method stub
 		return null;
 	}

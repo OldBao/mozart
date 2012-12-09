@@ -30,6 +30,7 @@ import java.util.Set;
 import org.mindswap.common.Visitable;
 import org.mindswap.exceptions.DataFlowException;
 import org.mindswap.owl.OWLValue;
+import org.mindswap.owls.process.MozartDataConstruct;
 import org.mindswap.owls.process.Perform;
 import org.mindswap.owls.process.Process;
 import org.mindswap.query.ValueMap;
@@ -81,7 +82,7 @@ public interface ParameterValue extends Visitable<ParameterValueVisitor, Paramet
 		throws DataFlowException;
     
     //TODO change Perform to DataChord
-    public Perform getPerformsFromResults(Set<Perform> performs);
+    public Perform getPerformsFromResults(Set<MozartDataConstruct> performs);
 	/**
 	 * Sets the value represented by this parameter value specification to the
 	 * given binding (which should be the enclosing binding).

@@ -15,6 +15,16 @@ public class Tuple {
     	mTuples.add(var);
     }
     
+    public void addTuple(Tuple t){
+    	for (String var : t.mTuples){
+    		if (!exists(var)){
+    			mTuples.add(var);
+    		} else {
+    			System.out.println("add already exists tuple " + var);
+    		}
+    	}
+    }
+    
     public static Tuple parseFromString(String tuple) throws ParseException{
         Tuple newTuple = new Tuple(); 
     	String tmp = tuple.trim();

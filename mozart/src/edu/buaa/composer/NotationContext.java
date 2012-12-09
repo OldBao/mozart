@@ -5,6 +5,7 @@ import java.util.Map.Entry;
 import org.mindswap.owl.OWLFactory;
 import org.mindswap.owl.OWLIndividualList;
 import org.mindswap.owl.OWLValue;
+import org.mindswap.owls.process.MozartDataConstruct;
 import org.mindswap.owls.process.variable.Input;
 import org.mindswap.owls.process.variable.Local;
 import org.mindswap.owls.process.variable.Output;
@@ -13,6 +14,7 @@ import org.mindswap.query.ValueMap;
 
 public class NotationContext {
 	private final OWLIndividualList<ProcessVar> mVarOWLIndividualList;
+    private MozartDataConstruct mCurConsturct;
     
     public NotationContext(){
     	mVarOWLIndividualList = OWLFactory.createIndividualList();
@@ -75,5 +77,13 @@ public class NotationContext {
 			if (paramType.isInstance(entry)) result.add(paramType.cast(entry));
 		}
 		return result;
+	}
+
+	public MozartDataConstruct getConsturct() {
+		return mCurConsturct;
+	}
+
+	public void setConsturct(MozartDataConstruct mCurConsturct) {
+		this.mCurConsturct = mCurConsturct;
 	}
 }

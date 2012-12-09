@@ -78,7 +78,7 @@ public final class ColorFactory {
 			return getBasicColor(vars.get(0));
 		}else{
 			CPNProduct type =  getProductTypeFromVars(vars);
-            Color retColor = new Color(getProperName(colorName), type);
+            Color retColor = new Color(colorName, type);
             mTypeSet.add(retColor);
             return retColor;
 		}
@@ -102,26 +102,13 @@ public final class ColorFactory {
         return false;
     }
     
-    private String getProperName(String requestName){
-        int index = 0;
-        String newColorName;
-        do {
-        	if (index == 0)
-        		newColorName = requestName;
-        	else
-        		newColorName = requestName + index;
-            index++;
-        }while(colorExists(newColorName));                
-        return newColorName;
-    }
-    
 	public <P extends ProcessVar> 
 	Color getColorWithControl(List<P> vars, String colorName) throws ComposeException{
 		if (vars.size() == 0) {
             throw new ComposeException("for null vars, please call getControlColor()");
 		} else {
 			CPNProduct type = getProductTypeFromVars(vars);
-			Color retColor = new Color(getProperName(colorName), type);
+			Color retColor = new Color(colorName, type);
             type.addSort(mControlColor.getTypeName());
             mTypeSet.add(retColor);
             return retColor;

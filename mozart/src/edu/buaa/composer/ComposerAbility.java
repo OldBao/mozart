@@ -31,7 +31,7 @@ public interface ComposerAbility {
 			CompositeClef chord, NotationContext context);
 
 	abstract public void composePerform(Perform perform, PerformChord chord,
-			NotationContext context);
+			NotationContext context) throws ComposeException;
 
     abstract public void composePrelude(Process process, Prelude prelude, NotationContext context);
 	abstract public void composeConclude(Process process, Conclude conclude, NotationContext context)
