@@ -58,6 +58,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import edu.buaa.mozart.notes.ComposeException;
+import edu.buaa.mozart.notes.CompositeClef;
 import edu.buaa.mozart.notes.Notation;
 
 /**
@@ -429,7 +430,8 @@ public class CompositeProcessImpl extends ProcessImpl<CompositeProcessImpl> impl
     public Notation getMozartNotation() throws ComposeException{
         if (mNotation != null)
         	return mNotation;
-    	mNotation = getComposedOf().getMozartNotation();
+        mNotation = new CompositeClef();
+        mNotation.setIndividual(this);
         return mNotation;
     }
 }

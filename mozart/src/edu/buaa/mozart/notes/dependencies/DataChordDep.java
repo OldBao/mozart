@@ -13,16 +13,16 @@ import org.mindswap.owls.process.variable.ProcessVar;
 
 import edu.buaa.mozart.notes.Notation;
 
-public class NotationDependence {
+public class DataChordDep {
     public interface Visitor {
-    	public void visit_dep(Notation srcNotation, Notation dstNotation, Set<ProcessVar> vars);
+    	public void visit_dep(Notation srcNotation, Notation dstNotation, Map<ProcessVar, ProcessVar> vars);
     }
     public class GraphArc {
-    	private Set<ProcessVar> mVars;
+    	private Map<ProcessVar,ProcessVar> mVars;
         private GraphNode mSource, mDst;
         
         public GraphArc(){
-        	mVars = new HashSet<ProcessVar>();
+        	mVars = new HashMap<ProcessVar, ProcessVar>();
         }
 
 		public GraphNode getSource() {
@@ -41,11 +41,11 @@ public class NotationDependence {
 			this.mDst = mDst;
 		}
         
-        public void addVar(ProcessVar var) {
-        	mVars.add(var);
+        public void addVar(ProcessVar fromVar, ProcessVar toVar) {
+        	mVars.put(fromVar, toVar);
         }
         
-        public Set<ProcessVar> getAllVars(){
+        public Map<ProcessVar, ProcessVar> getAllVarMap(){
         	return mVars;
         }
         
@@ -118,7 +118,7 @@ public class NotationDependence {
     
     private Map<Notation, GraphNode> mGraphNodes;
     
-    public NotationDependence(){
+    public DataChordDep(){
     	mGraphNodes = new HashMap<Notation, GraphNode>();
     }
     public void addNotation(Notation notation){
@@ -163,7 +163,7 @@ public class NotationDependence {
             }
             node.setVisit(true);
             for (GraphArc arc : node.getAllArcs()) {
-                mVisitor.visit_dep(arc.getSource().getNotation(), arc.getDst().getNotation(), arc.getAllVars());
+                mVisitor.visit_dep(arc.getSource().getNotation(), arc.getDst().getNotation(), arc.getAllVarMap());
             	nodeQueue.add(arc.getDst());
             }
     	}

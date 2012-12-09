@@ -30,9 +30,15 @@ public class MozartITE {
 	public void run() {
 		try {
 			OWLKnowledgeBase mKB = OWLFactory.createKB();
+			//OWLIndividualList<Service> services = mKB
+			//		.readAllServices(URI
+			//				.create("http://owls.buaa.edu.cn:8089/Services/owls/buyBookIfThenElse.owl"));
+			//OWLIndividualList<Service> services = mKB
+			//		.readAllServices(URI
+			//				.create("http://owls.buaa.edu.cn:8089/Services/owls/ite.owl"));
 			OWLIndividualList<Service> services = mKB
 					.readAllServices(URI
-							.create("http://owls.buaa.edu.cn:8089/Services/owls/buyBookIfThenElse.owl"));
+							.create("file://home/zhanggx/owls/ite.owl"));
 			Service service = null;
 			for (Service s : services) {
 				if (s.getProcess() instanceof CompositeProcess) {
@@ -43,8 +49,10 @@ public class MozartITE {
 			org.mindswap.owls.process.Process process = service.getProcess();
 
 			ValueMap<Input, OWLValue> inputs = new ValueMap<Input, OWLValue>();
-			inputs.setValue(process.getInput(),
+			inputs.setValue(process.getInput("bookNameB"),
 					mKB.createDataValue("C Programming Language"));
+			inputs.setValue(process.getInput("bookNameA"),
+					mKB.createDataValue("STL Source"));
             
 			ProcessExecutionEngine exec = OWLSFactory.createExecutionEngine();
 			ValueMap<Output, OWLValue> output;
@@ -55,7 +63,7 @@ public class MozartITE {
             
             Composer composer = new Mozart();
             PetriNet net = composer.Compose(process);
-            DOMGenerator.export(net, "/home/zhanggx/petrinets/ite.cpn");
+            DOMGenerator.export(net, "/home/zhanggx/petrinets/full/test/ite.cpn");
 		} catch (ExecutionException e) {
 			e.printStackTrace();
 		} catch (IOException e) {

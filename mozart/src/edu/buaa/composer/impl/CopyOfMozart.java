@@ -28,8 +28,8 @@ import edu.buaa.mozart.notes.ProduceChord;
 import edu.buaa.mozart.notes.SequenceChord;
 import edu.buaa.utils.QuickFactory;
 import edu.buaa.mozart.notes.PerformChord;
-import edu.buaa.mozart.notes.dependencies.NotationDependence;
-import edu.buaa.mozart.notes.dependencies.NotationDependence.GraphArc;
+import edu.buaa.mozart.notes.dependencies.DataChordDep;
+import edu.buaa.mozart.notes.dependencies.DataChordDep.GraphArc;
 
 import org.mindswap.owl.OWLIndividual;
 import org.mindswap.owl.OWLIndividualList;

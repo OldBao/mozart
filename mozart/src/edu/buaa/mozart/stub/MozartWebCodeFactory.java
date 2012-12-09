@@ -14,14 +14,17 @@ import edu.buaa.mozart.notes.ComposeException;
 
 public final class MozartWebCodeFactory {
     
-    public Code getInitCode(PetriNet net){
+    public Code getInitCode(PetriNet net, String inputTuple){
     	StringBuilder gBuilder = new StringBuilder();
-    	gBuilder.append("input()\n");
+    	gBuilder.append("input"+inputTuple + ";\n");
     	gBuilder.append("output()\n");
-    	gBuilder.append("action\n");
+    	gBuilder.append("action(\n" + 
+    									 "let\n" + 
+    									 "in\n");
     	gBuilder.append("openConnection(\""+ ComposerConfig.CONN_NAME + "\","+
     									"\"" + ComposerConfig.SERVER_ADDR + "\","	+ 
-    									ComposerConfig.WS_STUB_PORT+")\n");
+    									ComposerConfig.WS_STUB_PORT+");\n");
+        gBuilder.append("(\n)\nend);");
         
         System.out.println("Init Code Segment\n" + gBuilder.toString());
         
@@ -47,7 +50,7 @@ public final class MozartWebCodeFactory {
 				inputBuilder.append(var.getVarName());
                 inputBuilder.append(",");
     		}
-            inputBuilder.replace(inputBuilder.length()-1, inputBuilder.length(), ")\n");
+            inputBuilder.replace(inputBuilder.length()-1, inputBuilder.length(), ");\n");
             
             
             outputBuilder.append("output(");
@@ -56,7 +59,7 @@ public final class MozartWebCodeFactory {
 				outputBuilder.append(var.getVarName());
                 outputBuilder.append(",");
     		}
-            outputBuilder.replace(outputBuilder.length()-1, outputBuilder.length(), ")\n");
+            outputBuilder.replace(outputBuilder.length()-1, outputBuilder.length(), ");\n");
             
             actionBuilder.append("action(\n");
             actionBuilder.append("let\n");
@@ -79,7 +82,7 @@ public final class MozartWebCodeFactory {
             actionBuilder.delete(actionBuilder.length()-2, actionBuilder.length()-1);
             actionBuilder.append(")\n");
             
-            actionBuilder.append("end)\n");
+            actionBuilder.append("end);\n");
             
             String codeTxt = inputBuilder.toString() + outputBuilder.toString() + actionBuilder.toString();
             System.out.println("code segment : \n" + codeTxt);
@@ -103,8 +106,11 @@ public final class MozartWebCodeFactory {
     	StringBuilder gBuilder = new StringBuilder();
     	gBuilder.append("input()\n");
     	gBuilder.append("output()\n");
-    	gBuilder.append("action\n");
-    	gBuilder.append("closeConnection(\""+ ComposerConfig.CONN_NAME+ "\")\n");
+    	gBuilder.append("action(\n" + 
+    									 "let\n" + 
+    									 "in\n");
+    	gBuilder.append("closeConnection(\""+ ComposerConfig.CONN_NAME+ "\");\n");
+        gBuilder.append("(\n)\nend);");
         
         System.out.println("Init Code Segment\n" + gBuilder.toString());
         

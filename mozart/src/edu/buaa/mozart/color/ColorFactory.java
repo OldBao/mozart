@@ -1,10 +1,8 @@
 package edu.buaa.mozart.color;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.Vector;
 
 import org.cpntools.accesscpn.model.PetriNet;
@@ -74,16 +72,13 @@ public final class ColorFactory {
     
 	public <P extends ProcessVar>	
 	Color getColorWithoutControl(List<P> vars, String colorName) throws ComposeException{
-        for (Color color : mTypeSet){
-        	if (color.getTypeName().equals(colorName))
-        		throw new ComposeException("color name " + colorName + " already exists");
-        }
-        
 		if (vars.size() == 0) {
             throw new ComposeException("Color can't be null");
-		} else {
+		} else if (vars.size() == 1){
+			return getBasicColor(vars.get(0));
+		}else{
 			CPNProduct type =  getProductTypeFromVars(vars);
-            Color retColor = new Color(colorName, type);
+            Color retColor = new Color(getProperName(colorName), type);
             mTypeSet.add(retColor);
             return retColor;
 		}
@@ -98,18 +93,35 @@ public final class ColorFactory {
     	return mControlColor;
     }
     
+    private boolean colorExists(String colorName){
+        for (Color color : mTypeSet){
+        	if (color.getTypeName().equals(colorName)) {
+                return true;
+        	}
+        }
+        return false;
+    }
+    
+    private String getProperName(String requestName){
+        int index = 0;
+        String newColorName;
+        do {
+        	if (index == 0)
+        		newColorName = requestName;
+        	else
+        		newColorName = requestName + index;
+            index++;
+        }while(colorExists(newColorName));                
+        return newColorName;
+    }
+    
 	public <P extends ProcessVar> 
 	Color getColorWithControl(List<P> vars, String colorName) throws ComposeException{
-        for (Color color : mTypeSet){
-        	if (color.getTypeName().equals(colorName))
-        		throw new ComposeException("color name " + colorName + " already exists");
-        }
-        
 		if (vars.size() == 0) {
             throw new ComposeException("for null vars, please call getControlColor()");
 		} else {
 			CPNProduct type = getProductTypeFromVars(vars);
-			Color retColor = new Color(colorName, type);
+			Color retColor = new Color(getProperName(colorName), type);
             type.addSort(mControlColor.getTypeName());
             mTypeSet.add(retColor);
             return retColor;

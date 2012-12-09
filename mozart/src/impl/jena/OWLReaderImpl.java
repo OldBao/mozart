@@ -150,7 +150,7 @@ public class OWLReaderImpl implements OWLReader
 		OWLOntology ont = kb.getOntology(stdURI);
 		if (ont != null)
 		{
-			logger.info("Use already loaded ontology {} from given knowledge base.", stdURI);
+			logger.debug("Use already loaded ontology {} from given knowledge base.", stdURI);
 		}
 		else
 		{

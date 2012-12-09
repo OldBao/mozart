@@ -1,11 +1,8 @@
 package edu.buaa.mozart.color;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-import org.cpntools.accesscpn.model.HLAnnotation;
-import org.cpntools.accesscpn.model.ModelFactory;
 import org.cpntools.accesscpn.model.PetriNet;
 import org.mindswap.owls.process.variable.ProcessVar;
 
@@ -62,4 +59,5 @@ public class VarFactory {
 	public Var getControlVar() {
 		return mControlVar;
 	}
+    
 }

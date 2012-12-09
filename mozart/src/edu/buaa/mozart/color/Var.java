@@ -18,6 +18,11 @@ public class Var {
 	}
     
     @Override
+    public String
+    toString(){
+    	return getVarName();
+    }
+    @Override
     public int
     hashCode(){
     	return mVarName.hashCode();
