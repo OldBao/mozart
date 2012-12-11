@@ -41,6 +41,7 @@ import org.mindswap.owls.expression.Condition;
 import org.mindswap.owls.expression.LogicLanguage;
 import org.mindswap.owls.io.ExpressionWriter;
 import org.mindswap.owls.io.ProcessWriter;
+import org.mindswap.owls.process.variable.ProcessVar;
 import org.mindswap.owls.vocabulary.OWLS;
 import org.mindswap.query.Query;
 import org.mindswap.query.ValueMap;
@@ -192,6 +193,11 @@ public class SWRLExpressionImpl extends ExpressionImpl<OWLList<Atom>> implements
 		final ExpressionWriter<OWLList<Atom>> exprWriter = procWriter.getSwrlExpressionWriter();
 		exprWriter.setIndent(indent);
 		exprWriter.write(this);
+	}
+
+	@Override
+	public List<ProcessVar> getDependVars() {
+		return null;
 	}
 
 

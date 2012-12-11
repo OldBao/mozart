@@ -1,24 +1,21 @@
 package edu.buaa.mozart.conditions;
 
+import java.util.Set;
+
 import org.mindswap.owls.expression.Condition;
 import org.mindswap.owls.expression.Condition.SWRL;
+import org.mindswap.owls.process.variable.ProcessVar;
 
 import edu.buaa.mozart.notes.ComposeException;
 
 public class ConditionConverter {
     
-    private static ConditionConverter mInstance = new ConditionConverter();
-    public static ConditionConverter getInstance(){
-    	return mInstance;
-    }
-    
     private static SWRLConvert mSWRLConverter = new SWRLConvert();
-    private ConditionConverter(){
-    	
-    }
-	public static String convert(Condition condition) throws ComposeException {
+   
+	public static <P extends ProcessVar>
+	MozartCondition getMozartCondition(Condition condition, Set<P> contextVars) throws ComposeException {
 		if (condition instanceof SWRL){
-			return mSWRLConverter.convert(condition);
+			return mSWRLConverter.getMozartCondition(condition, contextVars);
 		} else {
 			throw new ComposeException("Condtion " + condition + "not supported");
 		}

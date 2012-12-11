@@ -1,7 +1,6 @@
 package edu.buaa.mozart.notes;
 
 import org.cpntools.accesscpn.model.Place;
-import org.mindswap.owls.process.Perform;
 
 import edu.buaa.composer.Composer;
 import edu.buaa.composer.NotationContext;

@@ -14,12 +14,13 @@ import edu.buaa.mozart.notes.ComposeException;
 public class VarFactory {
 	private Map<Pair<MozartDataConstruct,ProcessVar>, Var> mVarMap;
 	
-    private Var mControlVar;
+    private Var mControlVar, mConditionVar;
 	private static VarFactory mInstance = new VarFactory();
     
 	private VarFactory(){
 		mVarMap = new HashMap<Pair<MozartDataConstruct, ProcessVar>, Var>();
         mControlVar = new Var("control", ColorFactory.getInstance().getControlColor());
+        mConditionVar = new Var("condition", ColorFactory.getInstance().getConditionColor());
 	}
     
     public static VarFactory getInstance(){
@@ -49,10 +50,19 @@ public class VarFactory {
     		var.addVarToNet(net);
     	}
         mControlVar.addVarToNet(net);
+        mConditionVar.addVarToNet(net);
     }
 
 	public Var getControlVar() {
 		return mControlVar;
+	}
+
+	public Var getConditionVar() {
+		return mConditionVar;
+	}
+
+	public void setConditionVar(Var mConditionVar) {
+		this.mConditionVar = mConditionVar;
 	}
     
 }

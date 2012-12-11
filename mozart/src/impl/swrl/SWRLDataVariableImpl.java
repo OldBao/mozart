@@ -1,7 +1,7 @@
 // The MIT License
 //
 // Copyright (c) 2004 Evren Sirin
-// Copyright (c) 2009 Thorsten Möller - University of Basel Switzerland
+// Copyright (c) 2009 Thorsten Mï¿½ller - University of Basel Switzerland
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to
@@ -26,9 +26,12 @@
  */
 package impl.swrl;
 
+import java.util.Set;
+
 import impl.owl.WrappedIndividual;
 
 import org.mindswap.owl.OWLIndividual;
+import org.mindswap.owls.process.variable.ProcessVar;
 import org.mindswap.swrl.SWRLDataVariable;
 
 /**
@@ -59,5 +62,13 @@ public class SWRLDataVariableImpl extends WrappedIndividual implements SWRLDataV
 	public String toString()
 	{
 		return isAnon()? ("?_" + getAnonID()) : ("?" + individual.getLocalName());
+	}
+
+	@Override
+	public <P extends ProcessVar> P getProcessVar(Set<P> vars) {
+        for (P var : vars){
+        	if (individual.getURI().equals(var.getURI())) return var;
+        }
+        return null;
 	}
 }

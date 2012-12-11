@@ -1,7 +1,7 @@
 /*
  * Created on Dec 28, 2004
  *
- * (c) 2009 Thorsten Möller - University of Basel Switzerland
+ * (c) 2009 Thorsten Mï¿½ller - University of Basel Switzerland
  *
  * The MIT License
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -27,8 +27,10 @@ package impl.swrl;
 import impl.owl.OWLObjectImpl;
 
 import java.net.URI;
+import java.util.Set;
 
 import org.mindswap.owl.OWLDataValue;
+import org.mindswap.owls.process.variable.ProcessVar;
 import org.mindswap.swrl.SWRLDataValue;
 
 /**
@@ -101,5 +103,13 @@ public class SWRLDataValueImpl extends OWLObjectImpl implements OWLDataValue, SW
 	public String toString()
 	{
 		return dataValue.toString();
+	}
+
+
+
+	@Override
+	public <T extends ProcessVar> T getProcessVar(Set<T> vars) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

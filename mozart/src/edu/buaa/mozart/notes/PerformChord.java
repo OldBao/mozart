@@ -19,7 +19,6 @@ public class PerformChord extends DataChord{
 		assert(mIndividual instanceof Perform);
         Perform perform = (Perform)mIndividual;
         
-        context.setConsturct(perform);
         composer.composePerform(perform, this, context);
 	}
 

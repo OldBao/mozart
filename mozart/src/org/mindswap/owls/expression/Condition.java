@@ -34,6 +34,7 @@ import org.mindswap.owl.OWLValue;
 import org.mindswap.owl.list.OWLList;
 import org.mindswap.query.ValueMap;
 import org.mindswap.swrl.Atom;
+import org.mindswap.owls.process.variable.ProcessVar;
 
 /**
  * A condition is simply an expression. The truth value of a condition needs to
@@ -68,6 +69,8 @@ public interface Condition<B> extends Expression<B>
 	 */
 	public boolean isTrue(ValueMap<?, ?> binding);
 
+    
+	public List<ProcessVar> getDependVars();
 	/**
 	 * Check if this condition is entailed by the given model, whether
 	 * it has at least one solution. If it consists of multiple atoms then it
@@ -114,5 +117,4 @@ public interface Condition<B> extends Expression<B>
 	 * SWRL Condition.
 	 */
 	public interface SWRL extends Expression.SWRL, Condition<OWLList<Atom>>	{ }
-
 }

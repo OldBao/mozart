@@ -25,9 +25,14 @@
  */
 package org.mindswap.swrl;
 
+import java.util.Set;
+
+import org.mindswap.owls.process.variable.ProcessVar;
+
 
 /**
  * @author Evren Sirin
  */
 public interface SWRLDataObject extends SWRLObject {
+    public <T extends ProcessVar> T getProcessVar(Set<T> vars);
 }

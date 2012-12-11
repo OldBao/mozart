@@ -1,25 +1,28 @@
 package edu.buaa.composer;
 
-import java.util.Map.Entry;
 
 import org.mindswap.owl.OWLFactory;
 import org.mindswap.owl.OWLIndividualList;
-import org.mindswap.owl.OWLValue;
 import org.mindswap.owls.process.MozartDataConstruct;
 import org.mindswap.owls.process.variable.Input;
 import org.mindswap.owls.process.variable.Local;
 import org.mindswap.owls.process.variable.Output;
 import org.mindswap.owls.process.variable.ProcessVar;
-import org.mindswap.query.ValueMap;
 
-public class NotationContext {
+import edu.buaa.mozart.notes.Conclude;
+import edu.buaa.mozart.notes.Prelude;
+
+public class NotationContext implements Cloneable{
 	private final OWLIndividualList<ProcessVar> mVarOWLIndividualList;
-    private MozartDataConstruct mCurConsturct;
-    
+    private MozartDataConstruct mCurConstruct;
+	private Prelude mPrelude;
+	private Conclude mConclude;
     public NotationContext(){
+        mPrelude = new Prelude();
+        mConclude = new Conclude();
     	mVarOWLIndividualList = OWLFactory.createIndividualList();
     }
-
+    
 	public int addInputs(final OWLIndividualList<Input> inputs)
 	{
 		return addValues(inputs);
@@ -79,11 +82,27 @@ public class NotationContext {
 		return result;
 	}
 
-	public MozartDataConstruct getConsturct() {
-		return mCurConsturct;
+	public MozartDataConstruct getConstruct() {
+		return mCurConstruct;
 	}
 
-	public void setConsturct(MozartDataConstruct mCurConsturct) {
-		this.mCurConsturct = mCurConsturct;
+	public void setConstruct(MozartDataConstruct mCurConstruct) {
+		this.mCurConstruct = mCurConstruct;
+	}
+
+	public Prelude getPrelude() {
+		return mPrelude;
+	}
+
+	public void setPrelude(Prelude mPrelude) {
+		this.mPrelude = mPrelude;
+	}
+
+	public Conclude getConclude() {
+		return mConclude;
+	}
+
+	public void setConclude(Conclude mConclude) {
+		this.mConclude = mConclude;
 	}
 }

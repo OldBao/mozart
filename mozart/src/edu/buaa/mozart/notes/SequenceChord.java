@@ -1,5 +1,7 @@
 package edu.buaa.mozart.notes;
 
+import java.util.List;
+
 import org.cpntools.accesscpn.model.Transition;
 import org.mindswap.owl.OWLIndividualList;
 import org.mindswap.owls.process.ControlConstruct;
@@ -14,6 +16,7 @@ public class SequenceChord extends StructChord{
     	
     }
 
+    private List<ControlConstruct> mConstructs;
 	@Override
 	public void compose(final Composer composer, NotationContext context)	throws ComposeException {
 			assert(mIndividual instanceof Sequence);
@@ -30,23 +33,5 @@ public class SequenceChord extends StructChord{
 	boolean hasOutputTransition() {
 		return true;
 	}
-    
-    @Override
-	public 
-    Transition getInputTransition() throws ComposeException{
-    	Sequence sequence = (Sequence)mIndividual;
-        ControlConstruct first = sequence.getConstructs().get(0);
-    	DataChord dc = (DataChord) first.getMozartNotation();
-        return dc.getInputTransition();
-    }
-    
-    public 
-    Transition getOutputTransition() throws ComposeException{
-    	Sequence sequence = (Sequence)mIndividual;
-        OWLIndividualList<ControlConstruct> list = sequence.getConstructs();
-        ControlConstruct last = list.get(list.size() - 1); 
-    	DataChord dc = (DataChord) last.getMozartNotation();
-        return dc.getInputTransition();
-    }
     
 }

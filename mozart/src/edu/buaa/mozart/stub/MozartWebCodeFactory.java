@@ -39,9 +39,6 @@ public final class MozartWebCodeFactory {
     public CodeSegment getInitCode(Tuple inputTuple){
     	CodeSegment cs = new CodeSegment();
     	cs.addInput(inputTuple);
-        cs.addAction("openConnection(\""+ ComposerConfig.CONN_NAME + "\","+
-    								"\"" + ComposerConfig.SERVER_ADDR + "\","	+ 
-    								ComposerConfig.WS_STUB_PORT+")");
         return cs;
     }
     
@@ -114,7 +111,6 @@ public final class MozartWebCodeFactory {
 
 	public CodeSegment getExitCode() {
         CodeSegment cs = new CodeSegment();
-        cs.addAction("closeConnection(\""+ ComposerConfig.CONN_NAME+ "\")");
         
         return cs;
 	}

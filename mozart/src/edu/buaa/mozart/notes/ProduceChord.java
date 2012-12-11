@@ -12,7 +12,6 @@ public class ProduceChord extends DataChord {
 	public void compose(Composer composer, NotationContext context)
 			throws ComposeException {
 		Produce produce = (Produce)mIndividual;
-        context.setConsturct(produce);
         composer.composeProduce(produce, this, context);
 	}
 

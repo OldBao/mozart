@@ -1,5 +1,6 @@
 package edu.buaa.composer.impl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -32,6 +33,7 @@ import org.mindswap.owls.process.Process;
 import org.mindswap.owls.process.Produce;
 import org.mindswap.owls.process.Sequence;
 import org.mindswap.owls.process.variable.Binding;
+import org.mindswap.owls.process.variable.Input;
 import org.mindswap.owls.process.variable.Output;
 import org.mindswap.owls.process.variable.OutputBinding;
 import org.mindswap.owls.process.variable.ParameterValue;
@@ -49,6 +51,7 @@ import edu.buaa.mozart.color.ColorFactory;
 import edu.buaa.mozart.color.Var;
 import edu.buaa.mozart.color.VarFactory;
 import edu.buaa.mozart.conditions.ConditionConverter;
+import edu.buaa.mozart.conditions.MozartCondition;
 import edu.buaa.mozart.notes.AtomicClef;
 import edu.buaa.mozart.notes.ChoiceChord;
 import edu.buaa.mozart.notes.Chord;
@@ -67,23 +70,18 @@ import edu.buaa.mozart.stub.MozartWebCodeFactory;
 import edu.buaa.utils.IDFactory;
 import edu.buaa.utils.QuickFactory;
 
-public class Mozart extends Composer{
+public class Mozart extends Composer {
 
 	PetriNet mNet;
 	Page mPage; // 如果是层次Petri网，Page就不只一个了
 	Set<MozartDataConstruct> mPerformSet; // 用来记录所有已经处理的Perform，用来转化过程中，根据Perform的ID查找Perform对象
-	Prelude gPrelude;
-	Conclude gConclude;
-	Map<Output, MozartDataConstruct> mOutputs;
+	Map<ProcessVar, List<MozartDataConstruct>> mThisPerformMap;
 
 	public Mozart() {
 		mNet = QuickFactory.getPetriNet();
 		mPage = QuickFactory.getPage(mNet, "Mozart Page");
 		mPerformSet = new HashSet<MozartDataConstruct>();
-		gPrelude = new Prelude();
-		gConclude = new Conclude();
-		mOutputs = new HashMap<Output, MozartDataConstruct>();
-
+		mThisPerformMap = new HashMap<ProcessVar, List<MozartDataConstruct>>();
 		mPerformSet.add(OWLS.Process.ThisPerform);
 	}
 
@@ -91,35 +89,36 @@ public class Mozart extends Composer{
 	public void composeAtomicClef(AtomicProcess process, AtomicClef clef,
 			NotationContext context) {
 		try {
-			String clefName = process.getLocalName();
+			String baseName = context.getConstruct().getLocalName();
 
-			Place inputPlace = QuickFactory.getPlace(mPage, clefName + INPUT);
+			Place inputPlace = QuickFactory.getPlace(mPage, baseName + INPUT);
 			Color inputColor = ColorFactory.getInstance().getColorWithControl(
-					process.getInputs(), clefName.toUpperCase() + "_INPUT");
+					process.getInputs(), baseName + "_INPUT");
 			Sort inputSort = QuickFactory.getSort(mNet,
 					inputColor.getTypeName());
 			inputPlace.setSort(inputSort);
 
-			Place outputPlace = QuickFactory.getPlace(mPage, clefName + OUTPUT);
+			Place outputPlace = QuickFactory.getPlace(mPage, baseName + OUTPUT);
 			Color outputColor = ColorFactory.getInstance().getColorWithControl(
-					process.getOutputs(), clefName.toUpperCase() + "_OUTPUT");
+					process.getOutputs(), baseName + "_OUTPUT");
 			Sort outputSort = QuickFactory.getSort(mNet,
 					outputColor.getTypeName());
 			outputPlace.setSort(outputSort);
 
 			Transition wsTransition = QuickFactory.getTransition(mPage,
-					clefName);
-            //TODO change getProcessCode to CodeSegment
+					baseName + process.getLocalName());
+			// TODO change getProcessCode to CodeSegment
 			Code code = MozartWebCodeFactory.getInstance().getProcessCode(
-					process, context.getConsturct(),mNet);
+					process, context.getConstruct(), mNet);
 			wsTransition.setCode(code);
 			// wsTransition.setCondition(QuickFactory.getCondition(mNet,
 			// "control=true");
 
-			HLAnnotation inArcAnno = getAnnoFromVars(context.getConsturct(),process.getInputs(), true);
+			HLAnnotation inArcAnno = getAnnoFromVars(context.getConstruct(),
+					process.getInputs(), true);
 			QuickFactory.combine(mPage, inputPlace, wsTransition, inArcAnno);
-			HLAnnotation outArcAnno = getAnnoFromVars(context.getConsturct(),process.getOutputs(),
-					true);
+			HLAnnotation outArcAnno = getAnnoFromVars(context.getConstruct(),
+					process.getOutputs(), true);
 			QuickFactory.combine(mPage, wsTransition, outputPlace, outArcAnno);
 
 			clef.setInputPlace(inputPlace);
@@ -131,50 +130,31 @@ public class Mozart extends Composer{
 
 	@Override
 	public void composeCompositeChord(CompositeProcess process,
-			CompositeClef chord, NotationContext context)  
-	{
+			CompositeClef chord, NotationContext context) {
 		try {
-			String clefName = process.getLocalName();
-
-			Place inputPlace = QuickFactory.getPlace(mPage, clefName + INPUT);
-			Color inputColor = ColorFactory.getInstance().getColorWithControl(
-					process.getInputs(), clefName.toUpperCase() + "_INPUT");
-			Sort inputSort = QuickFactory.getSort(mNet,
-					inputColor.getTypeName());
-			inputPlace.setSort(inputSort);
-
-			Place outputPlace = QuickFactory.getPlace(mPage, clefName + OUTPUT);
-			Color outputColor = ColorFactory.getInstance().getColorWithControl(
-					process.getOutputs(), clefName.toUpperCase() + "_OUTPUT");
-			Sort outputSort = QuickFactory.getSort(mNet,
-					outputColor.getTypeName());
-			outputPlace.setSort(outputSort);
-            
-            recursive_compose(process.getComposedOf(), context);
-			chord.setInputPlace(inputPlace);
-			chord.setOutputPlace(outputPlace);
+			internalCompose(process, context);
+			chord.setInputPlace(context.getPrelude().getDataplace());
+			chord.setOutputPlace(context.getConclude().getDataplace());
 		} catch (ComposeException e) {
 			e.printStackTrace();
 		}
-        
-	}            
-            
-    private static int sControlIndex = 1;
+
+	}
+
 	@Override
 	public void composeSequenceChrod(Sequence sequenceProcess,
-			SequenceChord chrod, NotationContext context) {
+			SequenceChord chord, NotationContext context) {
 		try {
 			OWLIndividualList<ControlConstruct> constructs = sequenceProcess
 					.getConstructs();
-
 			ControlConstruct prevCC = null;
 			for (ControlConstruct construct : constructs) {
 				recursive_compose(construct, context);
 				if (prevCC != null) {
 					Chord prevChord = (Chord) prevCC.getMozartNotation();
 					Chord curChord = (Chord) construct.getMozartNotation();
-					Place controlPlace = QuickFactory.getPlace(mPage, "CONTROL"
-						+ sControlIndex++);
+					Place controlPlace = QuickFactory
+							.getPlace(mPage, "CONTROL");
 					Color color = ColorFactory.getInstance().getControlColor();
 					Sort sort = QuickFactory.getSort(mNet, color.getTypeName());
 					controlPlace.setSort(sort);
@@ -189,18 +169,25 @@ public class Mozart extends Composer{
 				}
 				prevCC = construct;
 			}
+			chord.setInputTransition(((DataChord) constructs.get(0)
+					.getMozartNotation()).getInputTransition());
+			chord.setOutputTransition(((DataChord) constructs.get(
+					constructs.size() - 1).getMozartNotation())
+					.getOutputTransition());
 		} catch (ComposeException e) {
 			e.printStackTrace();
 		}
 	}
 
-
 	@Override
 	public void composePerform(Perform perform, PerformChord chord,
 			NotationContext context) throws ComposeException {
 		try {
+			NotationContext tmpContext = new NotationContext();
+			tmpContext.setConstruct(perform);
+
 			Process process = perform.getProcess();
-			recursive_compose(process, context);
+			recursive_compose(process, tmpContext);
 
 			Clef clef = (Clef) process.getMozartNotation();
 			Transition inTransition, outTransition;
@@ -210,20 +197,23 @@ public class Mozart extends Composer{
 					process.getLocalName() + OUTPUT + BINDING);
 			chord.setInputTransition(inTransition);
 			chord.setOutputTransition(outTransition);
-			HLAnnotation inArcAnno = getAnnoFromVars(perform, process.getInputs(), true);
-			HLAnnotation outArcAnno = getAnnoFromVars(perform, process.getOutputs(),
-					true);
+			HLAnnotation inArcAnno = getAnnoFromVars(perform,
+					process.getInputs(), true);
+			HLAnnotation outArcAnno = getAnnoFromVars(perform,
+					process.getOutputs(), true);
 			QuickFactory.combine(mPage, inTransition, clef.getInputPlace(),
 					inArcAnno);
 			QuickFactory.combine(mPage, clef.getOutputPlace(), outTransition,
 					outArcAnno);
 
-            CodeSegment cs = this.getInitialCode((MozartDataConstruct)perform, process.getOutputs());
-            chord.setCodeSegment(cs);
-            
-			param_binding(perform.getAllBindings(), perform);
+			CodeSegment cs = this.getInitialCode((MozartDataConstruct) perform,
+					process.getOutputs());
+			chord.setCodeSegment(cs);
+
+	//		context.setConstruct(perform);
+			param_binding(perform.getBindings(), perform, context);
 		} catch (ComposeException e) {
-            throw e;
+			e.printStackTrace();
 		}
 		mPerformSet.add(perform);
 	}
@@ -239,17 +229,18 @@ public class Mozart extends Composer{
 			Transition produceOutBindingTrans = QuickFactory.getTransition(
 					mPage, PRODUCE + OUTPUT + BINDING);
 
-			OWLIndividualList<ProcessVar> list = OWLFactory
-					.createIndividualList();
+			List<ProcessVar> list = OWLFactory.createIndividualList();
 			for (OutputBinding binding : produce.getOutputBindings()) {
 				ProcessVar var = binding.getProcessVar();
+				ParameterValue value = binding.getValue();
+
 				list.add(var);
-				context.addOutput((Output) var);
+				addOutputMap((Output) var, (MozartDataConstruct) produce);
 			}
-           // produceInBindingTrans.setCode(getInitialCode(list));
-            
+
 			Color produceColor = ColorFactory.getInstance()
-					.getColorWithControl(list, produce.getLocalName().toUpperCase());
+					.getColorWithControl(list,
+							produce.getLocalName().toUpperCase());
 			Sort sort = QuickFactory.getSort(mNet, produceColor.getTypeName());
 			producePlace.setSort(sort);
 			HLAnnotation prduceArcAnno = getAnnoFromVars(produce, list, true);
@@ -260,11 +251,15 @@ public class Mozart extends Composer{
 					prduceArcAnno);
 			chord.setInputTransition(produceInBindingTrans);
 			chord.setOutputTransition(produceOutBindingTrans);
-            
-			param_binding(produce.getAllBindings(), (MozartDataConstruct)produce);
+
+			CodeSegment cs = this.getInitialCode(produce, list);
+			chord.setCodeSegment(cs);
+
+			param_binding(produce.getAllBindings(),produce, context);
 		} catch (ComposeException e) {
 			e.printStackTrace();
 		}
+		mPerformSet.add(produce);
 	}
 
 	@Override
@@ -276,41 +271,67 @@ public class Mozart extends Composer{
 	@Override
 	public void composeIfThenElse(IfThenElse ite, IfThenElseChord iteChord,
 			NotationContext context) throws ComposeException {
-        try {
-			Condition condition = ite.getCondition();
+		try {
+			Condition ifCondition = ite.getCondition();
 			ControlConstruct thenCC = ite.getThen();
 			ControlConstruct elseCC = ite.getElse();
 			recursive_compose(thenCC, context);
 			recursive_compose(elseCC, context);
-			String conditionString = ConditionConverter.getInstance().convert(condition);
-            
-            DataChord thenDC = (DataChord) thenCC.getMozartNotation();
-            DataChord elseDC = (DataChord) thenCC.getMozartNotation();
-            Transition thenTransition = thenDC.getInputTransition();
-            Transition elseTransition = elseDC.getInputTransition();
-            
-            Transition inputTransition = QuickFactory.getTransition(mPage, ITE + CONTROL);
-            Place controlPlace = QuickFactory.getPlace(mPage, ITE);
-            Color controlColor = ColorFactory.getInstance().getControlColor();
-            controlPlace.setSort(QuickFactory.getSort(mNet, controlColor.getTypeName()));
-            
-            HLAnnotation controlAnno = getControlAnno();
-            QuickFactory.combine(mPage, inputTransition, controlPlace, controlAnno);
-            controlAnno = getControlAnno();
-            QuickFactory.combine(mPage, controlPlace, thenTransition, controlAnno);
-            controlAnno = getControlAnno();
-            QuickFactory.combine(mPage, controlPlace, elseTransition, controlAnno);
-            
-            org.cpntools.accesscpn.model.Condition thenCondition = QuickFactory.getCondition(mNet, conditionString);
-            thenTransition.setCondition(thenCondition);
-            org.cpntools.accesscpn.model.Condition elseCondition = QuickFactory.getCondition(mNet, "not " + conditionString);
-            elseTransition.setCondition(elseCondition);
-            
-            iteChord.setInputTransition(inputTransition);
+
+			DataChord thenDC = (DataChord) thenCC.getMozartNotation();
+			DataChord elseDC = (DataChord) elseCC.getMozartNotation();
+			Transition thenTransition = thenDC.getInputTransition();
+			Transition elseTransition = elseDC.getInputTransition();
+
+			Transition inputTransition = QuickFactory.getTransition(mPage, ITE
+					+ CONTROL);
+			Place controlPlace = QuickFactory.getPlace(mPage, ITE);
+			Color controlColor = ColorFactory.getInstance().getControlColor();
+			controlPlace.setSort(QuickFactory.getSort(mNet,
+					controlColor.getTypeName()));
+
+			HLAnnotation controlAnno = getControlAnno();
+			QuickFactory.combine(mPage, inputTransition, controlPlace,
+					controlAnno);
+			controlAnno = getControlAnno();
+			QuickFactory.combine(mPage, controlPlace, thenTransition,
+					controlAnno);
+			controlAnno = getControlAnno();
+			QuickFactory.combine(mPage, controlPlace, elseTransition,
+					controlAnno);
+
+			Transition conditionTrans = QuickFactory.getTransition(mPage, "");
+			condition_binding(ifCondition, conditionTrans, context);
+			HLAnnotation anno = getConditionAnno();
+			Place thenConditionPlace = QuickFactory.getPlace(mPage, "");
+			Place elseConditionPlace = QuickFactory.getPlace(mPage, "");
+			Color conditionColor = ColorFactory.getInstance()
+					.getConditionColor();
+			Sort sort = QuickFactory
+					.getSort(mNet, conditionColor.getTypeName());
+			thenConditionPlace.setSort(sort);
+			elseConditionPlace.setSort(sort);
+
+			QuickFactory.combine(mPage, conditionTrans, thenConditionPlace,
+					anno);
+			QuickFactory.combine(mPage, conditionTrans, elseConditionPlace,
+					anno);
+			QuickFactory.combine(mPage, thenConditionPlace, thenTransition,
+					anno);
+			QuickFactory.combine(mPage, elseConditionPlace, elseTransition,
+					anno);
+
+			Var conditionVar = VarFactory.getInstance().getConditionVar();
+			thenTransition.setCondition(QuickFactory.getCondition(mNet,
+					conditionVar.getVarName()));
+			elseTransition.setCondition(QuickFactory.getCondition(mNet, "not "
+					+ conditionVar.getVarName()));
+
+			iteChord.setInputTransition(inputTransition);
 		} catch (ComposeException e) {
 			e.printStackTrace();
 		}
-        
+
 	}
 
 	@Override
@@ -318,25 +339,31 @@ public class Mozart extends Composer{
 			NotationContext context) {
 		try {
 			Place gStartPlace = QuickFactory.getPlace(mPage, G_START);
-			Color color = ColorFactory.getInstance().getColorWithControl(
-					process.getInputs(), G_START);
+			Color color = ColorFactory.getInstance()
+					.getColorWithControl(process.getInputs(),
+							process.getLocalName() + "_" + G_START);
 			Sort sort = QuickFactory.getSort(mNet, color.getTypeName());
 			gStartPlace.setSort(sort);
 
-            
 			Transition outputTransition = QuickFactory.getTransition(mPage,
 					G_START + " " + BINDING);
-			Tuple inputTuple = getTupleStringFromVars(context.getConsturct(),process.getInputs(),
-					false);
-			CodeSegment code = MozartWebCodeFactory.getInstance().getInitCode(inputTuple);
-            prelude.setCodeSegment(code);
+			Tuple inputTuple = getTupleStringFromVars(context.getConstruct(),
+					process.getInputs(), false);
+			CodeSegment code = MozartWebCodeFactory.getInstance().getInitCode(
+					inputTuple);
+			prelude.setCodeSegment(code);
 
-			HLAnnotation inArcAnno = getAnnoFromVars(context.getConsturct(),process.getInputs(), true);
+			HLAnnotation inArcAnno = getAnnoFromVars(context.getConstruct(),
+					process.getInputs(), true);
 			QuickFactory.combine(mPage, gStartPlace, outputTransition,
 					inArcAnno);
 
 			prelude.setOutputTransition(outputTransition);
 			prelude.setDataPlace(gStartPlace);
+
+			for (Input input : process.getInputs()) {
+				addOutputMap(input, OWLS.Process.ThisPerform);
+			}
 		} catch (ComposeException e) {
 			e.printStackTrace();
 		}
@@ -345,94 +372,183 @@ public class Mozart extends Composer{
 	@Override
 	public void composeConclude(Process process, Conclude conclude,
 			NotationContext context) throws ComposeException {
-		try {
-			Place gFinishPlace = QuickFactory.getPlace(mPage, G_FINISH);
-			Color color = ColorFactory.getInstance().getColorWithoutControl(
-					process.getOutputs(), G_FINISH);
-			Sort sort = QuickFactory.getSort(mNet, color.getTypeName());
-			gFinishPlace.setSort(sort);
+		Place gFinishPlace = QuickFactory.getPlace(mPage, G_FINISH);
+		Color color = ColorFactory.getInstance().getColorWithControl(
+				process.getOutputs(), process.getLocalName()+"_"+G_FINISH);
+		gFinishPlace.setSort(QuickFactory.getSort(mNet, color.getTypeName()));
+		conclude.setDataPlace(gFinishPlace);
+		if (process instanceof CompositeProcess) {
+			List<Output> outputs = process.getOutputs();
+			for (Output output : outputs) {
+				for (MozartDataConstruct dfcc : mThisPerformMap.get(output)) {
+					DataChord chord = (DataChord) dfcc.getMozartNotation();
+					if (chord == null)
+						throw new ComposeException("output" + output
+								+ " none exists in context");
+					else {
+						Transition trans = chord.getOutputTransition();
 
-			Transition inputTransition = QuickFactory.getTransition(mPage,
-					G_FINISH + " " + BINDING);
-			CodeSegment cs = MozartWebCodeFactory.getInstance().getExitCode();
-            conclude.setCodeSegment(cs);
+						HLAnnotation transAnno = getAnnoFromVar(
+								context.getConstruct(), output, true);
 
-			HLAnnotation inArcAnno = getAnnoFromVars(context.getConsturct(),process.getOutputs(),
-					false);
-			QuickFactory.combine(mPage, inputTransition, gFinishPlace,
-					inArcAnno);
-
-			conclude.setInputTransition(inputTransition);
-			conclude.setDataPlace(gFinishPlace);
-
-            if (process instanceof CompositeProcess){
-            	List<Output> outputs = process.getOutputs();
-            	for (Output output : outputs) {
-            		MozartDataConstruct dfcc = mOutputs.get(output);
-                    DataChord chord = (DataChord) dfcc.getMozartNotation();
-            		if (chord == null)
-            			throw new ComposeException("output" + output
-							+ " none exists in context");
-            		else {
-            			Transition trans = chord.getOutputTransition();
-            			Place bindingPlace = QuickFactory.getPlace(mPage, PRODUCE
-							+ PARAM_BINDING);
-            			Color bindingColor = ColorFactory.getInstance()
-							.getBasicColor(output);
-            			bindingPlace.setSort(QuickFactory.getSort(mNet,
-							bindingColor.getTypeName()));
-
-            			HLAnnotation transAnno = getAnnoFromVar(dfcc, output, false);
-            			QuickFactory.combine(mPage, trans, bindingPlace, transAnno);
-            			transAnno = getAnnoFromVar(dfcc, output, false);
-            			QuickFactory.combine(mPage, bindingPlace, inputTransition,
-							transAnno);
-                        
-                        Var fromVar = VarFactory.getInstance().getVarFromProcessVar(dfcc, output);
-                        Var toVar   = VarFactory.getInstance().getVarFromProcessVar(OWLS.Process.ThisPerform,output);
-                        cs.addInput(fromVar.getVarName());
-                        cs.addTransferMap(fromVar.getVarName(), toVar.getVarName());
-            		}
-            	}
+						Var fromVar = VarFactory.getInstance()
+								.getVarFromProcessVar(dfcc, output);
+						Var toVar = VarFactory.getInstance()
+								.getVarFromProcessVar(context.getConstruct(),
+										output);
+						CodeSegment fromcs = chord.getCodeSegment();
+						fromcs.addInput(fromVar.getVarName());
+						fromcs.addTransferMap(fromVar.getVarName(),
+								toVar.getVarName());
+						QuickFactory.combine(mPage, trans, gFinishPlace,
+								transAnno);
+					}
+				}
 			}
-
-		} catch (ComposeException e) {
-			e.printStackTrace();
+		}else {
+			 Transition inputTransition = QuickFactory.getTransition(mPage,
+			 G_FINISH + " " + BINDING);
+			 CodeSegment cs = MozartWebCodeFactory.getInstance().getExitCode();
+			 conclude.setCodeSegment(cs);
+			
+			 HLAnnotation inArcAnno = getAnnoFromVars(context.getConstruct(),
+			 process.getOutputs(), false);
+			 QuickFactory.combine(mPage, inputTransition, gFinishPlace,
+			 inArcAnno);
+			
+			 conclude.setInputTransition(inputTransition);			
 		}
+		
 	}
-    
+
+	// @Override
+	// public void composeConclude(Process process, Conclude conclude,
+	// NotationContext context) throws ComposeException {
+	// try {
+	// Place gFinishPlace = QuickFactory.getPlace(mPage, G_FINISH);
+	// Color color = ColorFactory.getInstance().getColorWithoutControl(
+	// process.getOutputs(), G_FINISH);
+	// Sort sort = QuickFactory.getSort(mNet, color.getTypeName());
+	// gFinishPlace.setSort(sort);
+	//
+	// Transition inputTransition = QuickFactory.getTransition(mPage,
+	// G_FINISH + " " + BINDING);
+	// CodeSegment cs = MozartWebCodeFactory.getInstance().getExitCode();
+	// conclude.setCodeSegment(cs);
+	//
+	// HLAnnotation inArcAnno = getAnnoFromVars(context.getConstruct(),
+	// process.getOutputs(), false);
+	// QuickFactory.combine(mPage, inputTransition, gFinishPlace,
+	// inArcAnno);
+	//
+	// conclude.setInputTransition(inputTransition);
+	// conclude.setDataPlace(gFinishPlace);
+	//
+	// if (process instanceof CompositeProcess) {
+	// List<Output> outputs = process.getOutputs();
+	// for (Output output : outputs) {
+	// for (MozartDataConstruct dfcc : mThisPerformMap.get(output)) {
+	// DataChord chord = (DataChord) dfcc.getMozartNotation();
+	// if (chord == null)
+	// throw new ComposeException("output" + output
+	// + " none exists in context");
+	// else {
+	// Transition trans = chord.getOutputTransition();
+	// Place bindingPlace = QuickFactory.getPlace(mPage,
+	// PRODUCE + PARAM_BINDING);
+	// Color bindingColor = ColorFactory.getInstance()
+	// .getBasicColor(output);
+	// bindingPlace.setSort(QuickFactory.getSort(mNet,
+	// bindingColor.getTypeName()));
+	//
+	// HLAnnotation transAnno = getAnnoFromVar(
+	// context.getConstruct(), output, false);
+	// QuickFactory.combine(mPage, trans, bindingPlace,
+	// transAnno);
+	// QuickFactory.combine(mPage, bindingPlace,
+	// inputTransition, transAnno);
+	//
+	// Var fromVar = VarFactory.getInstance()
+	// .getVarFromProcessVar(dfcc, output);
+	// Var toVar = VarFactory.getInstance()
+	// .getVarFromProcessVar(
+	// context.getConstruct(), output);
+	// CodeSegment fromcs = chord.getCodeSegment();
+	// fromcs.addInput(fromVar.getVarName());
+	// fromcs.addTransferMap(fromVar.getVarName(),
+	// toVar.getVarName());
+	// }
+	// }
+	// }
+	// }
+	//
+	// } catch (ComposeException e) {
+	// e.printStackTrace();
+	// }
+	// }
+
 	@Override
 	public PetriNet Compose(Process process) throws ComposeException {
 		NotationContext context = new NotationContext();
-        context.setConsturct(OWLS.Process.ThisPerform);
+		context.setConstruct(OWLS.Process.ThisPerform);
+		internalCompose(process, context);
 
-		gPrelude.setIndividual(process);
-		gConclude.setIndividual(process);
+		context.getPrelude()
+				.getCodeSegment()
+				.addAction(
+						"openConnection(\"" + ComposerConfig.CONN_NAME + "\","
+								+ "\"" + ComposerConfig.SERVER_ADDR + "\","
+								+ ComposerConfig.WS_STUB_PORT + ")");
+//		context.getConclude()
+//				.getCodeSegment()
+//				.addAction(
+//						"closeConnection(\"" + ComposerConfig.CONN_NAME + "\")");
+		QuickFactory.addCode(mNet, context.getPrelude().getOutputTransition(),
+				context.getPrelude().getCodeSegment());
+//		QuickFactory.addCode(mNet, context.getConclude().getInputTransition(),
+//				context.getConclude().getCodeSegment());
+		addAllDecl();
+		return mNet;
+	}
+
+	private void internalCompose(Process process, NotationContext context)
+			throws ComposeException {
+		context.getPrelude().setIndividual(process);
+		context.getConclude().setIndividual(process);
 
 		// compose non owl-S architecture
-		gPrelude.compose(this, context);
+		context.getPrelude().compose(this, context);
 
 		if (process instanceof AtomicProcess) {
 			recursive_compose(process, context);
-            gConclude.compose(this, context);
+			context.getConclude().compose(this, context);
 			// single process compose
 			AtomicClef clef = (AtomicClef) process.getMozartNotation();
 
-			Transition trans = gPrelude.getOutputTransition();
-			HLAnnotation inArcAnno = getAnnoFromVars(context.getConsturct(),process.getInputs(), true);
+			Transition trans = context.getPrelude().getOutputTransition();
+			HLAnnotation inArcAnno = getAnnoFromVars(context.getConstruct(),
+					process.getInputs(), true);
 			QuickFactory.combine(mPage, trans, clef.getInputPlace(), inArcAnno);
 
-			trans = gConclude.getInputTransition();
-			HLAnnotation outArcAnno = getAnnoFromVars(context.getConsturct(),process.getOutputs(),
-					true);
+            
+			trans = context.getConclude().getInputTransition();
+			HLAnnotation outArcAnno = getAnnoFromVars(context.getConstruct(),
+					process.getOutputs(), true);
 			QuickFactory.combine(mPage, clef.getOutputPlace(), trans,
 					outArcAnno);
 		} else {
-            recursive_compose(((CompositeProcess)process).getComposedOf(), context);
-			gConclude.compose(this, context);
+			MozartDataConstruct tmp = context.getConstruct();
+			ControlConstruct cc = ((CompositeProcess) process).getComposedOf();
+			recursive_compose(cc, context);
+			context.setConstruct(tmp);
+			addControlBetween(context.getPrelude(),
+					(Chord) cc.getMozartNotation());
+			context.getConclude().compose(this, context);
 		}
-		addAllDecl();
-		return mNet;
+		QuickFactory.addCode(mNet, context.getPrelude().getOutputTransition(),
+				context.getPrelude().getCodeSegment());
+//		QuickFactory.addCode(mNet, context.getConclude().getInputTransition(),
+//				context.getConclude().getCodeSegment());
 	}
 
 	// 必须最后调用, 因为模型转化中间过程可能生成新的color
@@ -440,7 +556,21 @@ public class Mozart extends Composer{
 		addBooleanED();
 		ColorFactory.getInstance().addAllColorToNet(mNet);
 		VarFactory.getInstance().addAllVarToNet(mNet);
-        addCodes();
+		addCodes();
+	}
+
+	private void addControlBetween(Chord from, Chord to)
+			throws ComposeException {
+		Place controlPlace = QuickFactory.getPlace(mPage, "");
+		Color color = ColorFactory.getInstance().getControlColor();
+		Sort sort = QuickFactory.getSort(mNet, color.getTypeName());
+		controlPlace.setSort(sort);
+		HLAnnotation anno = getControlAnno();
+		QuickFactory.combine(mPage, from.getOutputTransition(), controlPlace,
+				anno);
+		anno = getControlAnno();
+		QuickFactory
+				.combine(mPage, controlPlace, to.getInputTransition(), anno);
 	}
 
 	private void addBooleanED() {
@@ -452,39 +582,38 @@ public class Mozart extends Composer{
 		hlyDecl.setStructure(mlDecl);
 		hlyDecl.setId(IDFactory.getInstance().getRandomId());
 		hlyDecl.setParent(mNet);
+
+		mlDecl = DeclarationFactory.INSTANCE.createMLDeclaration();
+		mlDecl.setCode("use \"" + ComposerConfig.SWRL_DECL_PATH + "\";");
+		hlyDecl = ModelFactory.INSTANCE.createHLDeclaration();
+		hlyDecl.setStructure(mlDecl);
+		hlyDecl.setId(IDFactory.getInstance().getRandomId());
+		hlyDecl.setParent(mNet);
 	}
 
-    private void addCodes(){
-        try {
-			QuickFactory.addCode(mNet, gPrelude.getOutputTransition(), gPrelude.getCodeSegment());
-			QuickFactory.addCode(mNet, gConclude.getInputTransition(), gConclude.getCodeSegment());
-			
-			for (MozartDataConstruct perform : mPerformSet){
-                if (perform.equals(OWLS.Process.ThisPerform))
-                	continue;
-			    DataChord dc = (DataChord) perform.getMozartNotation();
-				QuickFactory.addCode(mNet, dc.getOutputTransition(), dc.getCodeSegment());
+	private void addCodes() {
+		try {
+			for (MozartDataConstruct perform : mPerformSet) {
+				if (perform.equals(OWLS.Process.ThisPerform))
+					continue;
+				DataChord dc = (DataChord) perform.getMozartNotation();
+				QuickFactory.addCode(mNet, dc.getOutputTransition(),
+						dc.getCodeSegment());
 			}
 		} catch (ComposeException e) {
 			e.printStackTrace();
 		}
-        
-    }
-	
+	}
 
-	private void recursive_compose(OWLIndividual individual, NotationContext context)
-			throws ComposeException {
+	private void recursive_compose(OWLIndividual individual,
+			NotationContext context) throws ComposeException {
 		if (individual == null)
 			return;
 		Notation notation = individual.getMozartNotation();
 
-	//	NotationContext context = new NotationContext();
-        
-		notation.compose(this, context);
+		// NotationContext context = new NotationContext();
 
-		for (Output output : context.getOutputs()) {
-			mOutputs.put(output, context.getConsturct());
-		}
+		notation.compose(this, context);
 	}
 
 	private HLAnnotation getControlAnno() {
@@ -496,10 +625,18 @@ public class Mozart extends Composer{
 		return anno;
 	}
 
+	private HLAnnotation getConditionAnno() {
+		HLAnnotation anno = ModelFactory.INSTANCE.createHLAnnotation();
+		String annotxt = "("
+				+ VarFactory.getInstance().getConditionVar().getVarName() + ")";
+		anno.setText(annotxt);
+		anno.setParent(mNet);
+		return anno;
+	}
+
 	private <P extends ProcessVar> HLAnnotation getAnnoFromVar(
-			MozartDataConstruct dfcc,
-			P var,
-			boolean hasControl) throws ComposeException {
+			MozartDataConstruct dfcc, P var, boolean hasControl)
+			throws ComposeException {
 		List<P> list = OWLFactory.createIndividualList();
 		list.add(var);
 		return getAnnoFromVars(dfcc, list, hasControl);
@@ -507,8 +644,9 @@ public class Mozart extends Composer{
 
 	// 从变量中获取HL表达式
 	// 注意：control约定在最后一个，也就是说必须为(...,control)的形式
-	private <P extends ProcessVar> HLAnnotation getAnnoFromVars(MozartDataConstruct dfcc,List<P> vars,
-			boolean hasControl) throws ComposeException {
+	private <P extends ProcessVar> HLAnnotation getAnnoFromVars(
+			MozartDataConstruct dfcc, List<P> vars, boolean hasControl)
+			throws ComposeException {
 		HLAnnotation anno = ModelFactory.INSTANCE.createHLAnnotation();
 
 		anno.setText(getTupleStringFromVars(dfcc, vars, hasControl).toString());
@@ -517,11 +655,10 @@ public class Mozart extends Composer{
 		return anno;
 	}
 
-	private <T extends Binding> void param_binding(
-			OWLIndividualList<T> bindings, MozartDataConstruct dfcc)
-			throws ComposeException{
-		DataChord target = (DataChord) dfcc.getMozartNotation();
-		for (Binding binding : bindings) {
+	private <T extends Binding> void param_binding(List<T> bindings,
+			MozartDataConstruct targetConstruct, NotationContext context) throws ComposeException {
+		DataChord target = (DataChord) targetConstruct.getMozartNotation();
+		for (T binding : bindings) {
 			ParameterValue value = binding.getValue();
 			ProcessVar var = binding.getProcessVar();
 			Perform sourcePerform = value.getPerformsFromResults(mPerformSet);
@@ -531,60 +668,144 @@ public class Mozart extends Composer{
 			}
 
 			DataChord dc;
+            MozartDataConstruct sourceConstruct = sourcePerform; 
 			if (sourcePerform.equals(OWLS.Process.ThisPerform)) {
-				dc = gPrelude;
+                sourceConstruct = context.getConstruct();
+				dc = context.getPrelude();
 			} else {
 				dc = (DataChord) sourcePerform.getMozartNotation();
 			}
-            CodeSegment cs = dc.getCodeSegment();
-            Var localvar = VarFactory.getInstance().getVarFromProcessVar(dfcc,var);
-            Var localfromvar  = VarFactory.getInstance().getVarFromProcessVar(sourcePerform, fromVar);
-            cs.addTransferMap(localfromvar.toString(), localvar.toString());
-            
-        	Place paramBindingPlace = QuickFactory.getPlace(mPage, PARAM_BINDING);
-        	Color color = ColorFactory.getInstance().getBasicColor(var);
-        	paramBindingPlace.setSort(QuickFactory.getSort(mNet,
-				color.getTypeName()));
-        	Transition outBindingTrans 	= dc.getOutputTransition();
-        	Transition inBindingTrans 	= target.getInputTransition();
+			CodeSegment cs = dc.getCodeSegment();
+			Var localvar = VarFactory.getInstance().getVarFromProcessVar(
+					targetConstruct, var);
+			Var localfromvar = VarFactory.getInstance().getVarFromProcessVar(
+					sourceConstruct, fromVar);
+			cs.addTransferMap(localfromvar.toString(), localvar.toString());
 
-        	HLAnnotation inArcAnno = getAnnoFromVar(dfcc, var, false);
-        	QuickFactory.combine(mPage, outBindingTrans, paramBindingPlace,
-				inArcAnno);
-        	HLAnnotation outArcAnno = getAnnoFromVar(dfcc, var, false);
-        	QuickFactory.combine(mPage, paramBindingPlace, inBindingTrans,
-				outArcAnno);
+			Place paramBindingPlace = QuickFactory.getPlace(mPage,
+					PARAM_BINDING);
+			Color color = ColorFactory.getInstance().getBasicColor(var);
+			paramBindingPlace.setSort(QuickFactory.getSort(mNet,
+					color.getTypeName()));
+			Transition outBindingTrans = dc.getOutputTransition();
+			Transition inBindingTrans = target.getInputTransition();
+
+			HLAnnotation inArcAnno = getAnnoFromVar(targetConstruct,
+					var, false);
+			QuickFactory.combine(mPage, outBindingTrans, paramBindingPlace,
+					inArcAnno);
+			HLAnnotation outArcAnno = getAnnoFromVar(targetConstruct,
+					var, false);
+			QuickFactory.combine(mPage, paramBindingPlace, inBindingTrans,
+					outArcAnno);
+			if (binding instanceof OutputBinding)
+				addOutputMap(var, targetConstruct);
 		}
 	}
 
+	private <P extends ProcessVar> CodeSegment getInitialCode(
+			MozartDataConstruct perform, List<P> vars) throws ComposeException {
+		CodeSegment cs = new CodeSegment();
+		for (P var : vars) {
+			String varName = VarFactory.getInstance()
+					.getVarFromProcessVar(perform, var).getVarName();
+			cs.addInput(varName);
+		}
+		return cs;
 
-    private <P extends ProcessVar> CodeSegment
-    getInitialCode(MozartDataConstruct perform, List<P> vars) throws ComposeException
-    {
-    	CodeSegment cs = new CodeSegment();
-        for(P var : vars) {
-        	String varName = 
-            		VarFactory.getInstance().getVarFromProcessVar(perform, var).getVarName();
-        	cs.addInput(varName);
-        }
-        return cs;
-        
-    }
+	}
 
-	private <V extends ProcessVar> 
-	Tuple getTupleStringFromVars(MozartDataConstruct dfcc, List<V> vars,
-			boolean hasControl) throws ComposeException {
-        Tuple tuple = new Tuple();
+	private <V extends ProcessVar> Tuple getTupleStringFromVars(
+			MozartDataConstruct dfcc, List<V> vars, boolean hasControl)
+			throws ComposeException {
+		Tuple tuple = new Tuple();
 		for (V v : vars) {
 			Var pVar = VarFactory.getInstance().getVarFromProcessVar(dfcc, v);
-            tuple.addVar(pVar.toString());
+			tuple.addVar(pVar.toString());
 		}
 		if (hasControl) {
-			tuple.addVar(VarFactory.getInstance().getControlVar()
-					.getVarName());
+			tuple.addVar(VarFactory.getInstance().getControlVar().getVarName());
+		}
+
+		return tuple;
+	}
+
+	private void addOutputMap(ProcessVar var, MozartDataConstruct chord) {
+		if (!mThisPerformMap.containsKey(var)) {
+			mThisPerformMap.put(var, new ArrayList<MozartDataConstruct>());
+		}
+		for (MozartDataConstruct s : mThisPerformMap.get(var)) {
+			if (s.equals(chord))
+				return;
+		}
+		mThisPerformMap.get(var).add(chord);
+	}
+
+	private void condition_binding(Condition originCondition,
+			Transition conditionTransition, NotationContext context)
+			throws ComposeException {
+		Place conditionPlace = QuickFactory.getPlace(mPage, "");
+		Transition inTransition = QuickFactory.getTransition(mPage, "");
+
+		MozartCondition condition = ConditionConverter.getMozartCondition(
+				originCondition, mThisPerformMap.keySet());
+
+		List<ProcessVar> depVars = condition.getDependVars(mThisPerformMap
+				.keySet());
+		Color conditionColor = ColorFactory
+				.getInstance()
+				.getColorWithoutControl(depVars, originCondition.getLocalName());
+		Sort sort = QuickFactory.getSort(mNet, conditionColor.getTypeName());
+		conditionPlace.setSort(sort);
+		List<Var> conditionVars = new ArrayList<Var>();
+		CodeSegment cs = new CodeSegment();
+        
+        //处理绑定，这块不能直接调用param binding，未来也是改进点
+		for (ProcessVar var : condition.getDependVars(mThisPerformMap.keySet())) {
+			List<MozartDataConstruct> sources = mThisPerformMap.get(var);
+			MozartDataConstruct mdc = sources.get(0);
+            
+            //参数绑定
+			Place parambindingPlace = QuickFactory.getPlace(mPage, "");
+			Color paramColor = ColorFactory.getInstance().getBasicColor(var);
+			Sort paramSort = QuickFactory.getSort(mNet,
+					paramColor.getTypeName());
+			parambindingPlace.setSort(paramSort);
+            
+            MozartDataConstruct fromConstruct = mdc;
+            DataChord chord = (DataChord) mdc.getMozartNotation();
+            if (mdc.equals(OWLS.Process.ThisPerform)){
+                chord = context.getPrelude();
+                fromConstruct = context.getConstruct();
+            }
+   			Var localvar = VarFactory.getInstance()
+   					.getVarFromProcessVar(fromConstruct, var);
+    		conditionVars.add(localvar);
+    		cs.addInput(localvar.getVarName());
+    		HLAnnotation arcAnno = 
+    				getAnnoFromVar(fromConstruct, var, false);
+         
+    		QuickFactory.combine(mPage,chord.getOutputTransition(), 
+    				parambindingPlace, arcAnno);
+			QuickFactory.combine(mPage, parambindingPlace, inTransition,
+					arcAnno);
 		}
         
-        return tuple;
+        //设置参数绑定内部的参数传递
+		Tuple tuple = new Tuple();
+		for (Var v : conditionVars) {
+			tuple.addVar(v.getVarName());
+		}
+		HLAnnotation inAnno = ModelFactory.INSTANCE.createHLAnnotation();
+		inAnno.setText(tuple.toString());
+		inAnno.setParent(mNet);
+		QuickFactory
+				.combine(mPage, conditionPlace, conditionTransition, inAnno);
+		QuickFactory.combine(mPage, inTransition, conditionPlace, inAnno);
+		Var conditionVar = VarFactory.getInstance().getConditionVar();
+		cs.addTransferAction(conditionVar.getVarName(),
+				condition.translateToML(conditionVars));
+		QuickFactory.addCode(mNet, conditionTransition, cs);
 	}
 
 	private static String G_START = "Mozart_Start";
@@ -594,9 +815,7 @@ public class Mozart extends Composer{
 	private static String G_FINISH = "Mozart_Finish";
 	private static String PARAM_BINDING = "_PARAM_BINDING";
 	private static String CONTROL = "CONTROL";
-    private static String ITE		= "If-Then-Else";
+	private static String ITE = "If-Then-Else";
 	private static String PRODUCE = "PRODUCE";
-
-
 
 }

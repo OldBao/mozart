@@ -47,6 +47,7 @@ import org.mindswap.owls.io.ProcessWriter;
 import org.mindswap.owls.process.ControlConstruct;
 import org.mindswap.owls.process.Perform;
 import org.mindswap.owls.process.variable.Participant;
+import org.mindswap.owls.process.variable.ProcessVar;
 import org.mindswap.query.ValueMap;
 import org.mindswap.utils.URIUtils;
 
@@ -683,6 +684,7 @@ public abstract class OWLS_1_2 extends Vocabulary
 		/** Singleton class only required to realize the special AlwaysTrue condition. */
 		static final class AlwaysTrue extends WrappedIndividual implements Condition<String>
 		{
+            public List<ProcessVar> getDependVars(){return null;}
 			AlwaysTrue(final OWLIndividual ind) { super(ind); }
 			public void evaluate(final ValueMap<? extends Variable, ? extends OWLValue> bindings) { /* nothing to do */ }
 			public boolean isTrue(final ValueMap<? extends Variable, ? extends OWLValue> binding) { return true; }

@@ -70,6 +70,10 @@ public final class ColorFactory {
         mTypeSet.add(mControlColor);
     }
     
+    public Color getConditionColor(){
+    	return mBasicType.get(mOnt.getDataType(XSD.xsdBoolean));	
+    }
+    
 	public <P extends ProcessVar>	
 	Color getColorWithoutControl(List<P> vars, String colorName) throws ComposeException{
 		if (vars.size() == 0) {

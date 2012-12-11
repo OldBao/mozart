@@ -44,6 +44,7 @@ import org.mindswap.owls.expression.LogicLanguage;
 import org.mindswap.owls.expression.VariableBinding;
 import org.mindswap.owls.io.ExpressionWriter;
 import org.mindswap.owls.io.ProcessWriter;
+import org.mindswap.owls.process.variable.ProcessVar;
 import org.mindswap.owls.vocabulary.OWLS;
 import org.mindswap.query.ValueMap;
 import org.slf4j.Logger;
@@ -286,6 +287,12 @@ public class SPARQLExpressionImpl extends QuotedExpressionImpl<String> implement
 		}
 		else throw new UnsupportedOperationException("Unsupported SPARQL query type in condition " + this +
 			". Either SELECT or ASK query must be used to express conditions.");
+	}
+
+	@Override
+	public List<ProcessVar> getDependVars() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

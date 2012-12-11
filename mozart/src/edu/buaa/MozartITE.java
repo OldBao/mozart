@@ -20,6 +20,7 @@ import org.mindswap.owls.process.execution.ProcessExecutionEngine;
 import org.mindswap.owls.process.variable.Input;
 import org.mindswap.owls.process.variable.Output;
 import org.mindswap.owls.service.Service;
+import org.mindswap.owls.process.Process;
 import org.mindswap.query.ValueMap;
 
 import edu.buaa.composer.Composer;
@@ -49,24 +50,26 @@ public class MozartITE {
 			org.mindswap.owls.process.Process process = service.getProcess();
 
 			ValueMap<Input, OWLValue> inputs = new ValueMap<Input, OWLValue>();
-			inputs.setValue(process.getInput("bookNameB"),
-					mKB.createDataValue("C Programming Language"));
-			inputs.setValue(process.getInput("bookNameA"),
-					mKB.createDataValue("STL Source"));
+//			inputs.setValue(process.getInput("bookNameB"),
+//					mKB.createDataValue("C Programming Language"));
+//			inputs.setValue(process.getInput("bookNameA"),
+//					mKB.createDataValue("STL Source"));
             
+
 			ProcessExecutionEngine exec = OWLSFactory.createExecutionEngine();
 			ValueMap<Output, OWLValue> output;
-
-			output = exec.execute(process, inputs, mKB);
-			OWLValue outValue = output.getDataValue(process.getOutput());
-			System.out.println(outValue);
             
             Composer composer = new Mozart();
+            CompositeProcess p = (CompositeProcess) process;
+            Process rp = null;
+            for(Process mp : p.getComposedOf().getAllProcesses(true)){
+            	if (mp instanceof CompositeProcess)
+            		rp = mp;
+            }
+            
             PetriNet net = composer.Compose(process);
             DOMGenerator.export(net, "/home/zhanggx/petrinets/full/test/ite.cpn");
-		} catch (ExecutionException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
+		}catch (IOException e) {
 			e.printStackTrace();
 		} catch (ComposeException e) {
 			e.printStackTrace();
