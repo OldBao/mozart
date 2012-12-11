@@ -1,0 +1,152 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:service="http://www.daml.org/services/owl-s/1.2/Service.owl#"
+    xmlns:swrl="http://www.w3.org/2003/11/swrl#"
+    xmlns:time="http://www.isi.edu/~pan/damltime/time-entry.owl#"
+    xmlns:list="http://www.daml.org/services/owl-s/1.2/generic/ObjectList.owl#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:expr="http://www.daml.org/services/owl-s/1.2/generic/Expression.owl#"
+    xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
+    xmlns:profile="http://www.daml.org/services/owl-s/1.2/Profile.owl#"
+    xmlns:process="http://www.daml.org/services/owl-s/1.2/Process.owl#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
+    xmlns:grounding="http://www.daml.org/services/owl-s/1.2/Grounding.owl#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns="http://owls.buaa.edu.cn:8089/Services/owls/QueryBook.owl#"
+  xml:base="http://owls.buaa.edu.cn:8089/Services/owls/QueryBook.owl">
+  <owl:Ontology rdf:about="">
+    <owl:imports rdf:resource="http://owls.buaa.edu.cn:8089/Services/owls/getFinalPrice.owl"/>
+    <owl:imports rdf:resource="http://owls.buaa.edu.cn:8089/Services/owls/getDiscount.owl"/>
+    <owl:imports rdf:resource="http://owls.buaa.edu.cn:8089/Services/owls/getPrice.owl"/>
+    <owl:imports rdf:resource="http://www.daml.org/services/owl-s/1.2/Profile.owl"/>
+    <owl:imports rdf:resource="http://www.daml.org/services/owl-s/1.2/Grounding.owl"/>
+  </owl:Ontology>
+  <process:ValueOf rdf:ID="ValueOf_23">
+    <process:fromProcess>
+      <process:Perform rdf:ID="getDiscountPerform">
+        <process:hasDataFrom>
+          <process:InputBinding rdf:ID="InputBinding_18">
+            <process:toVar rdf:resource="http://owls.buaa.edu.cn:8089/Services/owls/getDiscount.owl#price"/>
+            <process:valueSource>
+              <process:ValueOf rdf:ID="ValueOf_19">
+                <process:theVar rdf:resource="http://owls.buaa.edu.cn:8089/Services/owls/getPrice.owl#getPriceReturn"/>
+                <process:fromProcess>
+                  <process:Perform rdf:ID="getPricePerform">
+                    <process:process rdf:resource="http://owls.buaa.edu.cn:8089/Services/owls/getPrice.owl#getPriceProcess"/>
+                    <process:hasDataFrom>
+                      <process:InputBinding rdf:ID="InputBinding_16">
+                        <process:toVar rdf:resource="http://owls.buaa.edu.cn:8089/Services/owls/getPrice.owl#bookName"/>
+                        <process:valueSource>
+                          <process:ValueOf rdf:ID="ValueOf_17">
+                            <process:fromProcess
+rdf:resource="http://www.daml.org/services/owl-s/1.2/Process.owl#ThisPerform"/>
+                            <process:theVar>
+                              <process:Input rdf:ID="bookNameInput">
+                                <process:parameterType rdf:datatype=
+                                "http://www.w3.org/2001/XMLSchema#anyURI"
+                                >http://www.w3.org/2001/XMLSchema#string</process:parameterType>
+                              </process:Input>
+                            </process:theVar>
+                          </process:ValueOf>
+                        </process:valueSource>
+                      </process:InputBinding>
+                    </process:hasDataFrom>
+                  </process:Perform>
+                </process:fromProcess>
+              </process:ValueOf>
+            </process:valueSource>
+          </process:InputBinding>
+        </process:hasDataFrom>
+        <process:process rdf:resource="http://owls.buaa.edu.cn:8089/Services/owls/getDiscount.owl#getDiscountProcess"/>
+      </process:Perform>
+    </process:fromProcess>
+    <process:theVar rdf:resource="http://owls.buaa.edu.cn:8089/Services/owls/getDiscount.owl#getDiscountReturn"/>
+  </process:ValueOf>
+  <process:ValueOf rdf:ID="ValueOf_25">
+    <process:fromProcess>
+      <process:Perform rdf:ID="getfinalPricePerform">
+        <process:hasDataFrom>
+          <process:InputBinding rdf:ID="InputBinding_22">
+            <process:valueSource rdf:resource="#ValueOf_23"/>
+            <process:toVar rdf:resource="http://owls.buaa.edu.cn:8089/Services/owls/getFinalPrice.owl#discount"/>
+          </process:InputBinding>
+        </process:hasDataFrom>
+        <process:hasDataFrom>
+          <process:InputBinding rdf:ID="InputBinding_20">
+            <process:toVar rdf:resource="http://owls.buaa.edu.cn:8089/Services/owls/getFinalPrice.owl#price"/>
+            <process:valueSource>
+              <process:ValueOf rdf:ID="ValueOf_21">
+                <process:theVar rdf:resource="http://owls.buaa.edu.cn:8089/Services/owls/getPrice.owl#getPriceReturn"/>
+                <process:fromProcess rdf:resource="#getPricePerform"/>
+              </process:ValueOf>
+            </process:valueSource>
+          </process:InputBinding>
+        </process:hasDataFrom>
+        <process:process rdf:resource="http://owls.buaa.edu.cn:8089/Services/owls/getFinalPrice.owl#getFinalPriceProcess"/>
+      </process:Perform>
+    </process:fromProcess>
+    <process:theVar rdf:resource="http://owls.buaa.edu.cn:8089/Services/owls/getFinalPrice.owl#getFinalPriceReturn"/>
+  </process:ValueOf>
+  <process:ControlConstructList rdf:ID="ControlConstructList_13">
+    <list:rest>
+      <process:ControlConstructList rdf:ID="ControlConstructList_15">
+        <list:rest rdf:resource="http://www.daml.org/services/owl-s/1.2/generic/ObjectList.owl#nil"/>
+        <list:first>
+          <process:Produce rdf:ID="finalProduce">
+            <process:producedBinding>
+              <process:OutputBinding rdf:ID="OutputBinding_24">
+                <process:toVar>
+                  <process:Output rdf:ID="finalPriceOutput">
+                    <process:parameterType rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI"
+                    >http://www.w3.org/2001/XMLSchema#int</process:parameterType>
+                  </process:Output>
+                </process:toVar>
+                <process:valueSource rdf:resource="#ValueOf_25"/>
+              </process:OutputBinding>
+            </process:producedBinding>
+          </process:Produce>
+        </list:first>
+      </process:ControlConstructList>
+    </list:rest>
+    <list:first rdf:resource="#getfinalPricePerform"/>
+  </process:ControlConstructList>
+  <service:Service rdf:ID="queryBookService">
+    <service:describedBy>
+      <process:CompositeProcess rdf:ID="queryBookCompositeProcess">
+        <process:hasOutput rdf:resource="#finalPriceOutput"/>
+        <process:composedOf>
+          <process:Sequence rdf:ID="Sequence_7">
+            <process:components>
+              <process:ControlConstructList rdf:ID="ControlConstructList_9">
+                <list:rest>
+                  <process:ControlConstructList rdf:ID="ControlConstructList_11">
+                    <list:first rdf:resource="#getDiscountPerform"/>
+                    <list:rest rdf:resource="#ControlConstructList_13"/>
+                  </process:ControlConstructList>
+                </list:rest>
+                <list:first rdf:resource="#getPricePerform"/>
+              </process:ControlConstructList>
+            </process:components>
+          </process:Sequence>
+        </process:composedOf>
+        <service:describes rdf:resource="#queryBookService"/>
+        <process:hasInput rdf:resource="#bookNameInput"/>
+      </process:CompositeProcess>
+    </service:describedBy>
+    <service:presents>
+      <profile:Profile rdf:ID="queryBookProfile">
+        <service:presentedBy rdf:resource="#queryBookService"/>
+      </profile:Profile>
+    </service:presents>
+    <service:supports>
+      <grounding:WsdlGrounding rdf:ID="AbstractWsdlGrounding">
+        <service:supportedBy rdf:resource="#queryBookService"/>
+      </grounding:WsdlGrounding>
+    </service:supports>
+  </service:Service>
+  <process:Sequence rdf:ID="querybookSequence"/>
+</rdf:RDF>
+
+<!-- Created with Protege (with OWL Plugin 3.2, Build 355)  http://protege.stanford.edu -->

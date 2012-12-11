@@ -11,62 +11,70 @@
     xmlns:owl="http://www.w3.org/2002/07/owl#"
     xmlns:expression="http://www.daml.org/services/owl-s/1.2/generic/Expression.owl#"
     xmlns:daml="http://www.daml.org/2001/03/daml+oil#"
-    xmlns="http://owls.buaa.edu.cn:8089/Services/owls/getDiscount.owl"
-  xml:base="http://owls.buaa.edu.cn:8089/Services/owls/getDiscount.owl">
+    xmlns="http://owls.buaa.edu.cn:8089/Services/owls/buyBook.owl"
+  xml:base="http://owls.buaa.edu.cn:8089/Services/owls/buyBook.owl">
   <owl:Ontology rdf:about="">
-    <owl:imports rdf:resource="http://www.daml.org/services/owl-s/1.2/Profile.owl"/>
     <owl:imports rdf:resource="http://www.daml.org/services/owl-s/1.2/Process.owl"/>
     <owl:imports rdf:resource="http://www.daml.org/services/owl-s/1.2/Grounding.owl"/>
+    <owl:imports rdf:resource="http://www.daml.org/services/owl-s/1.2/Profile.owl"/>
     <owl:imports rdf:resource="http://www.daml.org/services/owl-s/1.2/Service.owl"/>
   </owl:Ontology>
-  <service:Service rdf:ID="getDiscountService">
+  <service:Service rdf:ID="buyBookService">
     <service:presents>
-      <profile:Profile rdf:ID="getDiscountProfile"/>
+      <profile:Profile rdf:ID="buyBookProfile"/>
     </service:presents>
     <service:describedBy>
-      <process:AtomicProcess rdf:ID="getDiscountProcess"/>
+      <process:AtomicProcess rdf:ID="buyBookProcess"/>
     </service:describedBy>
     <service:supports>
-      <grounding:WsdlGrounding rdf:ID="getDiscountGrounding"/>
+      <grounding:WsdlGrounding rdf:ID="buyBookGrounding"/>
     </service:supports>
   </service:Service>
-  <profile:Profile rdf:about="#getDiscountProfile">
-    <service:presentedBy rdf:resource="#getDiscountService"/>
-    <profile:serviceName>getDiscount</profile:serviceName>
+  <profile:Profile rdf:about="#buyBookProfile">
+    <service:presentedBy rdf:resource="#buyBookService"/>
+    <profile:serviceName>buyBook</profile:serviceName>
     <profile:textDescription>Auto generated from http://localhost:8089/Services/services/ZipCode?wsdl</profile:textDescription>
     <profile:hasInput>
-      <process:Input rdf:ID="price">
-        <rdfs:label>price</rdfs:label>
+      <process:Input rdf:ID="bookName">
+        <rdfs:label>bookName</rdfs:label>
+        <process:parameterType rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI"
+        >http://www.w3.org/2001/XMLSchema#string</process:parameterType>
+      </process:Input>
+    </profile:hasInput>
+    <profile:hasInput>
+      <process:Input rdf:ID="cash">
+        <rdfs:label>cash</rdfs:label>
         <process:parameterType rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI"
         >http://www.w3.org/2001/XMLSchema#int</process:parameterType>
       </process:Input>
     </profile:hasInput>
     <profile:hasOutput>
-      <process:Output rdf:ID="getDiscountReturn">
-        <rdfs:label>getDiscountReturn</rdfs:label>
+      <process:Output rdf:ID="buyBookReturn">
+        <rdfs:label>buyBookReturn</rdfs:label>
         <process:parameterType rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI"
-        >http://www.w3.org/2001/XMLSchema#int</process:parameterType>
+        >http://www.w3.org/2001/XMLSchema#boolean</process:parameterType>
       </process:Output>
     </profile:hasOutput>
   </profile:Profile>
-  <process:AtomicProcess rdf:about="#getDiscountProcess">
-    <rdfs:label>getDiscountProcess</rdfs:label>
-    <service:describes rdf:resource="#getDiscountService"/>
-    <process:hasInput rdf:resource="#price"/>
-    <process:hasOutput rdf:resource="#getDiscountReturn"/>
+  <process:AtomicProcess rdf:about="#buyBookProcess">
+    <rdfs:label>buyBookProcess</rdfs:label>
+    <service:describes rdf:resource="#buyBookService"/>
+    <process:hasInput rdf:resource="#bookName"/>
+    <process:hasInput rdf:resource="#cash"/>
+    <process:hasOutput rdf:resource="#buyBookReturn"/>
   </process:AtomicProcess>
-  <grounding:WsdlGrounding rdf:about="#getDiscountGrounding">
-    <service:supportedBy rdf:resource="#getDiscountService"/>
+  <grounding:WsdlGrounding rdf:about="#buyBookGrounding">
+    <service:supportedBy rdf:resource="#buyBookService"/>
     <grounding:hasAtomicProcessGrounding>
-      <grounding:WsdlAtomicProcessGrounding rdf:ID="getDiscountAtomicProcessGrounding"/>
+      <grounding:WsdlAtomicProcessGrounding rdf:ID="buyBookAtomicProcessGrounding"/>
     </grounding:hasAtomicProcessGrounding>
   </grounding:WsdlGrounding>
-  <grounding:WsdlAtomicProcessGrounding rdf:about="#getDiscountAtomicProcessGrounding">
-    <grounding:owlsProcess rdf:resource="#getDiscountProcess"/>
+  <grounding:WsdlAtomicProcessGrounding rdf:about="#buyBookAtomicProcessGrounding">
+    <grounding:owlsProcess rdf:resource="#buyBookProcess"/>
     <grounding:wsdlOperation>
       <grounding:WsdlOperationRef>
         <grounding:operation rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI"
-        >http://localhost:8089/Services/services/ZipCode?wsdl#getDiscount</grounding:operation>
+        >http://localhost:8089/Services/services/ZipCode?wsdl#buyBook</grounding:operation>
         <grounding:portType rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI"
         >http://localhost:8089/Services/services/ZipCode?wsdl#ZipCode</grounding:portType>
       </grounding:WsdlOperationRef>
@@ -74,22 +82,30 @@
     <grounding:wsdlDocument rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI"
     >http://localhost:8089/Services/services/ZipCode?wsdl</grounding:wsdlDocument>
     <grounding:wsdlInputMessage rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI"
-    >http://DefaultNamespace#getDiscountRequest</grounding:wsdlInputMessage>
+    >http://DefaultNamespace#buyBookRequest</grounding:wsdlInputMessage>
     <grounding:wsdlOutputMessage rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI"
-    >http://DefaultNamespace#getDiscountResponse</grounding:wsdlOutputMessage>
+    >http://DefaultNamespace#buyBookResponse</grounding:wsdlOutputMessage>
     <grounding:wsdlInput>
       <grounding:WsdlInputMessageMap>
-        <grounding:owlsParameter rdf:resource="#price"/>
+        <grounding:owlsParameter rdf:resource="#bookName"/>
         <grounding:wsdlMessagePart rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI"
-        >http://localhost:8089/Services/services/ZipCode?wsdl#price</grounding:wsdlMessagePart>
+        >http://localhost:8089/Services/services/ZipCode?wsdl#bookName</grounding:wsdlMessagePart>
+      </grounding:WsdlInputMessageMap>
+    </grounding:wsdlInput>
+    <grounding:wsdlInput>
+      <grounding:WsdlInputMessageMap>
+        <grounding:owlsParameter rdf:resource="#cash"/>
+        <grounding:wsdlMessagePart rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI"
+        >http://localhost:8089/Services/services/ZipCode?wsdl#cash</grounding:wsdlMessagePart>
       </grounding:WsdlInputMessageMap>
     </grounding:wsdlInput>
     <grounding:wsdlOutput>
       <grounding:WsdlOutputMessageMap>
-        <grounding:owlsParameter rdf:resource="#getDiscountReturn"/>
+        <grounding:owlsParameter rdf:resource="#buyBookReturn"/>
         <grounding:wsdlMessagePart rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI"
-        >http://localhost:8089/Services/services/ZipCode?wsdl#getDiscountReturn</grounding:wsdlMessagePart>
+        >http://localhost:8089/Services/services/ZipCode?wsdl#buyBookReturn</grounding:wsdlMessagePart>
       </grounding:WsdlOutputMessageMap>
     </grounding:wsdlOutput>
   </grounding:WsdlAtomicProcessGrounding>
+  <owl:Class rdf:about="http://www.w3.org/2001/XMLSchema#int"/>
 </rdf:RDF>

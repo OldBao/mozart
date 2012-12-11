@@ -3,7 +3,7 @@
     xmlns:profile="http://www.daml.org/services/owl-s/1.2/Profile.owl#"
     xmlns:service="http://www.daml.org/services/owl-s/1.2/Service.owl#"
     xmlns:process="http://www.daml.org/services/owl-s/1.2/Process.owl#"
-    xmlns="http://www.example.org/owls/getPrice.owl"
+    xmlns="http://owls.buaa.edu.cn:8089/Services/owls/getPrice.owl"
     xmlns:swrl="http://www.w3.org/2003/11/swrl#"
     xmlns:grounding="http://www.daml.org/services/owl-s/1.2/Grounding.owl#"
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
@@ -12,7 +12,7 @@
     xmlns:owl="http://www.w3.org/2002/07/owl#"
     xmlns:expression="http://www.daml.org/services/owl-s/1.2/generic/Expression.owl#"
     xmlns:daml="http://www.daml.org/2001/03/daml+oil#"
-  xml:base="http://www.example.org/owls/getPrice.owl">
+    xml:base="http://owls.buaa.edu.cn:8089/Services/owls/getPrice.owl">
   <owl:Ontology rdf:about="">
     <owl:imports rdf:resource="http://www.daml.org/services/owl-s/1.2/Profile.owl"/>
     <owl:imports rdf:resource="http://www.daml.org/services/owl-s/1.2/Process.owl"/>
@@ -45,7 +45,7 @@
       <process:Output rdf:ID="getPriceReturn">
         <rdfs:label>getPriceReturn</rdfs:label>
         <process:parameterType rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI"
-        >http://www.w3.org/2001/XMLSchema#float</process:parameterType>
+        >http://www.w3.org/2001/XMLSchema#int</process:parameterType>
       </process:Output>
     </profile:hasOutput>
   </profile:Profile>
@@ -66,13 +66,13 @@
     <grounding:wsdlOperation>
       <grounding:WsdlOperationRef>
         <grounding:operation rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI"
-        >http://localhost:8089/Services/services/ZipCode?wsdl#getPrice</grounding:operation>
+        >http://owls.buaa.edu.cn:8089/Services/services/ZipCode?wsdl#getPrice</grounding:operation>
         <grounding:portType rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI"
-        >http://localhost:8089/Services/services/ZipCode?wsdl#ZipCode</grounding:portType>
+        >http://owls.buaa.edu.cn:8089/Services/services/ZipCode?wsdl#ZipCode</grounding:portType>
       </grounding:WsdlOperationRef>
     </grounding:wsdlOperation>
     <grounding:wsdlDocument rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI"
-    >http://localhost:8089/Services/services/ZipCode?wsdl</grounding:wsdlDocument>
+    >http://owls.buaa.edu.cn:8089/Services/services/ZipCode?wsdl</grounding:wsdlDocument>
     <grounding:wsdlInputMessage rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI"
     >http://DefaultNamespace#getPriceRequest</grounding:wsdlInputMessage>
     <grounding:wsdlOutputMessage rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI"
@@ -81,14 +81,14 @@
       <grounding:WsdlInputMessageMap>
         <grounding:owlsParameter rdf:resource="#bookName"/>
         <grounding:wsdlMessagePart rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI"
-        >http://localhost:8089/Services/services/ZipCode?wsdl#bookName</grounding:wsdlMessagePart>
+        >http://owls.buaa.edu.cn:8089/Services/services/ZipCode?wsdl#bookName</grounding:wsdlMessagePart>
       </grounding:WsdlInputMessageMap>
     </grounding:wsdlInput>
     <grounding:wsdlOutput>
       <grounding:WsdlOutputMessageMap>
         <grounding:owlsParameter rdf:resource="#getPriceReturn"/>
         <grounding:wsdlMessagePart rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI"
-        >http://localhost:8089/Services/services/ZipCode?wsdl#getPriceReturn</grounding:wsdlMessagePart>
+        >http://owls.buaa.edu.cn:8089/Services/services/ZipCode?wsdl#getPriceReturn</grounding:wsdlMessagePart>
       </grounding:WsdlOutputMessageMap>
     </grounding:wsdlOutput>
   </grounding:WsdlAtomicProcessGrounding>

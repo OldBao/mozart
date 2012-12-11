@@ -1,0 +1,11 @@
+[Dublin Core DL Redirect]
+http://localhost:8089/Services/owls/getPrice.owl
+http://www.daml.org/services/owl-s/1.2/Profile.owl
+http://www.daml.org/services/owl-s/1.2/Service.owl
+http://www.daml.org/services/owl-s/1.2/Process.owl
+http://www.daml.org/services/owl-s/1.2/generic/Expression.owl
+http://www.daml.org/services/owl-s/1.2/generic/ObjectList.owl
+http://www.daml.org/services/owl-s/1.2/Grounding.owl
+http://localhost:8089/Services/owls/getDiscount.owl
+http://localhost:8089/Services/owls/getFinalPrice.owl
+file:/home/zhanggx/pros/postgradu/Protege_3.2/plugins/com.sri.owlseditor/owl-s/?forceReadOnly=true&Recursive=true

@@ -1,0 +1,265 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:service="http://www.daml.org/services/owl-s/1.2/Service.owl#"
+    xmlns:swrl="http://www.w3.org/2003/11/swrl#"
+    xmlns:time="http://www.isi.edu/~pan/damltime/time-entry.owl#"
+    xmlns="http://owls.buaa.edu.cn:8089/Services/owls/ITE.owl#"
+    xmlns:list="http://www.daml.org/services/owl-s/1.2/generic/ObjectList.owl#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:expr="http://www.daml.org/services/owl-s/1.2/generic/Expression.owl#"
+    xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
+    xmlns:profile="http://www.daml.org/services/owl-s/1.2/Profile.owl#"
+    xmlns:process="http://www.daml.org/services/owl-s/1.2/Process.owl#"
+    xmlns:grounding="http://www.daml.org/services/owl-s/1.2/Grounding.owl#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+  xml:base="http://owls.buaa.edu.cn:8089/Services/owls/ITE.owl">
+  <owl:Ontology rdf:about="">
+    <owl:imports rdf:resource="http://www.daml.org/services/owl-s/1.2/Grounding.owl"/>
+    <owl:imports rdf:resource="http://www.daml.org/services/owl-s/1.2/Profile.owl"/>
+    <owl:imports rdf:resource="http://owls.buaa.edu.cn:8089/Services/owls/getPrice.owl"/>
+  </owl:Ontology>
+  <process:InputBinding rdf:ID="InputBinding_27">
+    <process:toVar>
+      <process:Input rdf:ID="InputB">
+        <process:parameterType rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI"
+        >http://www.w3.org/2001/XMLSchema#int</process:parameterType>
+      </process:Input>
+    </process:toVar>
+    <process:valueSource>
+      <process:ValueOf rdf:ID="ValueOf_28">
+        <process:theVar rdf:resource="http://owls.buaa.edu.cn:8089/Services/owls/getPrice.owl#getPriceReturn"/>
+        <process:fromProcess>
+          <process:Perform rdf:ID="PerformB">
+            <process:hasDataFrom>
+              <process:InputBinding rdf:ID="InputBinding_16">
+                <process:valueSource>
+                  <process:ValueOf rdf:ID="ValueOf_17">
+                    <process:fromProcess rdf:resource="http://www.daml.org/services/owl-s/1.2/Process.owl#ThisPerform"/>
+                    <process:theVar>
+                      <process:Input rdf:ID="bookNameB">
+                        <process:parameterType rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI"
+                        >http://www.w3.org/2001/XMLSchema#string</process:parameterType>
+                      </process:Input>
+                    </process:theVar>
+                  </process:ValueOf>
+                </process:valueSource>
+                <process:toVar rdf:resource="http://owls.buaa.edu.cn:8089/Services/owls/getPrice.owl#bookName"/>
+              </process:InputBinding>
+            </process:hasDataFrom>
+            <process:process rdf:resource="http://owls.buaa.edu.cn:8089/Services/owls/getPrice.owl#getPriceProcess"/>
+          </process:Perform>
+        </process:fromProcess>
+      </process:ValueOf>
+    </process:valueSource>
+  </process:InputBinding>
+  <process:OutputBinding rdf:ID="OutputBinding_15">
+    <process:valueSource>
+      <process:ValueOf rdf:ID="ValueOf_16">
+        <process:theVar>
+          <process:Input rdf:ID="nameB">
+            <process:parameterType rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI"
+            >http://www.w3.org/2001/XMLSchema#string</process:parameterType>
+          </process:Input>
+        </process:theVar>
+        <process:fromProcess rdf:resource="http://www.daml.org/services/owl-s/1.2/Process.owl#ThisPerform"/>
+      </process:ValueOf>
+    </process:valueSource>
+    <process:toVar>
+      <process:Output rdf:ID="cheaperBookOutput">
+        <process:parameterType rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI"
+        >http://www.w3.org/2001/XMLSchema#string</process:parameterType>
+      </process:Output>
+    </process:toVar>
+  </process:OutputBinding>
+  <process:InputBinding rdf:ID="InputBinding_25">
+    <process:toVar>
+        <process:Input rdf:ID="InputA">
+        <process:parameterType rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI"
+        >http://www.w3.org/2001/XMLSchema#int</process:parameterType>
+      </process:Input>
+</process:toVar>
+    <process:valueSource>
+      <process:ValueOf rdf:ID="ValueOf_26">
+        <process:theVar rdf:resource="http://owls.buaa.edu.cn:8089/Services/owls/getPrice.owl#getPriceReturn"/>
+        <process:fromProcess>
+          <process:Perform rdf:ID="PerformA">
+            <process:hasDataFrom>
+              <process:InputBinding rdf:ID="InputBinding_14">
+                <process:valueSource>
+                  <process:ValueOf rdf:ID="ValueOf_15">
+                    <process:fromProcess rdf:resource="http://www.daml.org/services/owl-s/1.2/Process.owl#ThisPerform"/>
+                    <process:theVar>
+                      <process:Input rdf:ID="bookNameA">
+                        <process:parameterType rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI"
+                        >http://www.w3.org/2001/XMLSchema#string</process:parameterType>
+                      </process:Input>
+                    </process:theVar>
+                  </process:ValueOf>
+                </process:valueSource>
+                <process:toVar rdf:resource="http://owls.buaa.edu.cn:8089/Services/owls/getPrice.owl#bookName"/>
+              </process:InputBinding>
+            </process:hasDataFrom>
+            <process:process rdf:resource="http://owls.buaa.edu.cn:8089/Services/owls/getPrice.owl#getPriceProcess"/>
+          </process:Perform>
+        </process:fromProcess>
+      </process:ValueOf>
+    </process:valueSource>
+  </process:InputBinding>
+  <process:ValueOf rdf:ID="ValueOf_24">
+    <process:fromProcess rdf:resource="http://www.daml.org/services/owl-s/1.2/Process.owl#ThisPerform"/>
+    <process:theVar rdf:resource="#bookNameB"/>
+  </process:ValueOf>
+  <process:ValueOf rdf:ID="ValueOf_19">
+    <process:theVar rdf:resource="#bookNameB"/>
+    <process:fromProcess rdf:resource="http://www.daml.org/services/owl-s/1.2/Process.owl#ThisPerform"/>
+  </process:ValueOf>
+  <process:If-Then-Else rdf:ID="If-Then-Else_4">
+    <process:then>
+      <process:Produce rdf:ID="AProduce">
+        <process:producedBinding>
+          <process:OutputBinding rdf:ID="OutputBinding_17">
+            <process:valueSource>
+              <process:ValueOf rdf:ID="ValueOf_18">
+                <process:fromProcess rdf:resource="http://www.daml.org/services/owl-s/1.2/Process.owl#ThisPerform"/>
+                <process:theVar>
+                  <process:Input rdf:ID="nameA">
+                    <process:parameterType rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI"
+                    >http://www.w3.org/2001/XMLSchema#string</process:parameterType>
+                  </process:Input>
+                </process:theVar>
+              </process:ValueOf>
+            </process:valueSource>
+            <process:toVar rdf:resource="#cheaperBookOutput"/>
+          </process:OutputBinding>
+        </process:producedBinding>
+      </process:Produce>
+    </process:then>
+    <process:else>
+      <process:Produce rdf:ID="BProduce">
+        <process:producedBinding rdf:resource="#OutputBinding_15"/>
+      </process:Produce>
+    </process:else>
+    <process:ifCondition>
+      <expr:Condition rdf:ID="lessCondition">
+        <expr:expressionLanguage rdf:resource="http://www.daml.org/services/owl-s/1.2/generic/Expression.owl#SWRL"/>
+        <expr:expressionObject>
+          <swrl:AtomList rdf:ID="swrlAtomList">
+            <rdf:first>
+              <swrl:BuiltinAtom>
+                <swrl:builtin rdf:resource="http://www.w3.org/2003/11/swrlb#lessThan"/>
+                <swrl:arguments>
+                  <rdf:List>
+                    <rdf:first rdf:resource="#InputA">
+                    </rdf:first>
+                    <rdf:rest>
+                      <rdf:List>
+                        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                        <rdf:first rdf:resource="#InputB"/>
+                      </rdf:List>
+                    </rdf:rest>
+                  </rdf:List>
+                </swrl:arguments>
+              </swrl:BuiltinAtom>
+            </rdf:first>
+            <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+          </swrl:AtomList>
+    </expr:expressionObject>
+      </expr:Condition>
+    </process:ifCondition>
+  </process:If-Then-Else>
+  <process:OutputBinding rdf:ID="OutputBinding_29">
+    <process:valueSource>
+      <process:ValueOf rdf:ID="ValueOf_30">
+        <process:theVar rdf:resource="#cheaperBookOutput"/>
+        <process:fromProcess>
+          <process:Perform rdf:ID="ComparePerform">
+            <process:hasDataFrom rdf:resource="#InputBinding_27"/>
+            <process:hasDataFrom>
+              <process:InputBinding rdf:ID="InputBinding_21">
+                <process:toVar rdf:resource="#nameA"/>
+                <process:valueSource>
+                  <process:ValueOf rdf:ID="ValueOf_22">
+                    <process:fromProcess rdf:resource="http://www.daml.org/services/owl-s/1.2/Process.owl#ThisPerform"/>
+                    <process:theVar rdf:resource="#bookNameA"/>
+                  </process:ValueOf>
+                </process:valueSource>
+              </process:InputBinding>
+            </process:hasDataFrom>
+            <process:hasDataFrom rdf:resource="#InputBinding_25"/>
+            <process:hasDataFrom>
+              <process:InputBinding rdf:ID="InputBinding_23">
+                <process:toVar rdf:resource="#nameB"/>
+                <process:valueSource rdf:resource="#ValueOf_24"/>
+              </process:InputBinding>
+            </process:hasDataFrom>
+            <process:process>
+              <process:CompositeProcess rdf:ID="CompareCompositeProcess">
+                <process:hasOutput rdf:resource="#cheaperBookOutput"/>
+                <process:composedOf rdf:resource="#If-Then-Else_4"/>
+                <process:hasInput rdf:resource="#InputA"/>
+                <process:hasInput rdf:resource="#InputB"/>
+                <process:hasInput rdf:resource="#nameA"/>
+                <process:hasInput rdf:resource="#nameB"/>
+              </process:CompositeProcess>
+            </process:process>
+          </process:Perform>
+        </process:fromProcess>
+      </process:ValueOf>
+    </process:valueSource>
+    <process:toVar>
+      <process:Output rdf:ID="finalCheaperBookOutput">
+        <process:parameterType rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI"
+        >http://www.w3.org/2001/XMLSchema#string</process:parameterType>
+      </process:Output>
+    </process:toVar>
+  </process:OutputBinding>
+  <service:Service rdf:ID="buyCheaperService">
+    <service:describedBy>
+      <process:CompositeProcess rdf:ID="findCheaperBookCompositeProcess">
+        <process:hasOutput rdf:resource="#finalCheaperBookOutput"/>
+        <process:composedOf>
+          <process:Sequence rdf:ID="Sequence_2">
+            <process:components>
+              <process:ControlConstructList rdf:ID="ControlConstructList_4">
+                <list:rest>
+                  <process:ControlConstructList rdf:ID="ControlConstructList_6">
+                    <list:first rdf:resource="#PerformB"/>
+                    <list:rest>
+                      <process:ControlConstructList rdf:ID="ControlConstructList_8">
+                        <list:first rdf:resource="#ComparePerform"/>
+                        <list:rest>
+                          <process:ControlConstructList rdf:ID="ControlConstructList_10">
+                            <list:first>
+                              <process:Produce rdf:ID="Produce">
+                                <process:producedBinding rdf:resource="#OutputBinding_29"/>
+                              </process:Produce>
+                            </list:first>
+                            <list:rest rdf:resource="http://www.daml.org/services/owl-s/1.2/generic/ObjectList.owl#nil"/>
+                          </process:ControlConstructList>
+                        </list:rest>
+                      </process:ControlConstructList>
+                    </list:rest>
+                  </process:ControlConstructList>
+                </list:rest>
+                <list:first rdf:resource="#PerformA"/>
+              </process:ControlConstructList>
+            </process:components>
+          </process:Sequence>
+        </process:composedOf>
+        <process:hasInput rdf:resource="#bookNameB"/>
+        <process:hasInput rdf:resource="#bookNameA"/>
+        <service:describes rdf:resource="#buyCheaperService"/>
+      </process:CompositeProcess>
+    </service:describedBy>
+    <service:presents>
+      <profile:Profile rdf:ID="buyCheaperBookProfile">
+        <service:presentedBy rdf:resource="#buyCheaperService"/>
+      </profile:Profile>
+    </service:presents>
+  </service:Service>
+  <process:InputBinding rdf:ID="InputBinding_20"/>
+</rdf:RDF>
+
+<!-- Created with Protege (with OWL Plugin 3.2, Build 355)  http://protege.stanford.edu -->

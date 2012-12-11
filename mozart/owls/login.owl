@@ -1,0 +1,110 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:j.0="http://www.daml.org/services/owl-s/1.2/Profile.owl#"
+    xmlns:j.1="http://www.daml.org/services/owl-s/1.2/Service.owl#"
+    xmlns:j.2="http://www.daml.org/services/owl-s/1.2/Process.owl#"
+    xmlns:p1="http://owls.buaa.edu.cn:8089/Services/owls/login.owl#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:j.3="http://www.daml.org/services/owl-s/1.2/Grounding.owl#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:daml="http://www.daml.org/2001/03/daml+oil#"
+  xml:base="http://owls.buaa.edu.cn:8089/Services/owls/login.owl">
+  <owl:Ontology rdf:about="">
+    <owl:imports rdf:resource="http://www.daml.org/services/owl-s/1.2/Process.owl"/>
+    <owl:imports rdf:resource="http://www.daml.org/services/owl-s/1.2/Profile.owl"/>
+    <owl:imports rdf:resource="http://www.daml.org/services/owl-s/1.2/Service.owl"/>
+    <owl:imports rdf:resource="http://www.daml.org/services/owl-s/1.2/Grounding.owl"/>
+  </owl:Ontology>
+  <j.2:Output rdf:ID="loginReturn">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >loginReturn</rdfs:label>
+    <j.2:parameterType rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI"
+    >http://www.w3.org/2001/XMLSchema#boolean</j.2:parameterType>
+  </j.2:Output>
+  <j.3:WsdlGrounding rdf:ID="loginGrounding">
+    <j.3:hasAtomicProcessGrounding>
+      <j.3:WsdlAtomicProcessGrounding rdf:ID="loginAtomicProcessGrounding">
+        <j.3:wsdlInput>
+          <j.3:WsdlInputMessageMap>
+            <j.3:owlsParameter>
+              <j.2:Input rdf:ID="password">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >password</rdfs:label>
+                <j.2:parameterType rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI"
+                >http://www.w3.org/2001/XMLSchema#string</j.2:parameterType>
+              </j.2:Input>
+            </j.3:owlsParameter>
+            <j.3:wsdlMessagePart rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI"
+            >http://localhost:8089/Services/services/ZipCode?wsdl#password</j.3:wsdlMessagePart>
+          </j.3:WsdlInputMessageMap>
+        </j.3:wsdlInput>
+        <j.3:wsdlInput>
+          <j.3:WsdlInputMessageMap>
+            <j.3:wsdlMessagePart rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI"
+            >http://localhost:8089/Services/services/ZipCode?wsdl#username</j.3:wsdlMessagePart>
+            <j.3:owlsParameter>
+              <j.2:Input rdf:ID="username">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >username</rdfs:label>
+                <j.2:parameterType rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI"
+                >http://www.w3.org/2001/XMLSchema#string</j.2:parameterType>
+              </j.2:Input>
+            </j.3:owlsParameter>
+          </j.3:WsdlInputMessageMap>
+        </j.3:wsdlInput>
+        <j.3:wsdlOperation>
+          <j.3:WsdlOperationRef>
+            <j.3:operation rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI"
+            >http://localhost:8089/Services/services/ZipCode?wsdl#login</j.3:operation>
+            <j.3:portType rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI"
+            >http://localhost:8089/Services/services/ZipCode?wsdl#ZipCode</j.3:portType>
+          </j.3:WsdlOperationRef>
+        </j.3:wsdlOperation>
+        <j.3:wsdlOutput>
+          <j.3:WsdlOutputMessageMap>
+            <j.3:owlsParameter rdf:resource="#loginReturn"/>
+            <j.3:wsdlMessagePart rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI"
+            >http://localhost:8089/Services/services/ZipCode?wsdl#loginReturn</j.3:wsdlMessagePart>
+          </j.3:WsdlOutputMessageMap>
+        </j.3:wsdlOutput>
+        <j.3:wsdlDocument rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI"
+        >http://localhost:8089/Services/services/ZipCode?wsdl</j.3:wsdlDocument>
+        <j.3:owlsProcess>
+          <j.2:AtomicProcess rdf:ID="loginProcess">
+            <j.1:describes>
+              <j.1:Service rdf:ID="loginService">
+                <j.1:supports rdf:resource="#loginGrounding"/>
+                <j.1:presents>
+                  <j.0:Profile rdf:ID="loginProfile">
+                    <j.0:hasOutput rdf:resource="#loginReturn"/>
+                    <j.1:presentedBy rdf:resource="#loginService"/>
+                    <j.0:textDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >Auto generated from http://localhost:8089/Services/services/ZipCode?wsdl</j.0:textDescription>
+                    <j.0:serviceName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >login</j.0:serviceName>
+                    <j.0:hasInput rdf:resource="#password"/>
+                    <j.0:hasInput rdf:resource="#username"/>
+                  </j.0:Profile>
+                </j.1:presents>
+                <j.1:describedBy rdf:resource="#loginProcess"/>
+              </j.1:Service>
+            </j.1:describes>
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >loginProcess</rdfs:label>
+            <j.2:hasOutput rdf:resource="#loginReturn"/>
+            <j.2:hasInput rdf:resource="#password"/>
+            <j.2:hasInput rdf:resource="#username"/>
+          </j.2:AtomicProcess>
+        </j.3:owlsProcess>
+        <j.3:wsdlInputMessage rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI"
+        >http://DefaultNamespace#loginRequest</j.3:wsdlInputMessage>
+        <j.3:wsdlOutputMessage rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI"
+        >http://DefaultNamespace#loginResponse</j.3:wsdlOutputMessage>
+      </j.3:WsdlAtomicProcessGrounding>
+    </j.3:hasAtomicProcessGrounding>
+    <j.1:supportedBy rdf:resource="#loginService"/>
+  </j.3:WsdlGrounding>
+</rdf:RDF>
+
+<!-- Created with Protege (with OWL Plugin 3.2, Build 355)  http://protege.stanford.edu -->
