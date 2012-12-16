@@ -28,6 +28,7 @@ package examples;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URI;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -70,10 +71,10 @@ public class ExecutionMonitor
 			textArea.setLineWrap(true);
 			textArea.setWrapStyleWord(true);
 			execButton = new JButton("Continue");
-			execButton.setEnabled(false);
+			execButton.setEnabled(true);
 			execButton.addActionListener(new ActionListener() {
 				public void actionPerformed(final ActionEvent e) {
-					execButton.setEnabled(false);
+					//execButton.setEnabled(false);
 				}
 			});
 
@@ -206,12 +207,12 @@ public class ExecutionMonitor
 		// we need a reasoner that can evaluate the precondition of the translator
 		kb.setReasoner("Pellet");
 
-		Service service = kb.readService(ExampleURIs.FRENCH_DICTIONARY_OWLS12);
+		Service service = kb.readService(new URI("file:///home/zhanggx/owls/split+join.owl"));
 		Process process = service.getProcess();
 
 		// initialize the input values to be empty
 		ValueMap<Input, OWLValue> inputs = new ValueMap<Input, OWLValue>();
-		inputs.setValue(process.getInput("InputString"), kb.createDataValue("mere"));
+		inputs.setValue(process.getInput(), kb.createDataValue("C Programming Language"));
 		exec.execute(process, inputs, kb);
 	}
 }

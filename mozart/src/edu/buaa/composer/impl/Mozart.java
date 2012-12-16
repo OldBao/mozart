@@ -33,6 +33,7 @@ import org.mindswap.owls.process.Perform;
 import org.mindswap.owls.process.Process;
 import org.mindswap.owls.process.Produce;
 import org.mindswap.owls.process.Sequence;
+import org.mindswap.owls.process.SplitJoin;
 import org.mindswap.owls.process.variable.Binding;
 import org.mindswap.owls.process.variable.Input;
 import org.mindswap.owls.process.variable.Output;
@@ -67,6 +68,7 @@ import edu.buaa.mozart.notes.PerformChord;
 import edu.buaa.mozart.notes.Prelude;
 import edu.buaa.mozart.notes.ProduceChord;
 import edu.buaa.mozart.notes.SequenceChord;
+import edu.buaa.mozart.notes.SplitJoinChord;
 import edu.buaa.mozart.stub.MozartWebCodeFactory;
 import edu.buaa.utils.IDFactory;
 import edu.buaa.utils.QuickFactory;
@@ -174,9 +176,9 @@ public class Mozart extends Composer {
 				}
 				prevCC = construct;
 			}
-			chord.setInputTransition(((DataChord) constructs.get(0)
+			chord.setInputTransition(((Chord) constructs.get(0)
 					.getMozartNotation()).getInputTransition());
-			chord.setOutputTransition(((DataChord) constructs.get(
+			chord.setOutputTransition(((Chord) constructs.get(
 					constructs.size() - 1).getMozartNotation())
 					.getOutputTransition());
 		} catch (ComposeException e) {
@@ -338,6 +340,44 @@ public class Mozart extends Composer {
 			e.printStackTrace();
 		}
 
+	}
+    
+	@Override
+	public void composeSplitJoin(SplitJoin sj, SplitJoinChord sjChord,
+			NotationContext context) throws ComposeException {
+		try {
+            logger.info("转化 Split+Join " + sj.getLocalName());
+            
+			Transition inputTransition = QuickFactory.getTransition(mPage, ITE
+					+ CONTROL);
+            Transition outputTransition = QuickFactory.getTransition(mPage, "");
+			Color controlColor = ColorFactory.getInstance().getControlColor();
+            HLAnnotation controlAnno = getControlAnno();
+            
+            for (ControlConstruct CC : sj.getConstructs()){
+                Place splitControlPlace = QuickFactory.getPlace(mPage, ITE);
+                Place joinControlPlace = QuickFactory.getPlace(mPage, ITE);
+                
+                splitControlPlace.setSort(QuickFactory.getSort(mNet,
+					controlColor.getTypeName()));
+                joinControlPlace.setSort(QuickFactory.getSort(mNet,
+					controlColor.getTypeName()));
+                
+            	DataChord chord = (DataChord) CC.getMozartNotation();
+            	recursive_compose(CC,context);
+            	Transition inTransition = chord.getInputTransition();
+                Transition outTransition = chord.getOutputTransition();
+                QuickFactory.combine(mPage, inputTransition, splitControlPlace, controlAnno);
+                QuickFactory.combine(mPage, splitControlPlace, inTransition,
+                					controlAnno);
+                QuickFactory.combine(mPage, outTransition, joinControlPlace, controlAnno);
+                QuickFactory.combine(mPage, joinControlPlace, outputTransition,controlAnno);
+            }
+            sjChord.setInputTransition(inputTransition);
+            sjChord.setOutputTransition(outputTransition);
+		} catch (ComposeException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -827,5 +867,7 @@ public class Mozart extends Composer {
 	private static String CONTROL = "CONTROL";
 	private static String ITE = "If-Then-Else";
 	private static String PRODUCE = "PRODUCE";
+
+
 
 }

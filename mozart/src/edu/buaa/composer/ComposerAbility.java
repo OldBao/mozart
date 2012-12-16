@@ -8,6 +8,7 @@ import org.mindswap.owls.process.Perform;
 import org.mindswap.owls.process.Process;
 import org.mindswap.owls.process.Produce;
 import org.mindswap.owls.process.Sequence;
+import org.mindswap.owls.process.SplitJoin;
 
 import edu.buaa.mozart.notes.AtomicClef;
 import edu.buaa.mozart.notes.ChoiceChord;
@@ -19,6 +20,7 @@ import edu.buaa.mozart.notes.PerformChord;
 import edu.buaa.mozart.notes.Prelude;
 import edu.buaa.mozart.notes.ProduceChord;
 import edu.buaa.mozart.notes.SequenceChord;
+import edu.buaa.mozart.notes.SplitJoinChord;
 
 public interface ComposerAbility {
 	abstract public void composeAtomicClef(AtomicProcess process,
@@ -46,4 +48,8 @@ public interface ComposerAbility {
 	abstract public void composeIfThenElse(IfThenElse ite,
 			IfThenElseChord iteChord, NotationContext context)
 			throws ComposeException;
+    
+    abstract public void composeSplitJoin(SplitJoin sj,
+    		SplitJoinChord sjChord, NotationContext context) 
+    		throws ComposeException;
 }

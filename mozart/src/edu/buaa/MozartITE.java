@@ -50,15 +50,16 @@ public class MozartITE {
 			org.mindswap.owls.process.Process process = service.getProcess();
 
 			ValueMap<Input, OWLValue> inputs = new ValueMap<Input, OWLValue>();
-//			inputs.setValue(process.getInput("bookNameB"),
-//					mKB.createDataValue("C Programming Language"));
-//			inputs.setValue(process.getInput("bookNameA"),
-//					mKB.createDataValue("STL Source"));
+			inputs.setValue(process.getInput("bookNameA"),
+					mKB.createDataValue("C Programming Language"));
+			inputs.setValue(process.getInput("bookNameB"),
+					mKB.createDataValue("STL Source"));
             
 
 			ProcessExecutionEngine exec = OWLSFactory.createExecutionEngine();
 			ValueMap<Output, OWLValue> output;
-            
+            output = exec.execute(process, inputs, mKB);
+            System.out.println(output);
             Composer composer = new Mozart();
             CompositeProcess p = (CompositeProcess) process;
             Process rp = null;
@@ -78,6 +79,8 @@ public class MozartITE {
 		} catch (TransformerException e) {
 			e.printStackTrace();
 		} catch (ParserConfigurationException e) {
+			e.printStackTrace();
+		} catch (ExecutionException e) {
 			e.printStackTrace();
 		}
 	}

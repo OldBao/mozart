@@ -37,6 +37,7 @@ import org.mindswap.owls.process.execution.ExecutionSupport;
 
 import edu.buaa.mozart.notes.ComposeException;
 import edu.buaa.mozart.notes.Notation;
+import edu.buaa.mozart.notes.SplitJoinChord;
 
 /**
  * @author unascribed
@@ -126,6 +127,13 @@ public class SplitJoinImpl extends CollectionControlConstructImpl<SplitJoinImpl>
 	}
 	@Override
 	public Notation getMozartNotation() throws ComposeException {
-        throw new ComposeException("Not support notation now");
+        if(mNotation == null) {
+        	SplitJoinChord chord = new SplitJoinChord();
+        	chord.setIndividual(this);
+            mNotation = chord;
+        }
+        return mNotation;
+        
 	}
+    private Notation mNotation;
 }
