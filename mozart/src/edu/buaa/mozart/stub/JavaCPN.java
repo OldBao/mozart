@@ -177,8 +177,10 @@ public class JavaCPN implements JavaCPNInterface, Runnable {
 			send(EncodeDecode.encode(result));
 		} catch (NumberFormatException e) {
             logger.info("number format error");
+            return;
 		} catch (SocketException e) {
-            logger.info("socket 错误" + e.getMessage());
+            logger.info("socket " + e.getMessage());
+            return;
 		}
 		}
 	}

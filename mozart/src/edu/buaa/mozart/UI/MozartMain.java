@@ -306,7 +306,7 @@ public class MozartMain {
                 stopServer();
 			}
 		});
-		mntmNewItem_1.setText("New Item");
+		mntmNewItem_1.setText("关闭服务器");
 		
 		MenuItem menuItem_3 = new MenuItem(menu, SWT.CASCADE);
 		menuItem_3.setText("帮助");
