@@ -114,8 +114,6 @@ public abstract class Vocabulary
 	 */
 	protected static OWLOntology loadOntology(final String ontologyURL, final String local)
 	{
-		logger.info("Loading ontology {} ...", ontologyURL);
-
 		URI uri = URIUtils.standardURI(ontologyURL);
 		OWLOntology loadedOnt;
 		try

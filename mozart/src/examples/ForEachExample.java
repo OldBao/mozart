@@ -66,7 +66,8 @@ public class ForEachExample
 
 		final OWLKnowledgeBase kb = OWLFactory.createKB();
 
-		final Service service = kb.readService(ExampleURIs.FIND_LAT_LONG_OWLS12);
+//		final Service service = kb.readService(ExampleURIs.FIND_LAT_LONG_OWLS12);
+        final Service service = kb.readService(new URI("http://owls.buaa.edu.cn:8089/Services/owls/getPrice.owl"));
 		final Process process = service.getProcess();
 
 		final OWLOntology ont = kb.createOntology(URIUtils.standardURI(ns));
@@ -92,30 +93,35 @@ public class ForEachExample
 		// display how the construct looks like in RDF/XML
 		ont.write(System.out, null);
 
-		// create some zip code values
-		final OWLClass ZipCode = kb.getClass(URI.create(ExampleURIs.ONT_ZIPCODE + "ZipCode"));
-		final OWLDataProperty zip = kb.getDataProperty(URI.create(ExampleURIs.ONT_ZIPCODE + "zip"));
+//		// create some zip code values
+//		final OWLClass ZipCode = kb.getClass(URI.create(ExampleURIs.ONT_ZIPCODE + "ZipCode"));
+//		final OWLDataProperty zip = kb.getDataProperty(URI.create(ExampleURIs.ONT_ZIPCODE + "zip"));
+//
+//		final OWLIndividual zip1 = ont.createInstance(ZipCode, null);
+//		zip1.setProperty(zip, "20740");
+//		final OWLIndividual zip2 = ont.createInstance(ZipCode, null);
+//		zip2.setProperty(zip, "11430");
+//		final OWLIndividual zip3 = ont.createInstance(ZipCode, null);
+//		zip3.setProperty(zip, "94102");
+        
+        for(OWLClass clasz : kb.getClasses(true)){
+            System.out.println(clasz);
+        	
+        }
 
-		final OWLIndividual zip1 = ont.createInstance(ZipCode, null);
-		zip1.setProperty(zip, "20740");
-		final OWLIndividual zip2 = ont.createInstance(ZipCode, null);
-		zip2.setProperty(zip, "11430");
-		final OWLIndividual zip3 = ont.createInstance(ZipCode, null);
-		zip3.setProperty(zip, "94102");
-
-		OWLList<OWLIndividual> list = ont.createList(OWLS.ObjectList.List);
-		list = list.cons(zip3).cons(zip2).cons(zip1);
-
-		final ValueMap<Input, OWLValue> inputs = new ValueMap<Input, OWLValue>();
-		inputs.setValue(cp.getInput("in"), list);
-		System.out.println("");
-		System.out.println("Inputs:");
-		System.out.println(list.toRDF(false, false));
-		System.out.println("");
-
-		final ValueMap<Output, OWLValue> outputs = exec.execute(cp, inputs, kb);
-		System.out.println("Outputs:");
-		System.out.println(outputs);
+//		OWLList<OWLIndividual> list = ont.createList(OWLS.ObjectList.List);
+//		list = list.cons(zip3).cons(zip2).cons(zip1);
+//
+//		final ValueMap<Input, OWLValue> inputs = new ValueMap<Input, OWLValue>();
+//		inputs.setValue(cp.getInput("in"), list);
+//		System.out.println("");
+//		System.out.println("Inputs:");
+//		System.out.println(list.toRDF(false, false));
+//		System.out.println("");
+//
+//		final ValueMap<Output, OWLValue> outputs = exec.execute(cp, inputs, kb);
+//		System.out.println("Outputs:");
+//		System.out.println(outputs);
 	}
 
 	public static void main(final String[] args) throws Exception

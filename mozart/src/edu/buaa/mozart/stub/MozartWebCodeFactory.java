@@ -111,6 +111,7 @@ public final class MozartWebCodeFactory {
 
 	public CodeSegment getExitCode() {
         CodeSegment cs = new CodeSegment();
+        cs.addAction("closeConnection(\""+ ComposerConfig.CONN_NAME+ "\")");
         
         return cs;
 	}

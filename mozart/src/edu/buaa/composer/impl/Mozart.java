@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.apache.log4j.Logger;
 import org.cpntools.accesscpn.model.Code;
 import org.cpntools.accesscpn.model.HLAnnotation;
 import org.cpntools.accesscpn.model.HLDeclaration;
@@ -71,7 +72,8 @@ import edu.buaa.utils.IDFactory;
 import edu.buaa.utils.QuickFactory;
 
 public class Mozart extends Composer {
-
+	private static Logger logger = Logger.getLogger(Mozart.class);
+    
 	PetriNet mNet;
 	Page mPage; // 如果是层次Petri网，Page就不只一个了
 	Set<MozartDataConstruct> mPerformSet; // 用来记录所有已经处理的Perform，用来转化过程中，根据Perform的ID查找Perform对象
@@ -89,6 +91,7 @@ public class Mozart extends Composer {
 	public void composeAtomicClef(AtomicProcess process, AtomicClef clef,
 			NotationContext context) {
 		try {
+            logger.info("转化原子服务: " + process.getLocalName());
 			String baseName = context.getConstruct().getLocalName();
 
 			Place inputPlace = QuickFactory.getPlace(mPage, baseName + INPUT);
@@ -132,6 +135,7 @@ public class Mozart extends Composer {
 	public void composeCompositeChord(CompositeProcess process,
 			CompositeClef chord, NotationContext context) {
 		try {
+            logger.info("转化组合服务 " + process.getLocalName());
 			internalCompose(process, context);
 			chord.setInputPlace(context.getPrelude().getDataplace());
 			chord.setOutputPlace(context.getConclude().getDataplace());
@@ -145,6 +149,7 @@ public class Mozart extends Composer {
 	public void composeSequenceChrod(Sequence sequenceProcess,
 			SequenceChord chord, NotationContext context) {
 		try {
+            logger.info("转化Sequence " + sequenceProcess.getLocalName());
 			OWLIndividualList<ControlConstruct> constructs = sequenceProcess
 					.getConstructs();
 			ControlConstruct prevCC = null;
@@ -272,6 +277,7 @@ public class Mozart extends Composer {
 	public void composeIfThenElse(IfThenElse ite, IfThenElseChord iteChord,
 			NotationContext context) throws ComposeException {
 		try {
+            logger.info("转化 If-Then-Else " + ite.getLocalName());
 			Condition ifCondition = ite.getCondition();
 			ControlConstruct thenCC = ite.getThen();
 			ControlConstruct elseCC = ite.getElse();
@@ -408,11 +414,11 @@ public class Mozart extends Composer {
 		}else {
 			 Transition inputTransition = QuickFactory.getTransition(mPage,
 			 G_FINISH + " " + BINDING);
-			 CodeSegment cs = MozartWebCodeFactory.getInstance().getExitCode();
+			 CodeSegment cs = new CodeSegment();
 			 conclude.setCodeSegment(cs);
 			
 			 HLAnnotation inArcAnno = getAnnoFromVars(context.getConstruct(),
-			 process.getOutputs(), false);
+			 process.getOutputs(), true);
 			 QuickFactory.combine(mPage, inputTransition, gFinishPlace,
 			 inArcAnno);
 			
@@ -489,6 +495,7 @@ public class Mozart extends Composer {
 
 	@Override
 	public PetriNet Compose(Process process) throws ComposeException {
+        logger.info("Mozart => CPN Start...");
 		NotationContext context = new NotationContext();
 		context.setConstruct(OWLS.Process.ThisPerform);
 		internalCompose(process, context);
@@ -508,6 +515,7 @@ public class Mozart extends Composer {
 //		QuickFactory.addCode(mNet, context.getConclude().getInputTransition(),
 //				context.getConclude().getCodeSegment());
 		addAllDecl();
+        logger.info("Mozart => CPN End...");
 		return mNet;
 	}
 
@@ -530,7 +538,6 @@ public class Mozart extends Composer {
 					process.getInputs(), true);
 			QuickFactory.combine(mPage, trans, clef.getInputPlace(), inArcAnno);
 
-            
 			trans = context.getConclude().getInputTransition();
 			HLAnnotation outArcAnno = getAnnoFromVars(context.getConstruct(),
 					process.getOutputs(), true);

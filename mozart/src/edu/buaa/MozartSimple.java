@@ -9,16 +9,13 @@ import javax.xml.transform.TransformerException;
 
 import org.cpntools.accesscpn.model.PetriNet;
 import org.cpntools.accesscpn.model.exporter.DOMGenerator;
-import org.mindswap.exceptions.ExecutionException;
 import org.mindswap.owl.OWLFactory;
 import org.mindswap.owl.OWLKnowledgeBase;
 import org.mindswap.owl.OWLValue;
-import org.mindswap.owls.OWLSFactory;
-import org.mindswap.owls.process.execution.ProcessExecutionEngine;
 import org.mindswap.owls.process.variable.Input;
-import org.mindswap.owls.process.variable.Output;
 import org.mindswap.owls.service.Service;
 import org.mindswap.query.ValueMap;
+import org.mindswap.owls.process.Process;
 
 import edu.buaa.composer.Composer;
 import edu.buaa.composer.impl.Mozart;
@@ -31,7 +28,8 @@ public class MozartSimple {
 			mKB = OWLFactory.createKB();
 			mKB.createOntology(null);
 			Service service = mKB.readService(URI.create("http://owls.buaa.edu.cn:8089/Services/owls/login.owl"));
-			
+            Process process = service.getProcess();
+            
 			ValueMap<Input, OWLValue> inputs = new ValueMap<Input, OWLValue>();
 			
 			inputs.setValue(service.getProcess().getInput("username"), mKB.createDataValue("zhanggx"));

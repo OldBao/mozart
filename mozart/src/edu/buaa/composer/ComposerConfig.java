@@ -17,4 +17,6 @@ public class ComposerConfig {
     public static String STRING_DECODING = "stringDecode";
     public static String INTEGER_DECODING = "integerDecode";
     public static String BOOL_DECODING = "boolDecode";
+    
+    public static String CPN_PATH = "/home/zhanggx/pros/postgradu/programs/third/CPNTools/cpntools";
 }
