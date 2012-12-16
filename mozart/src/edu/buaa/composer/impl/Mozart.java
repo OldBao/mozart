@@ -408,14 +408,14 @@ public class Mozart extends Composer {
 								toVar.getVarName());
 						QuickFactory.combine(mPage, trans, gFinishPlace,
 								transAnno);
+						//TODO: this line may cause multiple close
+						conclude.setInputTransition(trans);
 					}
 				}
 			}
 		}else {
 			 Transition inputTransition = QuickFactory.getTransition(mPage,
 			 G_FINISH + " " + BINDING);
-			 CodeSegment cs = new CodeSegment();
-			 conclude.setCodeSegment(cs);
 			
 			 HLAnnotation inArcAnno = getAnnoFromVars(context.getConstruct(),
 			 process.getOutputs(), true);
@@ -424,6 +424,9 @@ public class Mozart extends Composer {
 			
 			 conclude.setInputTransition(inputTransition);			
 		}
+        
+		CodeSegment cs = new CodeSegment();
+		conclude.setCodeSegment(cs);
 		
 	}
 
@@ -506,10 +509,10 @@ public class Mozart extends Composer {
 						"openConnection(\"" + ComposerConfig.CONN_NAME + "\","
 								+ "\"" + ComposerConfig.SERVER_ADDR + "\","
 								+ ComposerConfig.WS_STUB_PORT + ")");
-//		context.getConclude()
-//				.getCodeSegment()
-//				.addAction(
-//						"closeConnection(\"" + ComposerConfig.CONN_NAME + "\")");
+		context.getConclude()
+				.getCodeSegment()
+				.addAction(
+						"closeConnection(\"" + ComposerConfig.CONN_NAME + "\")");
 		QuickFactory.addCode(mNet, context.getPrelude().getOutputTransition(),
 				context.getPrelude().getCodeSegment());
 //		QuickFactory.addCode(mNet, context.getConclude().getInputTransition(),

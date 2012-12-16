@@ -26,9 +26,9 @@ public class ServiceStub implements Runnable {
 				socket = mServerSocket.accept();
 				new Thread(new JavaCPN(socket)).run();
 			} catch (IOException e) {
-				e.printStackTrace();
 			}
 		}
+       logger.warn("服务器已经停止");
 	}
 
 	public void stop() {
@@ -36,6 +36,7 @@ public class ServiceStub implements Runnable {
 			return;
 		try {
 			mServerSocket.close();
+            logger.warn("服务器正在停止...");
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {

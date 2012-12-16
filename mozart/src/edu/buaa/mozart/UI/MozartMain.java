@@ -45,7 +45,8 @@ import edu.buaa.mozart.notes.ComposeException;
 import edu.buaa.mozart.stub.ServiceStub;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.widgets.Text;
-import org.eclipse.swt.widgets.Canvas;
+import org.eclipse.swt.events.DisposeListener;
+import org.eclipse.swt.events.DisposeEvent;
 
 public class MozartMain {
 	protected Shell shlMozart;
@@ -109,6 +110,11 @@ public class MozartMain {
 	 */
 	protected void createContents() {
 		shlMozart = new Shell();
+		shlMozart.addDisposeListener(new DisposeListener() {
+			public void widgetDisposed(DisposeEvent arg0) {
+                stopServer();
+			}
+		});
 		shlMozart.setSize(616, 510);
 		shlMozart.setText("Mozart");
 		shlMozart.setLayout(new GridLayout(2, false));
@@ -244,6 +250,12 @@ public class MozartMain {
 		new MenuItem(menu_1, SWT.SEPARATOR);
 		
 		MenuItem mntmNewItem = new MenuItem(menu_1, SWT.NONE);
+		mntmNewItem.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+                stopServer();
+			}
+		});
 		mntmNewItem.setText("退出");
 		
 		MenuItem menuItem_1 = new MenuItem(menu, SWT.CASCADE);
@@ -284,6 +296,17 @@ public class MozartMain {
 			}
 		});
 		mntmstub.setText("启动Stub实例");
+		
+		new MenuItem(menu_3, SWT.SEPARATOR);
+		
+		MenuItem mntmNewItem_1 = new MenuItem(menu_3, SWT.NONE);
+		mntmNewItem_1.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+                stopServer();
+			}
+		});
+		mntmNewItem_1.setText("New Item");
 		
 		MenuItem menuItem_3 = new MenuItem(menu, SWT.CASCADE);
 		menuItem_3.setText("帮助");
@@ -373,5 +396,11 @@ public class MozartMain {
 			txtService.setText("");
 		}
 		return null;
+    }
+    
+    private void stopServer(){
+    	if(null != mServiceStub){
+    		mServiceStub.stop();
+    	}
     }
 }

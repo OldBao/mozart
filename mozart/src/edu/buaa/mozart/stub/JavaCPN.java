@@ -164,6 +164,7 @@ public class JavaCPN implements JavaCPNInterface, Runnable {
 
 	@Override
 	public void run() {
+		while(true){
 		try {
 			String wsName = EncodeDecode.decodeString(receive());
 			Integer paramCnt = Integer.parseInt(EncodeDecode
@@ -175,8 +176,10 @@ public class JavaCPN implements JavaCPNInterface, Runnable {
 			String result = internal_call(wsName, params);
 			send(EncodeDecode.encode(result));
 		} catch (NumberFormatException e) {
+            logger.info("number format error");
 		} catch (SocketException e) {
-            
+            logger.info("socket 错误" + e.getMessage());
+		}
 		}
 	}
 
