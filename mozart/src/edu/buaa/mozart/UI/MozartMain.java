@@ -6,6 +6,7 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.naming.OperationNotSupportedException;
 import javax.xml.parsers.ParserConfigurationException;
@@ -32,13 +33,21 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.wb.swt.SWTResourceManager;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
+import org.mindswap.exceptions.ExecutionException;
+import org.mindswap.owl.OWLValue;
+import org.mindswap.owls.OWLSFactory;
 import org.mindswap.owls.service.Service;
 import org.mindswap.owls.process.CompositeProcess;
 import org.mindswap.owls.process.Process;
+import org.mindswap.owls.process.execution.ProcessExecutionEngine;
+import org.mindswap.owls.process.variable.Input;
+import org.mindswap.owls.process.variable.Output;
+import org.mindswap.query.ValueMap;
 
 import edu.buaa.composer.Composer;
 import edu.buaa.composer.ComposerConfig;
 import edu.buaa.composer.impl.Mozart;
+import edu.buaa.mozart.UI.core.ExecutionMonitor;
 import edu.buaa.mozart.UI.core.LogAppender;
 import edu.buaa.mozart.UI.core.Model;
 import edu.buaa.mozart.notes.ComposeException;
@@ -65,6 +74,7 @@ public class MozartMain {
     private Map<Process, String> mCPNModels;
     private ServiceStub mServiceStub;
     private Text txtService;
+    private ExecutionMonitor mExecMonitor;
 
 	/**
 	 * Launch the application.
@@ -86,6 +96,7 @@ public class MozartMain {
         coreModel = new Model();
         mCPNModels = new HashMap<Process, String>();
         mDisplay = Display.getDefault();
+        mExecMonitor = new ExecutionMonitor(); 
 		createContents();
         initLogger();
 		shlMozart.open();
@@ -135,8 +146,13 @@ public class MozartMain {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				Service selectedService = changeService();
-				logger.info("excute service " + selectedService.getLocalName() + " ...");
-				new ExcuteDialog(shlMozart, 0, selectedService).open();
+                try {
+					executeService(selectedService);
+				} catch (ExecutionException e1) {
+                    MessageBox dlg = new MessageBox(shlMozart, SWT.ERROR);
+                    dlg.setMessage("执行服务失败 " + e1.getMessage());
+                    dlg.open();
+				}
 			}
 		});
 		
@@ -398,6 +414,25 @@ public class MozartMain {
 		return null;
     }
     
+	private void executeService(Service selectedService) throws ExecutionException {
+        ExcuteDialog.Result result = new ExcuteDialog(shlMozart, 0, selectedService).open();
+    	ProcessExecutionEngine exec = OWLSFactory.createExecutionEngine();
+    	ValueMap<Output, OWLValue> outputs;
+        if (result.confirmed){
+        	logger.info("执行服务: " + selectedService.getLocalName()+"...");
+            java.util.List<Input> processInputs = selectedService.getProcess().getInputs();
+        	ValueMap<Input, OWLValue> inputs = new ValueMap<Input, OWLValue>();
+        	for(int i = 0; i < processInputs.size() ; i++){
+                inputs.setValue(processInputs.get(i), coreModel.getKB().createDataValue(result.inputs[i]));
+        	}
+            exec.addMonitor(mExecMonitor);
+            outputs = exec.execute(selectedService.getProcess(), inputs,coreModel.getKB());
+            logger.info("执行服务成功，结果为:");
+            for (Entry<Output, OWLValue> output : outputs){
+            	logger.warn(" " + output.getKey().getLocalName() + ": " + output.getValue());
+            }
+        }
+	}
     private void stopServer(){
     	if(null != mServiceStub){
     		mServiceStub.stop();

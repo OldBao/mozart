@@ -24,7 +24,9 @@ public final class Model {
     private URI mURI;
     private List<Service> mServices;
     private boolean mURIchanged = false;
-    
+    public OWLKnowledgeBase getKB(){
+    	return mKB;
+    }
     public Model(){
     	mComposer = new Mozart();
         mKB = OWLFactory.createKB();
