@@ -1,96 +1,95 @@
 <?xml version="1.0"?>
 <rdf:RDF
-    xmlns:profile="http://www.daml.org/services/owl-s/1.2/Profile.owl#"
-    xmlns:service="http://www.daml.org/services/owl-s/1.2/Service.owl#"
-    xmlns:process="http://www.daml.org/services/owl-s/1.2/Process.owl#"
-    xmlns:swrl="http://www.w3.org/2003/11/swrl#"
-    xmlns:grounding="http://www.daml.org/services/owl-s/1.2/Grounding.owl#"
+    xmlns:j.0="http://www.daml.org/services/owl-s/1.2/Profile.owl#"
+    xmlns:j.1="http://www.daml.org/services/owl-s/1.2/Service.owl#"
+    xmlns:j.2="http://www.daml.org/services/owl-s/1.2/Process.owl#"
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-    xmlns="http://www.example.org/owls/getAMZPrice.owl"
-    xmlns:list="http://www.daml.org/services/owl-s/1.2/generic/ObjectList.owl#"
+    xmlns:j.3="http://www.daml.org/services/owl-s/1.2/Grounding.owl#"
+    xmlns:p2="http://owls.buaa.edu.cn:8089/Services/owls/getAMZPrice.owl#"
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
     xmlns:owl="http://www.w3.org/2002/07/owl#"
-    xmlns:expression="http://www.daml.org/services/owl-s/1.2/generic/Expression.owl#"
     xmlns:daml="http://www.daml.org/2001/03/daml+oil#"
-  xml:base="http://www.example.org/owls/getAMZPrice.owl">
+    xml:base="http://owls.buaa.edu.cn:8089/Services/owls/getAMZPrice.owl">
   <owl:Ontology rdf:about="">
     <owl:imports rdf:resource="http://www.daml.org/services/owl-s/1.2/Process.owl"/>
     <owl:imports rdf:resource="http://www.daml.org/services/owl-s/1.2/Profile.owl"/>
     <owl:imports rdf:resource="http://www.daml.org/services/owl-s/1.2/Grounding.owl"/>
     <owl:imports rdf:resource="http://www.daml.org/services/owl-s/1.2/Service.owl"/>
   </owl:Ontology>
-  <service:Service rdf:ID="getAMZPriceService">
-    <service:presents>
-      <profile:Profile rdf:ID="getAMZPriceProfile"/>
-    </service:presents>
-    <service:describedBy>
-      <process:AtomicProcess rdf:ID="getAMZPriceProcess"/>
-    </service:describedBy>
-    <service:supports>
-      <grounding:WsdlGrounding rdf:ID="getAMZPriceGrounding"/>
-    </service:supports>
-  </service:Service>
-  <profile:Profile rdf:about="#getAMZPriceProfile">
-    <service:presentedBy rdf:resource="#getAMZPriceService"/>
-    <profile:serviceName>getAMZPrice</profile:serviceName>
-    <profile:textDescription>Auto generated from http://owls.buaa.edu.cn:8089/Services/services/ZipCode?wsdl</profile:textDescription>
-    <profile:hasInput>
-      <process:Input rdf:ID="amzBookName">
-        <rdfs:label>amzBookName</rdfs:label>
-        <process:parameterType rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI"
-        >http://www.w3.org/2001/XMLSchema#string</process:parameterType>
-      </process:Input>
-    </profile:hasInput>
-    <profile:hasOutput>
-      <process:Output rdf:ID="getAMZPriceReturn">
-        <rdfs:label>getAMZPriceReturn</rdfs:label>
-        <process:parameterType rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI"
-        >http://www.w3.org/2001/XMLSchema#int</process:parameterType>
-      </process:Output>
-    </profile:hasOutput>
-  </profile:Profile>
-  <process:AtomicProcess rdf:about="#getAMZPriceProcess">
-    <rdfs:label>getAMZPriceProcess</rdfs:label>
-    <service:describes rdf:resource="#getAMZPriceService"/>
-    <process:hasInput rdf:resource="#amzBookName"/>
-    <process:hasOutput rdf:resource="#getAMZPriceReturn"/>
-  </process:AtomicProcess>
-  <grounding:WsdlGrounding rdf:about="#getAMZPriceGrounding">
-    <service:supportedBy rdf:resource="#getAMZPriceService"/>
-    <grounding:hasAtomicProcessGrounding>
-      <grounding:WsdlAtomicProcessGrounding rdf:ID="getAMZPriceAtomicProcessGrounding"/>
-    </grounding:hasAtomicProcessGrounding>
-  </grounding:WsdlGrounding>
-  <grounding:WsdlAtomicProcessGrounding rdf:about="#getAMZPriceAtomicProcessGrounding">
-    <grounding:owlsProcess rdf:resource="#getAMZPriceProcess"/>
-    <grounding:wsdlOperation>
-      <grounding:WsdlOperationRef>
-        <grounding:operation rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI"
-        >http://owls.buaa.edu.cn:8089/Services/services/ZipCode?wsdl#getAMZPrice</grounding:operation>
-        <grounding:portType rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI"
-        >http://owls.buaa.edu.cn:8089/Services/services/ZipCode?wsdl#ZipCode</grounding:portType>
-      </grounding:WsdlOperationRef>
-    </grounding:wsdlOperation>
-    <grounding:wsdlDocument rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI"
-    >http://owls.buaa.edu.cn:8089/Services/services/ZipCode?wsdl</grounding:wsdlDocument>
-    <grounding:wsdlInputMessage rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI"
-    >http://DefaultNamespace#getAMZPriceRequest</grounding:wsdlInputMessage>
-    <grounding:wsdlOutputMessage rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI"
-    >http://DefaultNamespace#getAMZPriceResponse</grounding:wsdlOutputMessage>
-    <grounding:wsdlInput>
-      <grounding:WsdlInputMessageMap>
-        <grounding:owlsParameter rdf:resource="#amzBookName"/>
-        <grounding:wsdlMessagePart rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI"
-        >http://owls.buaa.edu.cn:8089/Services/services/ZipCode?wsdl#amzBookName</grounding:wsdlMessagePart>
-      </grounding:WsdlInputMessageMap>
-    </grounding:wsdlInput>
-    <grounding:wsdlOutput>
-      <grounding:WsdlOutputMessageMap>
-        <grounding:owlsParameter rdf:resource="#getAMZPriceReturn"/>
-        <grounding:wsdlMessagePart rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI"
-        >http://owls.buaa.edu.cn:8089/Services/services/ZipCode?wsdl#getAMZPriceReturn</grounding:wsdlMessagePart>
-      </grounding:WsdlOutputMessageMap>
-    </grounding:wsdlOutput>
-  </grounding:WsdlAtomicProcessGrounding>
-  <owl:Class rdf:about="http://www.w3.org/2001/XMLSchema#int"/>
+  <j.2:AtomicProcess rdf:ID="getAMZPriceProcess">
+    <j.2:hasInput>
+      <j.2:Input rdf:ID="amzBookName">
+        <j.2:parameterType rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI"
+        >http://www.w3.org/2001/XMLSchema#string</j.2:parameterType>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >amzBookName</rdfs:label>
+      </j.2:Input>
+    </j.2:hasInput>
+    <j.1:describes>
+      <j.1:Service rdf:ID="getAMZPriceService">
+        <j.1:presents>
+          <j.0:Profile rdf:ID="getAMZPriceProfile">
+            <j.0:textDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Auto generated from http://owls.buaa.edu.cn:8089/Services/services/ZipCode?wsdl</j.0:textDescription>
+            <j.0:hasOutput>
+              <j.2:Output rdf:ID="getAMZPriceReturn">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >getAMZPriceReturn</rdfs:label>
+                <j.2:parameterType rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI"
+                >http://www.w3.org/2001/XMLSchema#int</j.2:parameterType>
+              </j.2:Output>
+            </j.0:hasOutput>
+            <j.1:presentedBy rdf:resource="#getAMZPriceService"/>
+            <j.0:serviceName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >getAMZPrice</j.0:serviceName>
+            <j.0:hasInput rdf:resource="#amzBookName"/>
+          </j.0:Profile>
+        </j.1:presents>
+        <j.1:supports>
+          <j.3:WsdlGrounding rdf:ID="getAMZPriceGrounding">
+            <j.1:supportedBy rdf:resource="#getAMZPriceService"/>
+            <j.3:hasAtomicProcessGrounding>
+              <j.3:WsdlAtomicProcessGrounding rdf:ID="getAMZPriceAtomicProcessGrounding">
+                <j.3:wsdlOutputMessage rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI"
+                >http://DefaultNamespace#getAMZPriceResponse</j.3:wsdlOutputMessage>
+                <j.3:wsdlDocument rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI"
+                >http://owls.buaa.edu.cn:8089/Services/services/ZipCode?wsdl</j.3:wsdlDocument>
+                <j.3:wsdlOutput>
+                  <j.3:WsdlOutputMessageMap>
+                    <j.3:wsdlMessagePart rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI"
+                    >http://owls.buaa.edu.cn:8089/Services/services/ZipCode?wsdl#getAMZPriceReturn</j.3:wsdlMessagePart>
+                    <j.3:owlsParameter rdf:resource="#getAMZPriceReturn"/>
+                  </j.3:WsdlOutputMessageMap>
+                </j.3:wsdlOutput>
+                <j.3:wsdlInputMessage rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI"
+                >http://DefaultNamespace#getAMZPriceRequest</j.3:wsdlInputMessage>
+                <j.3:wsdlOperation>
+                  <j.3:WsdlOperationRef>
+                    <j.3:operation rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI"
+                    >http://owls.buaa.edu.cn:8089/Services/services/ZipCode?wsdl#getAMZPrice</j.3:operation>
+                    <j.3:portType rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI"
+                    >http://owls.buaa.edu.cn:8089/Services/services/ZipCode?wsdl#ZipCode</j.3:portType>
+                  </j.3:WsdlOperationRef>
+                </j.3:wsdlOperation>
+                <j.3:wsdlInput>
+                  <j.3:WsdlInputMessageMap>
+                    <j.3:wsdlMessagePart rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI"
+                    >http://owls.buaa.edu.cn:8089/Services/services/ZipCode?wsdl#amzBookName</j.3:wsdlMessagePart>
+                    <j.3:owlsParameter rdf:resource="#amzBookName"/>
+                  </j.3:WsdlInputMessageMap>
+                </j.3:wsdlInput>
+                <j.3:owlsProcess rdf:resource="#getAMZPriceProcess"/>
+              </j.3:WsdlAtomicProcessGrounding>
+            </j.3:hasAtomicProcessGrounding>
+          </j.3:WsdlGrounding>
+        </j.1:supports>
+        <j.1:describedBy rdf:resource="#getAMZPriceProcess"/>
+      </j.1:Service>
+    </j.1:describes>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >getAMZPriceProcess</rdfs:label>
+    <j.2:hasOutput rdf:resource="#getAMZPriceReturn"/>
+  </j.2:AtomicProcess>
 </rdf:RDF>
+
+<!-- Created with Protege (with OWL Plugin 3.2, Build 355)  http://protege.stanford.edu -->

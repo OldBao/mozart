@@ -33,7 +33,7 @@
   <profile:Profile rdf:about="#getFinalPriceProfile">
     <service:presentedBy rdf:resource="#getFinalPriceService"/>
     <profile:serviceName>getFinalPrice</profile:serviceName>
-    <profile:textDescription>Auto generated from http://localhost:8089/Services/services/ZipCode?wsdl</profile:textDescription>
+    <profile:textDescription>Auto generated from http://owls.buaa.edu.cn:8089/Services/services/ZipCode?wsdl</profile:textDescription>
     <profile:hasInput>
       <process:Input rdf:ID="price">
         <rdfs:label>price</rdfs:label>
@@ -74,13 +74,13 @@
     <grounding:wsdlOperation>
       <grounding:WsdlOperationRef>
         <grounding:operation rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI"
-        >http://localhost:8089/Services/services/ZipCode?wsdl#getFinalPrice</grounding:operation>
+        >http://owls.buaa.edu.cn:8089/Services/services/ZipCode?wsdl#getFinalPrice</grounding:operation>
         <grounding:portType rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI"
-        >http://localhost:8089/Services/services/ZipCode?wsdl#ZipCode</grounding:portType>
+        >http://owls.buaa.edu.cn:8089/Services/services/ZipCode?wsdl#ZipCode</grounding:portType>
       </grounding:WsdlOperationRef>
     </grounding:wsdlOperation>
     <grounding:wsdlDocument rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI"
-    >http://localhost:8089/Services/services/ZipCode?wsdl</grounding:wsdlDocument>
+    >http://owls.buaa.edu.cn:8089/Services/services/ZipCode?wsdl</grounding:wsdlDocument>
     <grounding:wsdlInputMessage rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI"
     >http://DefaultNamespace#getFinalPriceRequest</grounding:wsdlInputMessage>
     <grounding:wsdlOutputMessage rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI"
@@ -89,21 +89,21 @@
       <grounding:WsdlInputMessageMap>
         <grounding:owlsParameter rdf:resource="#price"/>
         <grounding:wsdlMessagePart rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI"
-        >http://localhost:8089/Services/services/ZipCode?wsdl#price</grounding:wsdlMessagePart>
+        >http://owls.buaa.edu.cn:8089/Services/services/ZipCode?wsdl#price</grounding:wsdlMessagePart>
       </grounding:WsdlInputMessageMap>
     </grounding:wsdlInput>
     <grounding:wsdlInput>
       <grounding:WsdlInputMessageMap>
         <grounding:owlsParameter rdf:resource="#discount"/>
         <grounding:wsdlMessagePart rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI"
-        >http://localhost:8089/Services/services/ZipCode?wsdl#discount</grounding:wsdlMessagePart>
+        >http://owls.buaa.edu.cn:8089/Services/services/ZipCode?wsdl#discount</grounding:wsdlMessagePart>
       </grounding:WsdlInputMessageMap>
     </grounding:wsdlInput>
     <grounding:wsdlOutput>
       <grounding:WsdlOutputMessageMap>
         <grounding:owlsParameter rdf:resource="#getFinalPriceReturn"/>
         <grounding:wsdlMessagePart rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI"
-        >http://localhost:8089/Services/services/ZipCode?wsdl#getFinalPriceReturn</grounding:wsdlMessagePart>
+        >http://owls.buaa.edu.cn:8089/Services/services/ZipCode?wsdl#getFinalPriceReturn</grounding:wsdlMessagePart>
       </grounding:WsdlOutputMessageMap>
     </grounding:wsdlOutput>
   </grounding:WsdlAtomicProcessGrounding>

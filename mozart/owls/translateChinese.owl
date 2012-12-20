@@ -6,67 +6,67 @@
     xmlns:swrl="http://www.w3.org/2003/11/swrl#"
     xmlns:grounding="http://www.daml.org/services/owl-s/1.2/Grounding.owl#"
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns="http://owls.buaa.edu.cn:8089/Services/owls/translateChinese.owl"
     xmlns:list="http://www.daml.org/services/owl-s/1.2/generic/ObjectList.owl#"
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
     xmlns:owl="http://www.w3.org/2002/07/owl#"
     xmlns:expression="http://www.daml.org/services/owl-s/1.2/generic/Expression.owl#"
     xmlns:daml="http://www.daml.org/2001/03/daml+oil#"
-    xmlns="http://owls.buaa.edu.cn:8089/Services/owls/getDiscount.owl"
-  xml:base="http://owls.buaa.edu.cn:8089/Services/owls/getDiscount.owl">
+  xml:base="http://owls.buaa.edu.cn:8089/Services/owls/translateChinese.owl">
   <owl:Ontology rdf:about="">
     <owl:imports rdf:resource="http://www.daml.org/services/owl-s/1.2/Profile.owl"/>
     <owl:imports rdf:resource="http://www.daml.org/services/owl-s/1.2/Process.owl"/>
-    <owl:imports rdf:resource="http://www.daml.org/services/owl-s/1.2/Grounding.owl"/>
     <owl:imports rdf:resource="http://www.daml.org/services/owl-s/1.2/Service.owl"/>
+    <owl:imports rdf:resource="http://www.daml.org/services/owl-s/1.2/Grounding.owl"/>
   </owl:Ontology>
-  <service:Service rdf:ID="getDiscountService">
+  <service:Service rdf:ID="translateChineseService">
     <service:presents>
-      <profile:Profile rdf:ID="getDiscountProfile"/>
+      <profile:Profile rdf:ID="translateChineseProfile"/>
     </service:presents>
     <service:describedBy>
-      <process:AtomicProcess rdf:ID="getDiscountProcess"/>
+      <process:AtomicProcess rdf:ID="translateChineseProcess"/>
     </service:describedBy>
     <service:supports>
-      <grounding:WsdlGrounding rdf:ID="getDiscountGrounding"/>
+      <grounding:WsdlGrounding rdf:ID="translateChineseGrounding"/>
     </service:supports>
   </service:Service>
-  <profile:Profile rdf:about="#getDiscountProfile">
-    <service:presentedBy rdf:resource="#getDiscountService"/>
-    <profile:serviceName>getDiscount</profile:serviceName>
-    <profile:textDescription>Auto generated from http://owls.buaa.edu.cn:8089/Services/services/ZipCode?wsdl</profile:textDescription>
+  <profile:Profile rdf:about="#translateChineseProfile">
+    <service:presentedBy rdf:resource="#translateChineseService"/>
+    <profile:serviceName>translateChinese</profile:serviceName>
+    <profile:textDescription>translate Chinese</profile:textDescription>
     <profile:hasInput>
-      <process:Input rdf:ID="price">
-        <rdfs:label>price</rdfs:label>
+      <process:Input rdf:ID="chinese">
+        <rdfs:label>chinese</rdfs:label>
         <process:parameterType rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI"
-        >http://www.w3.org/2001/XMLSchema#int</process:parameterType>
+        >http://www.w3.org/2001/XMLSchema#string</process:parameterType>
       </process:Input>
     </profile:hasInput>
     <profile:hasOutput>
-      <process:Output rdf:ID="getDiscountReturn">
-        <rdfs:label>getDiscountReturn</rdfs:label>
+      <process:Output rdf:ID="translateChineseReturn">
+        <rdfs:label>translateChineseReturn</rdfs:label>
         <process:parameterType rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI"
-        >http://www.w3.org/2001/XMLSchema#int</process:parameterType>
+        >http://www.w3.org/2001/XMLSchema#string</process:parameterType>
       </process:Output>
     </profile:hasOutput>
   </profile:Profile>
-  <process:AtomicProcess rdf:about="#getDiscountProcess">
-    <rdfs:label>getDiscountProcess</rdfs:label>
-    <service:describes rdf:resource="#getDiscountService"/>
-    <process:hasInput rdf:resource="#price"/>
-    <process:hasOutput rdf:resource="#getDiscountReturn"/>
+  <process:AtomicProcess rdf:about="#translateChineseProcess">
+    <rdfs:label>translateChineseProcess</rdfs:label>
+    <service:describes rdf:resource="#translateChineseService"/>
+    <process:hasInput rdf:resource="#chinese"/>
+    <process:hasOutput rdf:resource="#translateChineseReturn"/>
   </process:AtomicProcess>
-  <grounding:WsdlGrounding rdf:about="#getDiscountGrounding">
-    <service:supportedBy rdf:resource="#getDiscountService"/>
+  <grounding:WsdlGrounding rdf:about="#translateChineseGrounding">
+    <service:supportedBy rdf:resource="#translateChineseService"/>
     <grounding:hasAtomicProcessGrounding>
-      <grounding:WsdlAtomicProcessGrounding rdf:ID="getDiscountAtomicProcessGrounding"/>
+      <grounding:WsdlAtomicProcessGrounding rdf:ID="translateChineseAtomicProcessGrounding"/>
     </grounding:hasAtomicProcessGrounding>
   </grounding:WsdlGrounding>
-  <grounding:WsdlAtomicProcessGrounding rdf:about="#getDiscountAtomicProcessGrounding">
-    <grounding:owlsProcess rdf:resource="#getDiscountProcess"/>
+  <grounding:WsdlAtomicProcessGrounding rdf:about="#translateChineseAtomicProcessGrounding">
+    <grounding:owlsProcess rdf:resource="#translateChineseProcess"/>
     <grounding:wsdlOperation>
       <grounding:WsdlOperationRef>
         <grounding:operation rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI"
-        >http://owls.buaa.edu.cn:8089/Services/services/ZipCode?wsdl#getDiscount</grounding:operation>
+        >http://owls.buaa.edu.cn:8089/Services/services/ZipCode?wsdl#translateChinese</grounding:operation>
         <grounding:portType rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI"
         >http://owls.buaa.edu.cn:8089/Services/services/ZipCode?wsdl#ZipCode</grounding:portType>
       </grounding:WsdlOperationRef>
@@ -74,21 +74,21 @@
     <grounding:wsdlDocument rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI"
     >http://owls.buaa.edu.cn:8089/Services/services/ZipCode?wsdl</grounding:wsdlDocument>
     <grounding:wsdlInputMessage rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI"
-    >http://DefaultNamespace#getDiscountRequest</grounding:wsdlInputMessage>
+    >http://DefaultNamespace#translateChineseRequest</grounding:wsdlInputMessage>
     <grounding:wsdlOutputMessage rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI"
-    >http://DefaultNamespace#getDiscountResponse</grounding:wsdlOutputMessage>
+    >http://DefaultNamespace#translateChineseResponse</grounding:wsdlOutputMessage>
     <grounding:wsdlInput>
       <grounding:WsdlInputMessageMap>
-        <grounding:owlsParameter rdf:resource="#price"/>
+        <grounding:owlsParameter rdf:resource="#chinese"/>
         <grounding:wsdlMessagePart rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI"
-        >http://owls.buaa.edu.cn:8089/Services/services/ZipCode?wsdl#price</grounding:wsdlMessagePart>
+        >http://owls.buaa.edu.cn:8089/Services/services/ZipCode?wsdl#chinese</grounding:wsdlMessagePart>
       </grounding:WsdlInputMessageMap>
     </grounding:wsdlInput>
     <grounding:wsdlOutput>
       <grounding:WsdlOutputMessageMap>
-        <grounding:owlsParameter rdf:resource="#getDiscountReturn"/>
+        <grounding:owlsParameter rdf:resource="#translateChineseReturn"/>
         <grounding:wsdlMessagePart rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI"
-        >http://owls.buaa.edu.cn:8089/Services/services/ZipCode?wsdl#getDiscountReturn</grounding:wsdlMessagePart>
+        >http://owls.buaa.edu.cn:8089/Services/services/ZipCode?wsdl#translateChineseReturn</grounding:wsdlMessagePart>
       </grounding:WsdlOutputMessageMap>
     </grounding:wsdlOutput>
   </grounding:WsdlAtomicProcessGrounding>

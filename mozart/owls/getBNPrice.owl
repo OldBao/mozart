@@ -1,0 +1,96 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:j.0="http://www.daml.org/services/owl-s/1.2/Profile.owl#"
+    xmlns:j.1="http://www.daml.org/services/owl-s/1.2/Service.owl#"
+    xmlns:j.2="http://www.daml.org/services/owl-s/1.2/Process.owl#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:j.3="http://www.daml.org/services/owl-s/1.2/Grounding.owl#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:p1="http://owls.buaa.edu.cn:8089/Services/owls/getBNPrice.owl#"
+    xmlns:daml="http://www.daml.org/2001/03/daml+oil#"
+    xml:base="http://owls.buaa.edu.cn:8089/Services/owls/getBNPrice.owl">
+  <owl:Ontology rdf:about="">
+    <owl:imports rdf:resource="http://www.daml.org/services/owl-s/1.2/Profile.owl"/>
+    <owl:imports rdf:resource="http://www.daml.org/services/owl-s/1.2/Process.owl"/>
+    <owl:imports rdf:resource="http://www.daml.org/services/owl-s/1.2/Grounding.owl"/>
+    <owl:imports rdf:resource="http://www.daml.org/services/owl-s/1.2/Service.owl"/>
+  </owl:Ontology>
+  <owl:Class rdf:about="http://www.w3.org/2001/XMLSchema#int"/>
+  <j.0:Profile rdf:ID="getBNPriceProfile">
+    <j.0:serviceName rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >getBNPrice</j.0:serviceName>
+    <j.1:presentedBy>
+      <j.1:Service rdf:ID="getBNPriceService">
+        <j.1:supports>
+          <j.3:WsdlGrounding rdf:ID="getBNPriceGrounding">
+            <j.3:hasAtomicProcessGrounding>
+              <j.3:WsdlAtomicProcessGrounding rdf:ID="getBNPriceAtomicProcessGrounding">
+                <j.3:wsdlInputMessage rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI"
+                >http://DefaultNamespace#getBNPriceRequest</j.3:wsdlInputMessage>
+                <j.3:owlsProcess>
+                  <j.2:AtomicProcess rdf:ID="getBNPriceProcess">
+                    <j.2:hasOutput>
+                      <j.2:Output rdf:ID="getBNPriceReturn">
+                        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                        >getBNPriceReturn</rdfs:label>
+                        <j.2:parameterType rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI"
+                        >http://www.w3.org/2001/XMLSchema#int</j.2:parameterType>
+                      </j.2:Output>
+                    </j.2:hasOutput>
+                    <j.2:hasInput>
+                      <j.2:Input rdf:ID="BNBookName">
+                        <j.2:parameterType rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI"
+                        >http://www.w3.org/2001/XMLSchema#string</j.2:parameterType>
+                        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                        >BNBookName</rdfs:label>
+                      </j.2:Input>
+                    </j.2:hasInput>
+                    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >getBNPriceProcess</rdfs:label>
+                    <j.1:describes rdf:resource="#getBNPriceService"/>
+                  </j.2:AtomicProcess>
+                </j.3:owlsProcess>
+                <j.3:wsdlDocument rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI"
+                >http://owls.buaa.edu.cn:8089/Services/services/ZipCode?wsdl</j.3:wsdlDocument>
+                <j.3:wsdlOutputMessage rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI"
+                >http://DefaultNamespace#getBNPriceResponse</j.3:wsdlOutputMessage>
+                <j.3:wsdlOutput>
+                  <j.3:WsdlOutputMessageMap>
+                    <j.3:owlsParameter rdf:resource="#getBNPriceReturn"/>
+                    <j.3:wsdlMessagePart rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI"
+                    >http://owls.buaa.edu.cn:8089/Services/services/ZipCode?wsdl#getBNPriceReturn</j.3:wsdlMessagePart>
+                  </j.3:WsdlOutputMessageMap>
+                </j.3:wsdlOutput>
+                <j.3:wsdlInput>
+                  <j.3:WsdlInputMessageMap>
+                    <j.3:wsdlMessagePart rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI"
+                    >http://owls.buaa.edu.cn:8089/Services/services/ZipCode?wsdl#BNBookName</j.3:wsdlMessagePart>
+                    <j.3:owlsParameter rdf:resource="#BNBookName"/>
+                  </j.3:WsdlInputMessageMap>
+                </j.3:wsdlInput>
+                <j.3:wsdlOperation>
+                  <j.3:WsdlOperationRef>
+                    <j.3:portType rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI"
+                    >http://owls.buaa.edu.cn:8089/Services/services/ZipCode?wsdl#ZipCode</j.3:portType>
+                    <j.3:operation rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI"
+                    >http://owls.buaa.edu.cn:8089/Services/services/ZipCode?wsdl#getBNPrice</j.3:operation>
+                  </j.3:WsdlOperationRef>
+                </j.3:wsdlOperation>
+              </j.3:WsdlAtomicProcessGrounding>
+            </j.3:hasAtomicProcessGrounding>
+            <j.1:supportedBy rdf:resource="#getBNPriceService"/>
+          </j.3:WsdlGrounding>
+        </j.1:supports>
+        <j.1:describedBy rdf:resource="#getBNPriceProcess"/>
+        <j.1:presents rdf:resource="#getBNPriceProfile"/>
+      </j.1:Service>
+    </j.1:presentedBy>
+    <j.0:hasInput rdf:resource="#BNBookName"/>
+    <j.0:hasOutput rdf:resource="#getBNPriceReturn"/>
+    <j.0:textDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Auto generated from http://owls.buaa.edu.cn:8089/Services/services/ZipCode?wsdl</j.0:textDescription>
+  </j.0:Profile>
+</rdf:RDF>
+
+<!-- Created with Protege (with OWL Plugin 3.2, Build 355)  http://protege.stanford.edu -->
